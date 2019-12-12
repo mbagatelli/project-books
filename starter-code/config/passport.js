@@ -49,12 +49,13 @@ passport.use(
       passReqToCallback: true
     },
     (req, email, password, callback) => {
-      const name = req.body.name;
+      const { username, location } = req.body;
       bcryptjs
         .hash(password, 10)
         .then(hash => {
           return User.create({
-            name,
+            username,
+            location,
             email,
             passwordHash: hash
           });
