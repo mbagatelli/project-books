@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-const schema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     /*   firstName: {
     type: String,
@@ -21,13 +21,21 @@ const schema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: true,
+      //required: true,
       unique: true,
       trim: true
     },
     image: {
       type: String
     },
+    location: {
+      type: String
+    },
+    rating: {
+      type: Array
+    },
+    booksOnSale: Number,
+    booksSold: Number,
     passwordHash: {
       type: String
     }
@@ -35,4 +43,4 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", schema);
+module.exports = mongoose.model("User", userSchema);

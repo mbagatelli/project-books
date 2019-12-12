@@ -11,8 +11,9 @@ const mongoose = require("mongoose");
 //const serveFavicon = require("serve-favicon");
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
-const indexRouter = require("./routes/index");
-const authRouter = require("./routes/authentication");
+const indexRouter = require("./routes/api/index");
+const authRouter = require("./routes/api/authentication");
+const bookRouter = require("./routes/api/book");
 
 const app = express();
 
@@ -38,11 +39,20 @@ app.use(
     })
   })
 );
+
+// Passport configuration
+require("./config/passport");
+const passport = require("passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
-app.use("/", indexRouter);
-app.use("/auth", authRouter);
+// app.use("/", indexRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/book", bookRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
