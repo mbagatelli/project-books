@@ -7,12 +7,9 @@ const routeGuard = require("../../middleware/route-guard");
 router.get("/", (req, res, next) => {
   res.json({ type: "success", data: { title: "Hello World" } });
 });
-dasdjsadas;
+
 router.get("/private", routeGuard, (req, res, next) => {
   res.render("private");
-  asfasfda;
 });
 
 module.exports = router;
-
-//this is a comment
