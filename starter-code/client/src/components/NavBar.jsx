@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { signOut as signOutService } from "./../services/auth";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -12,7 +13,23 @@ import {
 import NavDropDown from "react-bootstrap/NavDropdown" */
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.onSignOutTrigger = this.onSignOutTrigger.bind(this);
+  }
+
+  async onSignOutTrigger() {
+    try {
+      await signOutService();
+      this.props.changeAuthenticationStatus(null);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
+    const user = this.props.user;
+    console.log(user);
     return (
       <Navbar bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
@@ -21,12 +38,23 @@ class NavBar extends Component {
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='mr-auto'>
-            <Nav.Link as={Link} to='/sign-in'>
-              Sign-In
-            </Nav.Link>
-            <Nav.Link as={Link} to='/sign-up'>
-              Sign-Up
-            </Nav.Link>
+            {(user && (
+              <Fragment>
+                <Nav.Link as={Link} to='/profile'>
+                  Profile
+                </Nav.Link>
+                <button onClick={this.onSignOutTrigger}>Sign Out</button>
+              </Fragment>
+            )) || (
+              <Fragment>
+                <Nav.Link as={Link} to='/sign-in'>
+                  Sign-In
+                </Nav.Link>
+                <Nav.Link as={Link} to='/sign-up'>
+                  Sign-Up
+                </Nav.Link>
+              </Fragment>
+            )}
             <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
               <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
               <NavDropdown.Item href='#action/3.2'>

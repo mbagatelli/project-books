@@ -30,11 +30,11 @@ export const signOut = async () => {
   }
 };
 
-/* export const loadUserInformation = async () => {
+export const loadUserInformation = async () => {
   try {
     const response = await apiAuthenticationService.get(`/user-information`);
     return response.data.user;
   } catch (error) {
     throw error;
   }
-}; */
+};

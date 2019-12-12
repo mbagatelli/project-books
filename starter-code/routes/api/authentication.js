@@ -10,13 +10,7 @@ const passport = require("passport");
 //! SIGN IN
 // Sign In Local
 
-router.post(
-  "/sign-in/",
-  passport.authenticate("local-sign-in", {
-    successRedirect: "/",
-    failureRedirect: "/auth/sign-in"
-  })
-);
+router.post("/sign-in/", passport.authenticate("local-sign-in"));
 
 // Sign in with Google
 /* router.get('/sign-in/google', passport.authenticate('google', {
@@ -33,8 +27,8 @@ router.get('/sign-in/google/redirect', passport.authenticate('google', { failure
 router.post(
   "/sign-up/",
   passport.authenticate("local-sign-up", {
-    successRedirect: "/auth/verify-email",
-    failureRedirect: "/auth/sign-up"
+    successRedirect: "/",
+    failureRedirect: "/sign-up"
   })
 );
 
@@ -51,50 +45,24 @@ router.get("/confirm/:token", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
+router.get("/user-information", async (req, res, next) => {
+  const userId = req.session.user;
+  if (!userId) {
+    res.json({});
+  } else {
+    try {
+      const user = await User.findById(userId);
+      if (!user) throw new Error("Signed in user not found");
+      res.json({ user });
+    } catch (error) {
+      next(error);
+    }
+  }
+});
+
 router.post("/sign-out", (req, res, next) => {
   req.session.destroy();
   res.json({});
 });
 
 module.exports = router;
-
-/* router.post("/sign-up", (req, res, next) => {
-    const { username, email, password } = req.body;
-    bcryptjs
-      .hash(password, 10)
-      .then(hash => {
-        return User.create({
-          username,
-          email,
-          passwordHash: hash
-        });
-      })
-      .then(user => {
-        req.session.user = user._id;
-        res.json({ user });
-      })
-      .catch(error => {
-        next(error);
-      });
-  });
-  
-  router.post("/sign-in", async (req, res, next) => {
-    const { email, password } = req.body;
-    try {
-      const user = await User.findOne({ email }).exec();
-      if (!user) throw new Error("There's no user with that email.");
-      const result = await bcryptjs.compare(password, user.passwordHash);
-      if (!result) throw new Error("Wrong password.");
-      req.session.user = user._id;
-      res.json({ user });
-    } catch (error) {
-      next(error);
-    }
-  });
-  
-  router.post("/sign-out", (req, res, next) => {
-    req.session.destroy();
-    res.json({});
-  });
-  
-  module.exports = router; */

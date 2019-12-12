@@ -2,17 +2,15 @@
 
 const { Router } = require("express");
 const router = new Router();
-const routeGuard = require("
-sdf
-../../middleware/route-guard");
+const routeGuard = require("../../middleware/route-guard");
 
 router.get("/", (req, res, next) => {
   res.json({ type: "success", data: { title: "Hello World" } });
 });
-dasdjsadas
+dasdjsadas;
 router.get("/private", routeGuard, (req, res, next) => {
   res.render("private");
-  asfasfda
+  asfasfda;
 });
 
 module.exports = router;
