@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const User = require("./User");
+const User = require("./user");
 const BookQuestion = require("./bookQuestion");
 
 const bookSchema = new mongoose.Schema(
@@ -101,26 +101,23 @@ const bookSchema = new mongoose.Schema(
       default: false,
       required: true
     },
-    seller: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true
-    },
-    buyer: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      default: "",
-      required: true
-    },
-    questions: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "BookQuestion",
-      default: "",
-      required: true
-    },
+    // seller: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User"
+    // },
+    // buyer: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    //   default: ""
+    // },
+    // questions: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "BookQuestion",
+    //   default: "",
+    //   required: true
+    // },
     image: {
       type: String,
-      required: true,
       default: ""
     }
   },
