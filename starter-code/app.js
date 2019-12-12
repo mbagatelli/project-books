@@ -9,9 +9,9 @@ const expressSession = require("express-session");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 //const serveFavicon = require("serve-favicon");
-const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
-const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
-const indexRouter = require("./routes/api/index");
+// const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
+// const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
+// const indexRouter = require("./routes/api/index");
 const authRouter = require("./routes/api/authentication");
 const bookRouter = require("./routes/api/book");
 
@@ -47,8 +47,8 @@ const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(basicAuthenticationDeserializer);
-app.use(bindUserToViewLocals);
+// app.use(basicAuthenticationDeserializer);
+// app.use(bindUserToViewLocals);
 
 // app.use("/", indexRouter);
 app.use("/api/auth", authRouter);

@@ -5,7 +5,7 @@ const bcryptjs = require("bcryptjs");
 //const nodemailer = require("./mailer");
 const fs = require("fs");
 //const handlebars = require("handlebars");
-const User = require("../models/User");
+const User = require("../models/user");
 
 //attach the plugin to the nodemailer transporter
 
