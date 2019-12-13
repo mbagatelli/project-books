@@ -22,6 +22,7 @@ const bookSchema = new mongoose.Schema(
       maxlength: 280
     },
     type: {
+      type: String,
       enum: ["fiction", "non-fiction"]
     },
     genre: {
@@ -37,6 +38,7 @@ const bookSchema = new mongoose.Schema(
         "Book review",
         "Children's",
         "Cookbook",
+        "Comedy",
         "Comic book",
         "Diary",
         "Coming-of-age",
