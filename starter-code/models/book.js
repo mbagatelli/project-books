@@ -16,6 +16,11 @@ const bookSchema = new mongoose.Schema(
       required: true,
       maxlength: 140
     },
+    isbn: {
+      type: String,
+      required: true,
+      maxlength: 140
+    },
     synopsis: {
       type: String,
       default: "",
@@ -25,60 +30,7 @@ const bookSchema = new mongoose.Schema(
       type: String,
       enum: ["fiction", "non-fiction"]
     },
-    genre: {
-      type: String,
-      enum: [
-        "Action and adventure",
-        "Art",
-        "Alternate history",
-        "Autobiography",
-        "Anthology",
-        "Biography",
-        "Chick lit",
-        "Book review",
-        "Children's",
-        "Cookbook",
-        "Comedy",
-        "Comic book",
-        "Diary",
-        "Coming-of-age",
-        "Dictionary",
-        "Crime",
-        "Encyclopedia",
-        "Drama",
-        "Guide",
-        "Fairytale",
-        "Health",
-        "Fantasy",
-        "History",
-        "Graphic novel",
-        "Journal",
-        "Historical fiction",
-        "Math",
-        "Horror",
-        "Memoir",
-        "Mystery",
-        "Prayer",
-        "Paranormal",
-        "Religion, spirituality, and new age",
-        "Picture book",
-        "Textbook",
-        "Poetry",
-        "Review",
-        "Political",
-        "Science",
-        "Romance",
-        "Self help",
-        "Satire",
-        "Travel",
-        "Science fiction",
-        "True crime",
-        "Short story",
-        "Suspense",
-        "Thriller",
-        "Young adult"
-      ]
-    },
+    genre: [],
     language: {
       type: String,
       enum: [
@@ -88,7 +40,12 @@ const bookSchema = new mongoose.Schema(
         "Deutsch",
         "Esperanto",
         "Polski",
-        "Español"
+        "Español",
+        "Italiano",
+        "русский язык",
+        "普通話",
+        "日本語",
+        "Other language"
       ]
     },
     pushlished_year: {
@@ -121,6 +78,14 @@ const bookSchema = new mongoose.Schema(
     image: {
       type: String,
       default: ""
+    },
+    description: {
+      type: String,
+      maxlength: 280
+    },
+    condition: {
+      type: String,
+      enum: [ 'very good', 'good', 'okay' ]
     }
   },
   { timestamps: true }

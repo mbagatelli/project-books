@@ -6,6 +6,7 @@ import HomeView from "./views/HomeView";
 import SignUpView from "./views/SignUpView";
 import SignInView from "./views/SignInView";
 import ProfileView from "./views/ProfileView";
+import SellView from "./views/SellView";
 
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
@@ -78,6 +79,10 @@ class App extends Component {
             <Route
               path='/profile'
               render={props => <ProfileView {...props} user={user} />}
+            />
+            <Route
+              path='/sell'
+              render={props => <SellView {...props} user={user} />}
             />
             <Route path='/' exact component={HomeView} />
           </Switch>

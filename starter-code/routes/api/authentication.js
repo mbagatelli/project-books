@@ -54,7 +54,7 @@ router.get("/confirm/:token", (req, res, next) => {
 });
 
 router.get("/user-information", async (req, res, next) => {
-  const userId = req.session.passport.user;
+  const userId = await req.user;
   if (!userId) {
     //console.log(req.session.passport.user);
     res.json({});
