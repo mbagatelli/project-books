@@ -7,7 +7,6 @@ const Book = require("./../../models/book");
 
 //ENDPOINT /api/book
 //POST
-
 router.post("/", (req, res, next) => {
   const {
     title,
@@ -37,6 +36,15 @@ router.post("/", (req, res, next) => {
   });
   // res.json({ title, author, synopsis, type, genre, language, pushlished_year, price, image });
   res.json({ "message": "OK" });
+});
+
+//GET -- get book by ID
+router.get("/:id", (req, res, next) => {
+  console.dir(req.params.id);
+  // res.json({ "id": req.params.id });
+ Book.findById(req.params.id)
+  .then(doc => console.log(doc, "GREAT SUCCESS"))
+  .catch(err => console.log(err, "OH FUCK!"));
 });
 
 module.exports = router;
