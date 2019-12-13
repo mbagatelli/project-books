@@ -2,7 +2,18 @@ import React, { Component } from "react";
 
 class ProfileView extends Component {
   render() {
-    return <div></div>;
+    const user = this.props.user;
+    return (
+      <div>
+        <h1>Private</h1>
+        {user && (
+          <div>
+            <h1>{user.username}</h1>
+            <h5>{user.email}</h5>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 

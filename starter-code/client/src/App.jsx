@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
-import Routes from "./components/Routes";
+import HomeView from "./views/HomeView";
+import SignUpView from "./views/SignUpView";
+import SignInView from "./views/SignInView";
+import ProfileView from "./views/ProfileView";
 
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
@@ -52,7 +55,29 @@ class App extends Component {
           changeAuthenticationStatus={this.changeAuthenticationStatus}
         />
         <Switch>
-          <Routes />
+          <Route
+            path='/sign-up'
+            render={props => (
+              <SignUpView
+                {...props}
+                changeAuthenticationStatus={this.changeAuthenticationStatus}
+              />
+            )}
+          />
+          <Route
+            path='/sign-in'
+            render={props => (
+              <SignInView
+                {...props}
+                changeAuthenticationStatus={this.changeAuthenticationStatus}
+              />
+            )}
+          />
+          <Route
+            path='/private'
+            render={props => <ProfileView {...props} user={user} />}
+          />
+          <Route path='/' exact component={HomeView} />
         </Switch>
       </BrowserRouter>
     );

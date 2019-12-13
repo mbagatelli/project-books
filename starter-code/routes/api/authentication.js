@@ -10,7 +10,14 @@ const passport = require("passport");
 //! SIGN IN
 // Sign In Local
 
-router.post("/sign-in/", passport.authenticate("local-sign-in"));
+router.post(
+  "/sign-in",
+  passport.authenticate("local-sign-in"),
+  (req, res, next) => {
+    const user = req.user;
+    res.json({ user });
+  }
+);
 
 // Sign in with Google
 /* router.get('/sign-in/google', passport.authenticate('google', {
@@ -26,10 +33,11 @@ router.get('/sign-in/google/redirect', passport.authenticate('google', { failure
 
 router.post(
   "/sign-up/",
-  passport.authenticate("local-sign-up", {
-    successRedirect: "/",
-    failureRedirect: "/sign-up"
-  })
+  passport.authenticate("local-sign-up"),
+  (req, res, next) => {
+    const user = req.user;
+    res.json({ user });
+  }
 );
 
 // Verify Email
