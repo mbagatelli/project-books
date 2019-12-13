@@ -13,6 +13,7 @@ class SignUpView extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
+    //this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   handleInputChange(event) {
@@ -34,6 +35,17 @@ class SignUpView extends Component {
       console.log(error);
     }
   }
+
+  /*   handleFileChange(event) {
+    console.dir(event.target.files);
+    const file = event.target.files[0];
+    this.setState({
+      user: {
+        ...this.state.user,
+        image: file
+      }
+    });
+  } */
 
   render() {
     return (
@@ -71,6 +83,9 @@ class SignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <br />
+          {/*           <label>Photo:</label> <br />
+          <input type='file' name='image' onChange={this.handleFileChange} />
+          <br /> */}
           <button>Sign Up</button>
         </form>
       </main>

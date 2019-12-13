@@ -4,7 +4,7 @@ const { Router } = require("express");
 const router = new Router();
 const User = require("./../../models/user");
 // const bcryptjs = require("bcryptjs");
-
+//const uploadCloud = require("../../middleware/cloudinary");
 const passport = require("passport");
 
 //! SIGN IN
@@ -54,7 +54,7 @@ router.get("/confirm/:token", (req, res, next) => {
 });
 
 router.get("/user-information", async (req, res, next) => {
-  const userId = req.session.passport.user;
+  const userId = req.user;
   if (!userId) {
     //console.log(req.session.passport.user);
     res.json({});
