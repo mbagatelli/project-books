@@ -60,7 +60,8 @@ mongoose
   .connect(URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => {
     debug(`Database connected to URI "${ URI }"`);
