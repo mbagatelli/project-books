@@ -10,7 +10,7 @@ const passport = require("passport");
 //! SIGN IN
 // Sign In Local
 
-router.post("/sign-in/", passport.authenticate("local-sign-in"));
+router.post("/sign-in/", passport.authenticate("local-sign-in")) ;
 
 // Sign in with Google
 /* router.get('/sign-in/google', passport.authenticate('google', {
