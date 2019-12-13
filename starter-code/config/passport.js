@@ -2,6 +2,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const bcryptjs = require("bcryptjs");
+const uploadCloud = require("../middleware/cloudinary");
+
 //const nodemailer = require("./mailer");
 const fs = require("fs");
 //const handlebars = require("handlebars");
@@ -48,6 +50,7 @@ passport.use(
       usernameField: "email",
       passReqToCallback: true
     },
+    //uploadCloud.single("image"),
     (req, email, password, callback) => {
       const { username, location } = req.body;
       bcryptjs
@@ -57,6 +60,7 @@ passport.use(
             username,
             location,
             email,
+            //image: req.file.url,
             passwordHash: hash
           });
         })

@@ -4,7 +4,7 @@ const { Router } = require("express");
 const router = new Router();
 const User = require("./../../models/user");
 // const bcryptjs = require("bcryptjs");
-
+//const uploadCloud = require("../../middleware/cloudinary");
 const passport = require("passport");
 
 //! SIGN IN
