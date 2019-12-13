@@ -21,7 +21,7 @@ class App extends Component {
     this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
       this
     );
-    this.verifyAuthentication = this.verifyAuthentication.bind(this);
+    //this.verifyAuthentication = this.verifyAuthentication.bind(this);
   }
 
   async componentDidMount() {
@@ -42,9 +42,10 @@ class App extends Component {
     });
   }
 
-  verifyAuthentication() {
+  //protection
+  /*   verifyAuthentication() {
     return this.state.user;
-  }
+  } */
 
   render() {
     const user = this.state.user;
@@ -54,31 +55,33 @@ class App extends Component {
           user={user}
           changeAuthenticationStatus={this.changeAuthenticationStatus}
         />
-        <Switch>
-          <Route
-            path='/sign-up'
-            render={props => (
-              <SignUpView
-                {...props}
-                changeAuthenticationStatus={this.changeAuthenticationStatus}
-              />
-            )}
-          />
-          <Route
-            path='/sign-in'
-            render={props => (
-              <SignInView
-                {...props}
-                changeAuthenticationStatus={this.changeAuthenticationStatus}
-              />
-            )}
-          />
-          <Route
-            path='/private'
-            render={props => <ProfileView {...props} user={user} />}
-          />
-          <Route path='/' exact component={HomeView} />
-        </Switch>
+        {this.state.loaded && (
+          <Switch>
+            <Route
+              path='/sign-up'
+              render={props => (
+                <SignUpView
+                  {...props}
+                  changeAuthenticationStatus={this.changeAuthenticationStatus}
+                />
+              )}
+            />
+            <Route
+              path='/sign-in'
+              render={props => (
+                <SignInView
+                  {...props}
+                  changeAuthenticationStatus={this.changeAuthenticationStatus}
+                />
+              )}
+            />
+            <Route
+              path='/profile'
+              render={props => <ProfileView {...props} user={user} />}
+            />
+            <Route path='/' exact component={HomeView} />
+          </Switch>
+        )}
       </BrowserRouter>
     );
   }

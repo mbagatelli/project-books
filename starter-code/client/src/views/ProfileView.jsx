@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class ProfileView extends Component {
   render() {
     const user = this.props.user;
+    console.log(user);
     return (
       <div>
         <h1>Private</h1>

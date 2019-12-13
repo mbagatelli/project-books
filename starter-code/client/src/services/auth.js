@@ -15,9 +15,7 @@ export const signIn = async data => {
 
 export const signUp = async data => {
   try {
-    console.log(data);
     const response = await apiAuthenticationService.post(`/sign-up`, data);
-    console.log("response", response.data);
     return response.data.user;
   } catch (error) {
     throw error;

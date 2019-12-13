@@ -39,6 +39,7 @@ class SignInView extends Component {
         <form onSubmit={this.handleFormSubmission}>
           <label>Email:</label> <br />
           <input
+            required
             type='email'
             placeholder='Email'
             value={this.state.email}
@@ -48,6 +49,7 @@ class SignInView extends Component {
           <br />
           <label>Password:</label> <br />
           <input
+            required
             type='password'
             placeholder='Password'
             value={this.state.password}
