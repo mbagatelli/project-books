@@ -30,7 +30,7 @@ const bookSchema = new mongoose.Schema(
       type: String,
       enum: ["fiction", "non-fiction"]
     },
-    genre: [],
+    genre: Array,
     language: {
       type: String,
       enum: [
@@ -85,7 +85,7 @@ const bookSchema = new mongoose.Schema(
     },
     condition: {
       type: String,
-      enum: [ 'very good', 'good', 'okay' ]
+      enum: ["very good", "good", "okay"]
     }
   },
   { timestamps: true }

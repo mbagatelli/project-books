@@ -9,6 +9,8 @@ import ProfileView from "./views/ProfileView";
 import SellView from "./views/SellView";
 import UserEditView from "./views/UserEditView";
 
+import BuyView from "./views/BuyView";
+
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
 import "./App.css";
@@ -60,7 +62,7 @@ class App extends Component {
         {this.state.loaded && (
           <Switch>
             <Route
-              path='/sign-up'
+              path='/user/sign-up'
               render={props => (
                 <SignUpView
                   {...props}
@@ -69,7 +71,7 @@ class App extends Component {
               )}
             />
             <Route
-              path='/sign-in'
+              path='/user/sign-in'
               render={props => (
                 <SignInView
                   {...props}
@@ -78,13 +80,14 @@ class App extends Component {
               )}
             />
             <Route
-              path='/profile'
+              path='/user/profile'
               render={props => <ProfileView {...props} user={user} />}
             />
             <Route
-              path='/sell'
+              path='/book/sell'
               render={props => <SellView {...props} user={user} />}
             />
+            <Route path='/book/buy' component={BuyView} />
             <Route path='/' exact component={HomeView} />
             <Route path='/user/edit' component={UserEditView} />
           </Switch>

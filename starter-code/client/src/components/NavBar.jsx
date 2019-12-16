@@ -41,13 +41,13 @@ class NavBar extends Component {
             {(user && (
               <div className='nav navbar-nav navbar-right'>
                 <Fragment>
-                  <Nav.Link as={Link} to='/profile'>
+                  <Nav.Link as={Link} to='/user/profile'>
                     Profile
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/buy'>
+                  <Nav.Link as={Link} to='/book/buy'>
                     Buy
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/sell'>
+                  <Nav.Link as={Link} to='/book/sell'>
                     Sell
                   </Nav.Link>
                   <button className='sign-out' onClick={this.onSignOutTrigger}>
@@ -57,10 +57,10 @@ class NavBar extends Component {
               </div>
             )) || (
               <Fragment>
-                <Nav.Link as={Link} to='/sign-in'>
+                <Nav.Link as={Link} to='/user/sign-in'>
                   Sign-In
                 </Nav.Link>
-                <Nav.Link as={Link} to='/sign-up'>
+                <Nav.Link as={Link} to='/user/sign-up'>
                   Sign-Up
                 </Nav.Link>
               </Fragment>
