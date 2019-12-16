@@ -17,9 +17,10 @@ class UserEditView extends Component {
   }
 
   async componentDidMount() {
-    const id = this.props.match.params.id;
     try {
-      const user = await loadUserService(id);
+      const user = await loadUserService();
+      console.log(this.props);
+      console.log("user", user);
       this.setState({
         user
       });
@@ -41,9 +42,11 @@ class UserEditView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
+    console.log("funciona?", this.props.match.params.id);
     const user = this.state.user;
-    const id = this.props.match.params.id;
+    const id = user._id;
     try {
+      //console.log("before the await", id, user);
       await editUserService(id, user);
       this.props.history.push(`/profile`);
     } catch (error) {

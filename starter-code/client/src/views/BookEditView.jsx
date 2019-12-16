@@ -20,6 +20,7 @@ class BookEditView extends Component {
 
   async componentDidMount() {
     const id = this.props.match.params.id;
+    console.log("book id", id);
     try {
       const book = await loadBookService(id);
       this.setState({
