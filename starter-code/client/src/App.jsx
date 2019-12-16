@@ -8,6 +8,7 @@ import SignInView from "./views/SignInView";
 import ProfileView from "./views/ProfileView";
 import SellView from "./views/SellView";
 import UserEditView from "./views/UserEditView";
+import SellSearchView from "./views/SellSearchView";
 
 import BuyView from "./views/BuyView";
 
@@ -82,6 +83,10 @@ class App extends Component {
             <Route
               path='/user/profile'
               render={props => <ProfileView {...props} user={user} />}
+            />
+            <Route
+              path='/book/sell/search'
+              render={props => <SellSearchView {...props} user={user} />}
             />
             <Route
               path='/book/sell'
