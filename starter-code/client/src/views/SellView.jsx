@@ -15,7 +15,7 @@ export default class SellView extends Component {
         type: "",
         genre: [],
         language: "",
-        published_year: 0,
+        publishedYear: 0,
         condition: "",
         price: 0,
         description: "",
@@ -61,8 +61,9 @@ export default class SellView extends Component {
   };
 
   handleFileChange(event) {
-    console.dir(event.target.files);
-    const file = event.target.files[0];
+    const defaultPhoto =
+      "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
+    const file = event.target.files ? event.target.files[0] : defaultPhoto;
     this.setState({
       book: {
         ...this.state.book,
@@ -300,17 +301,17 @@ export default class SellView extends Component {
             {/* <Form.Control name="language" type="text" placeholder="Other language.." onChange={this.handleInputChange} /> */}
           </Form.Group>
 
-          <Form.Group controlId='published_year'>
+          <Form.Group controlId='publishedYear'>
             <Form.Control
               type='number'
               placeholder='Published year...'
-              name='published_year'
+              name='publishedYear'
               onChange={this.handleInputChange}
             />
           </Form.Group>
 
           <Form.Group controlId='condition' onChange={this.handleInputChange}>
-            {["very good", "good", "okay"].map(condition => (
+            {["Very good", "Good", "Okay"].map(condition => (
               <Form.Check
                 key={condition}
                 id={`condition-${condition}`}

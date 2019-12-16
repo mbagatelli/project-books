@@ -8,6 +8,7 @@ import SignInView from "./views/SignInView";
 import ProfileView from "./views/ProfileView";
 import SellView from "./views/SellView";
 import UserEditView from "./views/UserEditView";
+import BookEditView from "./views/BookEditView";
 
 import BuyView from "./views/BuyView";
 
@@ -88,8 +89,10 @@ class App extends Component {
               render={props => <SellView {...props} user={user} />}
             />
             <Route path='/book/buy' component={BuyView} />
-            <Route path='/' exact component={HomeView} />
+            <Route path='/book/:id/edit' component={BookEditView} />
+            <Route path='/book/:id' component={BookEditView} />
             <Route path='/user/edit' component={UserEditView} />
+            <Route path='/' exact component={HomeView} />
           </Switch>
         )}
       </BrowserRouter>

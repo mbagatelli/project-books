@@ -12,7 +12,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "the-news", // The name of the folder in cloudinary
+  folder: "project-books", // The name of the folder in cloudinary
   allowedFormats: ["jpg", "png"]
 });
 

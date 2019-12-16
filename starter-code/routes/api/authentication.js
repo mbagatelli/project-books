@@ -74,5 +74,20 @@ router.post("/sign-out", (req, res, next) => {
   res.json({});
 });
 
+//patch
+router.patch("/:id", (req, res, next) => {
+  // console.dir(req.params.id);
+  const update = req.body;
+  console.log(update);
+  User.findByIdAndUpdate(req.params.id, update)
+    .then(user => {
+      res.json({ message: "Update successful", user });
+    })
+    .catch(err => {
+      console.log(err, "Not found");
+      next(err);
+    });
+});
+
 module.exports = router;
 //work!

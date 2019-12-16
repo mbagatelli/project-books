@@ -51,7 +51,7 @@ export const create = async book => {
     data.append("genre", book.genre[i]);
   }
   data.append("language", book.language);
-  data.append("published_year", book.published_year);
+  data.append("publishedYear", book.publishedYear);
   data.append("condition", book.condition);
   data.append("price", book.price);
   data.append("description", book.description);

@@ -5,7 +5,8 @@ const router = new Router();
 const routeGuard = require("../../middleware/route-guard");
 const Book = require("./../../models/book");
 const uploadCloud = require("../../middleware/cloudinary");
-
+const defaultPhoto =
+  "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
 //ENDPOINT /api/book
 //POST
 router.post("/create", uploadCloud.single("image"), async (req, res, next) => {
@@ -18,17 +19,17 @@ router.post("/create", uploadCloud.single("image"), async (req, res, next) => {
       type: req.body.type,
       genre: req.body.genre,
       language: req.body.language,
-      pushlished_year: req.body.pushlished_year,
+      publishedYear: req.body.publishedYear,
       condition: req.body.condition,
       description: req.body.description,
       price: req.body.price,
-      image: req.file.url
+      image: req.file ? req.file.secure_url : defaultPhoto
     };
     console.log("body", req.body);
     const book = await Book.create(data);
     res.json({ book });
   } catch (error) {
-    console.log("erro", error);
+    console.log("error", error);
     next(error);
   }
 });
@@ -101,7 +102,7 @@ router.patch("/:id", (req, res, next) => {
     // });
     .then(book => {
       res.json({ message: "Update successful", book });
-      console.log(book);
+      //console.log(book);
     })
     .catch(err => {
       console.log(err, "Not found");

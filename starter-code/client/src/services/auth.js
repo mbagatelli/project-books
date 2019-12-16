@@ -14,15 +14,17 @@ export const signIn = async data => {
 };
 
 export const signUp = async data => {
-  /*   const data = new FormData();
-  data.append("username", user.username);
-  data.append("email", user.email);
-  data.append("password", user.password);
-  data.append("location", user.location);
-  data.append("image", user.image); */
   try {
     const response = await apiAuthenticationService.post(`/sign-up`, data);
     return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const edit = async (id, user) => {
+  try {
+    await apiAuthenticationService.patch(`/${id}`, user);
   } catch (error) {
     throw error;
   }

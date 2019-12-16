@@ -48,9 +48,7 @@ const bookSchema = new mongoose.Schema(
         "Other language"
       ]
     },
-    pushlished_year: {
-      year: Number
-    },
+    publishedYear: Number,
     price: {
       type: Number,
       default: 0
@@ -85,7 +83,7 @@ const bookSchema = new mongoose.Schema(
     },
     condition: {
       type: String,
-      enum: ["very good", "good", "okay"]
+      enum: ["Very good", "Good", "Okay"]
     }
   },
   { timestamps: true }
