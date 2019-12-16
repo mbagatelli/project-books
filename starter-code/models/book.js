@@ -1,8 +1,8 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const User = require("./user");
-const BookQuestion = require("./bookQuestion");
+// const User = require("./user");
+// const BookQuestion = require("./bookQuestion");
 
 const bookSchema = new mongoose.Schema(
   {
@@ -17,9 +17,9 @@ const bookSchema = new mongoose.Schema(
       maxlength: 140
     },
     isbn: {
-      type: String,
+      type: Number,
       required: true,
-      maxlength: 140
+      maxlength: 13
     },
     synopsis: {
       type: String,
