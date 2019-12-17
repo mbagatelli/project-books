@@ -222,7 +222,7 @@ class BookEditView extends Component {
             <p>Language</p>
             <Form.Group controlId='language' onChange={this.handleInputChange}>
               <Form.Check
-                defaultChecked={book.language === "English"}
+                defaultChecked={book.language === "en"}
                 id='english'
                 inline
                 type='radio'
@@ -231,7 +231,7 @@ class BookEditView extends Component {
                 value='en'
               />
               <Form.Check
-                defaultChecked={book.language === "Português"}
+                defaultChecked={book.language === "pt"}
                 id='português'
                 inline
                 type='radio'
@@ -240,7 +240,7 @@ class BookEditView extends Component {
                 value='pt'
               />
               <Form.Check
-                defaultChecked={book.language === "Français"}
+                defaultChecked={book.language === "fr"}
                 id='français'
                 inline
                 type='radio'
@@ -249,7 +249,7 @@ class BookEditView extends Component {
                 value='fr'
               />
               <Form.Check
-                defaultChecked={book.language === "Deutsch"}
+                defaultChecked={book.language === "de"}
                 id='deutsch'
                 inline
                 type='radio'
@@ -258,7 +258,7 @@ class BookEditView extends Component {
                 value='de'
               />
               <Form.Check
-                defaultChecked={book.language === "Esperanto"}
+                defaultChecked={book.language === "eo"}
                 id='esperanto'
                 inline
                 type='radio'
@@ -267,7 +267,7 @@ class BookEditView extends Component {
                 value='eo'
               />
               <Form.Check
-                defaultChecked={book.language === "Polski"}
+                defaultChecked={book.language === "pl"}
                 id='polski'
                 inline
                 type='radio'
@@ -276,7 +276,7 @@ class BookEditView extends Component {
                 value='pl'
               />
               <Form.Check
-                defaultChecked={book.language === "Español"}
+                defaultChecked={book.language === "es"}
                 id='español'
                 inline
                 type='radio'
@@ -285,7 +285,7 @@ class BookEditView extends Component {
                 value='es'
               />
               <Form.Check
-                defaultChecked={book.language === "Italiano"}
+                defaultChecked={book.language === "it"}
                 id='italiano'
                 inline
                 type='radio'
@@ -294,7 +294,7 @@ class BookEditView extends Component {
                 value='it'
               />
               <Form.Check
-                defaultChecked={book.language === "русский язык"}
+                defaultChecked={book.language === "ru"}
                 id='русский язык'
                 inline
                 type='radio'
@@ -303,7 +303,7 @@ class BookEditView extends Component {
                 value='ru'
               />
               <Form.Check
-                defaultChecked={book.language === "普通話"}
+                defaultChecked={book.language === "zh"}
                 id='普通話'
                 inline
                 type='radio'
@@ -312,7 +312,7 @@ class BookEditView extends Component {
                 value='zh'
               />
               <Form.Check
-                defaultChecked={book.language === "日本語"}
+                defaultChecked={book.language === "ja"}
                 id='日本語'
                 inline
                 type='radio'
@@ -368,9 +368,10 @@ class BookEditView extends Component {
             </Form.Group>
 
             <Form.Group controlId='description'>
-              <Form.Label>Enter short description (optional)</Form.Label>
+              <Form.Label>Enter short description...</Form.Label>
               <Form.Control
                 type='text'
+                required
                 placeholder='Description...'
                 name='description'
                 value={book.description}

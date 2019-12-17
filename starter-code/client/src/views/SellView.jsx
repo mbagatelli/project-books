@@ -433,7 +433,8 @@ export default class SellView extends Component {
               as='textarea'
               rows='3'
               type='text'
-              placeholder='Enter short description (optional)...'
+              placeholder='Enter short description...'
+              required
               name='description'
               onChange={this.handleInputChange}
             />
