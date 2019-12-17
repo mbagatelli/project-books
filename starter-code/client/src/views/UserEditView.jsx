@@ -19,7 +19,7 @@ class UserEditView extends Component {
   async componentDidMount() {
     try {
       const user = await loadUserService();
-      console.log("user", user);
+      //console.log("user", user);
       this.setState({
         user
       });

@@ -83,7 +83,7 @@ export default class SellView extends Component {
   }
 
   componentDidMount() {
-    // console.log('SellView -- this.props: ', this.props);
+    console.log('SellView -- this.props: ', this.props);
     if (this.props.book) {
       const book = this.props.book;
       let authors;
@@ -97,8 +97,8 @@ export default class SellView extends Component {
         })
       }
       let fictionNonfiction = "";
-      if (book.categories && (book.categories[0] === "fiction" || book.categories[0] === "non-fiction")) {
-        fictionNonfiction = book.categories[0];
+      if (book.categories && ("non" in book.categories[0].toLowerCase)) {
+        fictionNonfiction = 'non-fiction';
       }
       const genres = bookGenres.filter(genre => genre in bookGenres);
       const lang = langList.filter(lang => lang === book.language);
@@ -108,13 +108,13 @@ export default class SellView extends Component {
         book: {
           title: "" || book.title,
           author: "" || authors,
-          isbn: "" || book.industryIdentifiers.ISBN_13,
+          isbn: "" || book.industryIdentifiers[1].identifier,
           synopsis: "" || book.description,
           type: "" || fictionNonfiction,
           seller: this.props.user._id,
           genre: [] || genres,
           language: lang || "Other language",
-          publishedYear: 0 || book.publishedDate,
+          publishedYear: null || Number(book.publishedDate.slice(0, 4)),
           image: bookImage
         }
       })
@@ -125,16 +125,28 @@ export default class SellView extends Component {
     event.preventDefault();
     const book = this.state.book;
     try {
-      const bookDocument = await createBook(book);
-      const id = bookDocument._id;
-      this.props.history.push(`/book/${id}`);
+      await createBook(book);
+      this.props.history.push(`/user/profile`);
     } catch (error) {
       console.log(error);
     }
   }
 
+  /* User should go to his profile or edit the book?
+  /*   async handleFormSubmit(event) {
+    event.preventDefault();
+    const book = this.state.book;
+    try {
+      const bookDocument = await createBook(book);
+      const id = bookDocument._id;
+      this.props.history.push(`/user/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  } */
+
   handleInputChange = event => {
-    console.log(this.props);
+    //console.log(this.props);
     const value = event.target.value;
     const name = event.target.name;
     if (name === "genre") {
@@ -182,6 +194,7 @@ export default class SellView extends Component {
             <Form.Control
               name='title'
               type='text'
+              required
               placeholder='Enter the book title...'
               value={this.state.book.title}
               onChange={this.handleInputChange}
@@ -191,6 +204,7 @@ export default class SellView extends Component {
             <Form.Label>Author</Form.Label>
             <Form.Control
               type='text'
+              required
               placeholder='Enter the author...'
               name='author'
               value={this.state.book.author}
@@ -220,6 +234,7 @@ export default class SellView extends Component {
             <Form.Check
               id='fiction'
               inline
+              required
               type='radio'
               label='Fiction'
               name='type'
@@ -255,6 +270,7 @@ export default class SellView extends Component {
             <Form.Check
               id='english'
               inline
+              required
               type='radio'
               label='English'
               name='language'
@@ -357,6 +373,7 @@ export default class SellView extends Component {
               value={this.state.book.publishedYear}
               placeholder='Published year...'
               name='publishedYear'
+              value={this.state.book.publishedYear}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -365,6 +382,7 @@ export default class SellView extends Component {
             {["Very good", "Good", "Okay"].map(condition => (
               <Form.Check
                 key={condition}
+                required
                 id={`condition-${condition}`}
                 type='radio'
                 label={condition}
@@ -378,6 +396,7 @@ export default class SellView extends Component {
             <Form.Control
               type='number'
               placeholder='Cost in coins'
+              required
               name='price'
               onChange={this.handleInputChange}
             />

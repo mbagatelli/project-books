@@ -29,11 +29,14 @@ class ProfileView extends Component {
     //console.log(user.username);
     return (
       <div>
-        <h1>Private</h1>
         {user && (
           <div>
             <h1>{user.username}</h1>
-            <h5>{user.email}</h5>
+            <h2>Email:</h2>
+            <h3>{user.email}</h3>
+            <h2>Location:</h2>
+            <h3>{user.location}</h3>
+            <h3>User Since:</h3>
             <Link to={`/user/edit/${user._id}`}>Edit Profile</Link>
           </div>
         )}

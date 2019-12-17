@@ -16,6 +16,7 @@ class BookEditView extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.onDeleteTrigger = this.onDeleteTrigger.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   async componentDidMount() {
@@ -29,6 +30,18 @@ class BookEditView extends Component {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  handleFileChange(event) {
+    const defaultPhoto =
+      "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
+    const file = event.target.files ? event.target.files[0] : defaultPhoto;
+    this.setState({
+      book: {
+        ...this.state.book,
+        image: file
+      }
+    });
   }
 
   handleInputChange(event) {
@@ -370,11 +383,11 @@ class BookEditView extends Component {
               <br />
               <img src={book.image} alt='' />
               <br />
-              <input
+              {/*               <input
                 type='file'
                 name='image'
                 onChange={this.handleFileChange}
-              />
+              /> */}
             </Form.Group>
 
             <Button variant='primary' type='submit'>
