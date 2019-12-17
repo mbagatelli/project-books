@@ -55,7 +55,18 @@ const bookGenres = [
   "Thriller",
   "Young adult"
 ];
-const langList = ["en", "pt", "fr", "de", "eo", "pl", "ru", "zh", "ja"];
+const langList = [
+  "en",
+  "pt",
+  "fr",
+  "de",
+  "eo",
+  "pl",
+  "ru",
+  "zh",
+  "ja",
+  "Other language"
+];
 
 export default class SellView extends Component {
   constructor(props) {
@@ -181,11 +192,6 @@ export default class SellView extends Component {
     });
   }
 
-  // genre,
-  // language,
-  // pushlished_year,
-  // price,
-  // image
   render() {
     console.log("This state book: ", this.state.book);
     return (
