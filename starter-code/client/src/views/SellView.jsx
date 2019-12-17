@@ -415,7 +415,8 @@ export default class SellView extends Component {
             {/* <Form.Label>Enter short description (optional)</Form.Label> */}
             <Form.Control
               type='text'
-              placeholder='Enter short description (optional)...'
+              placeholder='Enter short description...'
+              required
               name='description'
               onChange={this.handleInputChange}
             />
