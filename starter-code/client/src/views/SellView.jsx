@@ -91,10 +91,11 @@ export default class SellView extends Component {
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.removeImage = this.removeImage.bind(this);
   }
 
   componentDidMount() {
-    console.log("SellView -- this.props: ", this.props);
+    // console.log("SellView -- this.props: ", this.props);
     if (this.props.book) {
       const book = this.props.book;
       let authors;
@@ -116,6 +117,10 @@ export default class SellView extends Component {
       const bookImage = book.imageLinks
         ? book.imageLinks.thumbnail
         : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
+      let year;
+      if (book.publishedDate) {
+        year = Number(book.publishedDate.slice(0, 4));
+      }
 
       this.setState({
         book: {
@@ -127,7 +132,7 @@ export default class SellView extends Component {
           seller: this.props.user._id,
           genre: [] || genres,
           language: lang || "Other language",
-          publishedYear: null || Number(book.publishedDate.slice(0, 4)),
+          publishedYear: null || year,
           image: bookImage
         }
       });
@@ -158,8 +163,10 @@ export default class SellView extends Component {
     }
   } */
 
-  handleInputChange = event => {
+  handleInputChange(event) {
     //console.log(this.props);
+    // console.log('This state: ', this.state);
+    console.log(event.target);
     const value = event.target.value;
     const name = event.target.name;
     if (name === "genre") {
@@ -181,9 +188,9 @@ export default class SellView extends Component {
   };
 
   handleFileChange(event) {
-    const defaultPhoto =
-      "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
-    const file = event.target.files ? event.target.files[0] : defaultPhoto;
+    // const defaultPhoto =
+    //   "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
+    const file = event.target.files[0]
     this.setState({
       book: {
         ...this.state.book,
@@ -191,9 +198,18 @@ export default class SellView extends Component {
       }
     });
   }
+  
+  removeImage() {
+    this.setState({
+      book: {
+        ...this.book,
+        image: null
+      }
+    });
+  }
 
   render() {
-    console.log("This state book: ", this.state.book);
+    // console.log("This state book: ", this.state.book);
     return (
       <Fragment>
         <Form onSubmit={this.handleFormSubmit}>
@@ -414,6 +430,8 @@ export default class SellView extends Component {
           <Form.Group controlId='description'>
             {/* <Form.Label>Enter short description (optional)</Form.Label> */}
             <Form.Control
+              as='textarea'
+              rows='3'
               type='text'
               placeholder='Enter short description (optional)...'
               name='description'
@@ -425,6 +443,7 @@ export default class SellView extends Component {
             <img src={this.state.book.image} alt='' />
             <Form.Label>Change cover picture</Form.Label>
             <input type='file' name='image' onChange={this.handleFileChange} />
+            <Button variant='danger' onClick={this.removeImage}>Remove image</Button>
           </Form.Group>
 
           <Button variant='primary' type='submit'>

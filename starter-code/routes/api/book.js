@@ -24,7 +24,7 @@ router.post("/create", uploadCloud.single("image"), async (req, res, next) => {
       condition: req.body.condition,
       description: req.body.description,
       price: req.body.price,
-      image: req.file ? req.file.secure_url : defaultPhoto
+      image: req.file ? req.file.secure_url : req.body.image || defaultPhoto
     };
     console.log("body", req.body);
     const book = await Book.create(data);
