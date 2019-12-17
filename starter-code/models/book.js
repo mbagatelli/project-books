@@ -23,8 +23,7 @@ const bookSchema = new mongoose.Schema(
     },
     synopsis: {
       type: String,
-      default: "",
-      maxlength: 280
+      default: ""
     },
     type: {
       type: String,

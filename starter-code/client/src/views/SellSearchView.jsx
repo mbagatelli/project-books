@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
-import { listBooks } from './../services/googleBooks';
+import React, { Component } from "react";
+import { Form, Button, Card } from "react-bootstrap";
+import { listBooks } from "./../services/googleBooks";
 
 export default class SellSearchView extends Component {
   state = {
@@ -24,14 +24,14 @@ export default class SellSearchView extends Component {
       search: value
     });
     // console.log('this.state.search: ', this.state.search);
-  }
-  
-  handleSellBook = async (book) => {
+  };
+
+  handleSellBook = async book => {
     // console.log(book);
     this.props.updateCurrentBook(book);
     // console.log(this.props);
-    this.props.history.push('/book/sell');
-  }
+    this.props.history.push("/book/sell");
+  };
 
   render() {
     return (
@@ -51,12 +51,21 @@ export default class SellSearchView extends Component {
           </Button>
         </Form>
 
-        <div style={{display: 'flex', flexWrap: 'wrap'}}>
-          {this.state.books && (
-            this.state.books.map(book =>
-              <Card style={{ width: '18em', margin: '3em auto', padding: '1em' }} key={book.id}>
-                <Card.Img variant="top" 
-                src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg'} />
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {this.state.books &&
+            this.state.books.map(book => (
+              <Card
+                style={{ width: "18em", margin: "3em auto", padding: "1em" }}
+                key={book.id}
+              >
+                <Card.Img
+                  variant='top'
+                  src={
+                    book.volumeInfo.imageLinks
+                      ? book.volumeInfo.imageLinks.thumbnail
+                      : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg"
+                  }
+                />
                 <Card.Body>
                   <Card.Title>{book.volumeInfo.title}</Card.Title>
                   <Card.Text>{book.volumeInfo.publishedDate}</Card.Text>
@@ -64,12 +73,12 @@ export default class SellSearchView extends Component {
                     {book.volumeInfo.authors &&
                       book.volumeInfo.authors.map(author => author)}
                   </Card.Text>
-                  <Card.Text>
-                    {book.volumeInfo.authors && (
-                      book.volumeInfo.authors.map(author => author)
-                      )}
-                  </Card.Text>
-                  <Button variant="primary" onClick={() => this.handleSellBook(book.volumeInfo)}>Sell this book</Button>
+                  <Button
+                    variant='primary'
+                    onClick={() => this.handleSellBook(book.volumeInfo)}
+                  >
+                    Sell this book
+                  </Button>
                 </Card.Body>
               </Card>
             ))}

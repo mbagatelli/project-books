@@ -55,7 +55,7 @@ const bookGenres = [
   "Thriller",
   "Young adult"
 ];
-const langList = ['en', 'pt', 'fr', 'de', 'eo', 'pl', 'ru', 'zh', 'ja'];
+const langList = ["en", "pt", "fr", "de", "eo", "pl", "ru", "zh", "ja"];
 
 export default class SellView extends Component {
   constructor(props) {
@@ -83,26 +83,28 @@ export default class SellView extends Component {
   }
 
   componentDidMount() {
-    console.log('SellView -- this.props: ', this.props);
+    console.log("SellView -- this.props: ", this.props);
     if (this.props.book) {
       const book = this.props.book;
       let authors;
       if (book.authors) {
         authors = book.authors.map(author => {
           if (book.authors.length > 1) {
-            return author + ' ';
+            return author + " ";
           } else {
             return author;
           }
-        })
+        });
       }
       let fictionNonfiction = "";
-      if (book.categories && ("non" in book.categories[0].toLowerCase)) {
-        fictionNonfiction = 'non-fiction';
+      if (book.categories && "non" in book.categories[0].toLowerCase) {
+        fictionNonfiction = "non-fiction";
       }
       const genres = bookGenres.filter(genre => genre in bookGenres);
       const lang = langList.filter(lang => lang === book.language);
-      const bookImage = book.imageLinks ? book.imageLinks.thumbnail : 'https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg';
+      const bookImage = book.imageLinks
+        ? book.imageLinks.thumbnail
+        : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
 
       this.setState({
         book: {
@@ -117,7 +119,7 @@ export default class SellView extends Component {
           publishedYear: null || Number(book.publishedDate.slice(0, 4)),
           image: bookImage
         }
-      })
+      });
     }
   }
 
@@ -185,7 +187,7 @@ export default class SellView extends Component {
   // price,
   // image
   render() {
-    console.log('This state book: ', this.state.book);
+    console.log("This state book: ", this.state.book);
     return (
       <Fragment>
         <Form onSubmit={this.handleFormSubmit}>
@@ -223,6 +225,8 @@ export default class SellView extends Component {
           <Form.Group controlId='synopsis'>
             <Form.Label /* className='Label' why?*/>Synopsis</Form.Label>
             <Form.Control
+              as='textarea'
+              rows='3'
               type='text'
               label='Enter a short summary..'
               name='synopsis'
@@ -373,7 +377,6 @@ export default class SellView extends Component {
               value={this.state.book.publishedYear}
               placeholder='Published year...'
               name='publishedYear'
-              value={this.state.book.publishedYear}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -413,7 +416,7 @@ export default class SellView extends Component {
           </Form.Group>
 
           <Form.Group controlId='image'>
-            <img src={this.state.book.image} alt="" />
+            <img src={this.state.book.image} alt='' />
             <Form.Label>Change cover picture</Form.Label>
             <input type='file' name='image' onChange={this.handleFileChange} />
           </Form.Group>
