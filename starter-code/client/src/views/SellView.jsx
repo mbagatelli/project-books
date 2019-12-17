@@ -3,6 +3,60 @@ import { Form, Button } from "react-bootstrap";
 
 import { create as createBook } from "../services/books";
 
+const bookGenres = [
+  "Action and adventure",
+  "Art",
+  "Alternate history",
+  "Autobiography",
+  "Anthology",
+  "Biography",
+  "Chick lit",
+  "Book review",
+  "Children's",
+  "Cookbook",
+  "Comedy",
+  "Comic book",
+  "Diary",
+  "Coming-of-age",
+  "Dictionary",
+  "Crime",
+  "Encyclopedia",
+  "Drama",
+  "Guide",
+  "Fairytale",
+  "Health",
+  "Fantasy",
+  "History",
+  "Graphic novel",
+  "Journal",
+  "Historical fiction",
+  "Math",
+  "Horror",
+  "Literary Criticism",
+  "Memoir",
+  "Mystery",
+  "Prayer",
+  "Paranormal",
+  "Religion, spirituality, and new age",
+  "Picture book",
+  "Textbook",
+  "Poetry",
+  "Review",
+  "Political",
+  "Science",
+  "Romance",
+  "Self help",
+  "Satire",
+  "Travel",
+  "Science fiction",
+  "True crime",
+  "Short story",
+  "Suspense",
+  "Thriller",
+  "Young adult"
+];
+const langList = ['en', 'pt', 'fr', 'de', 'eo', 'pl', 'ru', 'zh', 'ja'];
+
 export default class SellView extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +80,45 @@ export default class SellView extends Component {
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    // console.log('SellView -- this.props: ', this.props);
+    if (this.props.book) {
+      const book = this.props.book;
+      let authors;
+      if (book.authors) {
+        authors = book.authors.map(author => {
+          if (book.authors.length > 1) {
+            return author + ' ';
+          } else {
+            return author;
+          }
+        })
+      }
+      let fictionNonfiction = "";
+      if (book.categories && (book.categories[0] === "fiction" || book.categories[0] === "non-fiction")) {
+        fictionNonfiction = book.categories[0];
+      }
+      const genres = bookGenres.filter(genre => genre in bookGenres);
+      const lang = langList.filter(lang => lang === book.language);
+      const bookImage = book.imageLinks ? book.imageLinks.thumbnail : 'https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg';
+
+      this.setState({
+        book: {
+          title: "" || book.title,
+          author: "" || authors,
+          isbn: "" || book.industryIdentifiers.ISBN_13,
+          synopsis: "" || book.description,
+          type: "" || fictionNonfiction,
+          seller: this.props.user._id,
+          genre: [] || genres,
+          language: lang || "Other language",
+          publishedYear: 0 || book.publishedDate,
+          image: bookImage
+        }
+      })
+    }
   }
 
   async handleFormSubmit(event) {
@@ -80,6 +173,7 @@ export default class SellView extends Component {
   // price,
   // image
   render() {
+    console.log('This state book: ', this.state.book);
     return (
       <Fragment>
         <Form onSubmit={this.handleFormSubmit}>
@@ -89,6 +183,7 @@ export default class SellView extends Component {
               name='title'
               type='text'
               placeholder='Enter the book title...'
+              value={this.state.book.title}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -98,6 +193,7 @@ export default class SellView extends Component {
               type='text'
               placeholder='Enter the author...'
               name='author'
+              value={this.state.book.author}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -106,6 +202,7 @@ export default class SellView extends Component {
             <Form.Control
               type='text'
               name='isbn'
+              value={this.state.book.isbn}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -115,6 +212,7 @@ export default class SellView extends Component {
               type='text'
               label='Enter a short summary..'
               name='synopsis'
+              value={this.state.book.synopsis}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -140,57 +238,7 @@ export default class SellView extends Component {
           {/* Genres */}
           <p>Genre</p>
           <Form.Group controlId='genre' onChange={this.handleInputChange}>
-            {[
-              "Action and adventure",
-              "Art",
-              "Alternate history",
-              "Autobiography",
-              "Anthology",
-              "Biography",
-              "Chick lit",
-              "Book review",
-              "Children's",
-              "Cookbook",
-              "Comedy",
-              "Comic book",
-              "Diary",
-              "Coming-of-age",
-              "Dictionary",
-              "Crime",
-              "Encyclopedia",
-              "Drama",
-              "Guide",
-              "Fairytale",
-              "Health",
-              "Fantasy",
-              "History",
-              "Graphic novel",
-              "Journal",
-              "Historical fiction",
-              "Math",
-              "Horror",
-              "Memoir",
-              "Mystery",
-              "Prayer",
-              "Paranormal",
-              "Religion, spirituality, and new age",
-              "Picture book",
-              "Textbook",
-              "Poetry",
-              "Review",
-              "Political",
-              "Science",
-              "Romance",
-              "Self help",
-              "Satire",
-              "Travel",
-              "Science fiction",
-              "True crime",
-              "Short story",
-              "Suspense",
-              "Thriller",
-              "Young adult"
-            ].map(genre => (
+            {bookGenres.map(genre => (
               <Form.Check
                 key={genre}
                 id={`genre-${genre}`}
@@ -210,7 +258,7 @@ export default class SellView extends Component {
               type='radio'
               label='English'
               name='language'
-              value='English'
+              value='en'
             />
             <Form.Check
               id='português'
@@ -218,7 +266,7 @@ export default class SellView extends Component {
               type='radio'
               label='Português'
               name='language'
-              value='Português'
+              value='pt'
             />
             <Form.Check
               id='français'
@@ -226,7 +274,7 @@ export default class SellView extends Component {
               type='radio'
               label='Français'
               name='language'
-              value='Français'
+              value='fr'
             />
             <Form.Check
               id='deutsch'
@@ -234,7 +282,7 @@ export default class SellView extends Component {
               type='radio'
               label='Deutsch'
               name='language'
-              value='Deutsch'
+              value='de'
             />
             <Form.Check
               id='esperanto'
@@ -242,7 +290,7 @@ export default class SellView extends Component {
               type='radio'
               label='Esperanto'
               name='language'
-              value='Esperanto'
+              value='eo'
             />
             <Form.Check
               id='polski'
@@ -250,7 +298,7 @@ export default class SellView extends Component {
               type='radio'
               label='Polski'
               name='language'
-              value='Polski'
+              value='pl'
             />
             <Form.Check
               id='español'
@@ -258,7 +306,7 @@ export default class SellView extends Component {
               type='radio'
               label='Español'
               name='language'
-              value='Español'
+              value='es'
             />
             <Form.Check
               id='italiano'
@@ -266,7 +314,7 @@ export default class SellView extends Component {
               type='radio'
               label='Italiano'
               name='language'
-              value='Italiano'
+              value='it'
             />
             <Form.Check
               id='русский язык'
@@ -274,7 +322,7 @@ export default class SellView extends Component {
               type='radio'
               label='русский язык'
               name='language'
-              value='русский язык'
+              value='ru'
             />
             <Form.Check
               id='普通話'
@@ -282,7 +330,7 @@ export default class SellView extends Component {
               type='radio'
               label='普通話'
               name='language'
-              value='普通話'
+              value='zh'
             />
             <Form.Check
               id='日本語'
@@ -290,7 +338,7 @@ export default class SellView extends Component {
               type='radio'
               label='日本語'
               name='language'
-              value='日本語'
+              value='ja'
             />
             <Form.Check
               id='language-other'
@@ -306,6 +354,7 @@ export default class SellView extends Component {
           <Form.Group controlId='publishedYear'>
             <Form.Control
               type='number'
+              value={this.state.book.publishedYear}
               placeholder='Published year...'
               name='publishedYear'
               onChange={this.handleInputChange}
@@ -345,7 +394,8 @@ export default class SellView extends Component {
           </Form.Group>
 
           <Form.Group controlId='image'>
-            <Form.Label>Book Cover photo:</Form.Label>
+            <img src={this.state.book.image} alt="" />
+            <Form.Label>Change cover picture</Form.Label>
             <input type='file' name='image' onChange={this.handleFileChange} />
           </Form.Group>
 

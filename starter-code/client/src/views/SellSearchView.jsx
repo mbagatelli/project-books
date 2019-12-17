@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { listBooks } from './../services/googleBooks';
 
@@ -17,7 +17,10 @@ export default class SellSearchView extends Component {
     this.setState({
       books
     });
-    console.log('this.state.books: ', this.state.books);
+    // console.log('this.state.books: ', this.state.books);
+    // console.log('this.props: ', this.props);
+    
+    // this.props.updateCurrentBook(this.state)
   }
 
   handleOnChange = async (e) => {
@@ -28,6 +31,13 @@ export default class SellSearchView extends Component {
     // console.log('this.state.search: ', this.state.search);
   }
   
+  handleSellBook = async (book) => {
+    // console.log(book);
+    this.props.updateCurrentBook(book);
+    // console.log(this.props);
+    this.props.history.push('/book/sell');
+  }
+
   render() {
     return (
       <div style={{padding: '2em'}}>
@@ -45,9 +55,9 @@ export default class SellSearchView extends Component {
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
           {this.state.books && (
             this.state.books.map(book =>
-              <Card style={{ maxWidth: '18em', margin: '3em auto', padding: '1em' }} key={book.id}>
+              <Card style={{ width: '18em', margin: '3em auto', padding: '1em' }} key={book.id}>
                 <Card.Img variant="top" 
-                src={book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : 'https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg'} />
+                src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg'} />
                 <Card.Body>
                   <Card.Title>{book.volumeInfo.title}</Card.Title>
                   <Card.Text>
@@ -56,17 +66,14 @@ export default class SellSearchView extends Component {
                   <Card.Text>
                     {book.volumeInfo.authors && (
                       book.volumeInfo.authors.map(author => author)
-                    )}
+                      )}
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Button variant="primary" onClick={() => this.handleSellBook(book.volumeInfo)}>Sell this book</Button>
                 </Card.Body>
               </Card>
             )
           )}
         </div>
-
-
-
       </div>
     )
   }

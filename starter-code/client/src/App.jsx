@@ -22,11 +22,13 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      loaded: false
+      loaded: false,
+      book: null
     };
     this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
       this
     );
+    this.updateCurrentBook = this.updateCurrentBook.bind(this);
     //this.verifyAuthentication = this.verifyAuthentication.bind(this);
   }
 
@@ -42,10 +44,20 @@ class App extends Component {
     }
   }
 
+  // componentDidUpdate() {
+  //   console.log('App.jsx componentDidUpdate: ', this.state); 
+  // }
+
   changeAuthenticationStatus(user) {
     this.setState({
       user
     });
+  }
+
+  updateCurrentBook(book) {
+    this.setState({
+      book
+    })
   }
 
   //protection
@@ -87,11 +99,11 @@ class App extends Component {
             />
             <Route
               path='/book/sell/search'
-              render={props => <SellSearchView {...props} user={user} />}
+              render={props => <SellSearchView {...props} user={user} updateCurrentBook={this.updateCurrentBook} />}
             />
             <Route
               path='/book/sell'
-              render={props => <SellView {...props} user={user} />}
+              render={props => <SellView {...props} user={user} book={this.state.book} />}
             />
             <Route path='/book/buy' component={BuyView} />
             <Route path='/book/:id/edit' component={BookEditView} />

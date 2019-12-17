@@ -34,21 +34,21 @@ const bookSchema = new mongoose.Schema(
     language: {
       type: String,
       enum: [
-        "English",
-        "Português",
-        "Français",
-        "Deutsch",
-        "Esperanto",
-        "Polski",
-        "Español",
-        "Italiano",
-        "русский язык",
-        "普通話",
-        "日本語",
+        "en",
+        "pt",
+        "fr",
+        "de",
+        "eo",
+        "pl",
+        "es",
+        "it",
+        "ru",
+        "zh",
+        "ja",
         "Other language"
       ]
     },
-    publishedYear: Number,
+    publishedYear: String,
     price: {
       type: Number,
       default: 0
