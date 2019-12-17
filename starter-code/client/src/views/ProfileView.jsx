@@ -13,7 +13,7 @@ class ProfileView extends Component {
 
   async componentDidMount() {
     const id = this.props.user._id;
-    console.log("id", id);
+    //console.log("id", id);
     try {
       const user = await loadUserService(id);
       this.setState({

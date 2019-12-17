@@ -19,7 +19,6 @@ class UserEditView extends Component {
   async componentDidMount() {
     try {
       const user = await loadUserService();
-      console.log(this.props);
       console.log("user", user);
       this.setState({
         user
@@ -42,13 +41,13 @@ class UserEditView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    console.log("funciona?", this.props.match.params.id);
+    //console.log("funciona?", this.props.match.params.id);
     const user = this.state.user;
     const id = user._id;
     try {
       //console.log("before the await", id, user);
       await editUserService(id, user);
-      this.props.history.push(`/profile`);
+      this.props.history.push(`/user/profile`);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +59,8 @@ class UserEditView extends Component {
       <Fragment>
         {user && (
           <Form onSubmit={this.handleFormSubmission}>
+            <h3>{user.username}</h3>
+            {/* This needs to get removed */}
             <Form.Group controlId='username'>
               <Form.Label>Username:</Form.Label>
               <Form.Control
@@ -70,7 +71,36 @@ class UserEditView extends Component {
                 onChange={this.handleInputChange}
               />
             </Form.Group>
-
+            <Form.Group controlId='location'>
+              <Form.Label>Location:</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Location'
+                name='location'
+                value={user.location}
+                onChange={this.handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId='email'>
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type='email'
+                placeholder='Email'
+                name='email'
+                value={user.email}
+                onChange={this.handleInputChange}
+              />
+            </Form.Group>
+            {/*             <Form.Group controlId='email'>
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Location'
+                name='location'
+                value={user.location}
+                onChange={this.handleInputChange}
+              />
+            </Form.Group> */}
             {/*             <Form.Group controlId='image'>
               <Form.Label>User photo:</Form.Label>
               <br />
@@ -82,7 +112,6 @@ class UserEditView extends Component {
                 onChange={this.handleFileChange}
               />
             </Form.Group> */}
-
             <Button variant='primary' type='submit'>
               Edit User
             </Button>

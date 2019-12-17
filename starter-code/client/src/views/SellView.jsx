@@ -13,6 +13,7 @@ export default class SellView extends Component {
         isbn: "",
         synopsis: "",
         type: "",
+        seller: this.props.user._id,
         genre: [],
         language: "",
         publishedYear: 0,
@@ -33,13 +34,14 @@ export default class SellView extends Component {
     try {
       const bookDocument = await createBook(book);
       const id = bookDocument._id;
-      this.props.history.push(`/${id}`);
+      this.props.history.push(`/book/${id}`);
     } catch (error) {
       console.log(error);
     }
   }
 
   handleInputChange = event => {
+    console.log(this.props);
     const value = event.target.value;
     const name = event.target.name;
     if (name === "genre") {

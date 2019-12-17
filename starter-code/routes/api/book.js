@@ -18,6 +18,7 @@ router.post("/create", uploadCloud.single("image"), async (req, res, next) => {
       isbn: req.body.isbn,
       type: req.body.type,
       genre: req.body.genre,
+      seller: req.body.seller,
       language: req.body.language,
       publishedYear: req.body.publishedYear,
       condition: req.body.condition,

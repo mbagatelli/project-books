@@ -47,6 +47,7 @@ export const create = async book => {
   data.append("isbn", book.isbn);
   data.append("synopsis", book.synopsis);
   data.append("type", book.type);
+  data.append("seller", book.seller);
   for (let i = 0; i < book.genre.length; i++) {
     data.append("genre", book.genre[i]);
   }
