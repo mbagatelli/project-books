@@ -12,7 +12,7 @@ export const listBooks = async query => {
         key: "AIzaSyAm6WpyfWxslmfTdGQeFmNUAxqTNYcLEBA"
       }
     });
-    //console.log(response.data);
+    // console.log(response.data);
     const listBooks = response.data;
     return listBooks;
   } catch (error) {
