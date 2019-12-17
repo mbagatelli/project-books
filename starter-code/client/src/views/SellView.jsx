@@ -112,7 +112,7 @@ export default class SellView extends Component {
       if (book.categories && "non" in book.categories[0].toLowerCase) {
         fictionNonfiction = "non-fiction";
       }
-      const genres = bookGenres.filter(genre => genre in bookGenres);
+      // const genres = bookGenres.filter(genre => genre in bookGenres);
       const lang = langList.filter(lang => lang === book.language);
       const bookImage = book.imageLinks
         ? book.imageLinks.thumbnail
@@ -130,7 +130,7 @@ export default class SellView extends Component {
           synopsis: "" || book.description,
           type: "" || fictionNonfiction,
           seller: this.props.user._id,
-          genre: [] || genres,
+          // genre: [] || genres,
           language: lang || "Other language",
           publishedYear: null || year,
           image: bookImage
@@ -166,14 +166,24 @@ export default class SellView extends Component {
   handleInputChange(event) {
     //console.log(this.props);
     // console.log('This state: ', this.state);
-    console.log(event.target);
+    // console.log('EVENT TARGET: ', event.target);
     const value = event.target.value;
     const name = event.target.name;
-    if (name === "genre") {
+    let genres = [...this.state.book.genre]
+    if (genres.indexOf(value) !== -1) {
+      const index = genres.indexOf(value);
+      delete genres[index];
+      this.setState({
+        book: {
+          ...this.state.book.genres,
+          genre: genres
+        }
+      });
+      console.log('DELETED!!!');
+    } else if (name === "genre") {
       this.setState({
         book: {
           ...this.state.book,
-          [name]: value,
           genre: [...this.state.book.genre, value]
         }
       });
@@ -209,7 +219,7 @@ export default class SellView extends Component {
   }
 
   render() {
-    // console.log("This state book: ", this.state.book);
+    console.log("This state book: ", this.state.book);
     return (
       <Fragment>
         <Form onSubmit={this.handleFormSubmit}>
