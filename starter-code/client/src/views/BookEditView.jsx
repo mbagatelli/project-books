@@ -228,7 +228,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='English'
                 name='language'
-                value='English'
+                value='en'
               />
               <Form.Check
                 defaultChecked={book.language === "Português"}
@@ -237,7 +237,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Português'
                 name='language'
-                value='Português'
+                value='pt'
               />
               <Form.Check
                 defaultChecked={book.language === "Français"}
@@ -246,7 +246,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Français'
                 name='language'
-                value='Français'
+                value='fr'
               />
               <Form.Check
                 defaultChecked={book.language === "Deutsch"}
@@ -255,7 +255,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Deutsch'
                 name='language'
-                value='Deutsch'
+                value='de'
               />
               <Form.Check
                 defaultChecked={book.language === "Esperanto"}
@@ -264,7 +264,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Esperanto'
                 name='language'
-                value='Esperanto'
+                value='eo'
               />
               <Form.Check
                 defaultChecked={book.language === "Polski"}
@@ -273,7 +273,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Polski'
                 name='language'
-                value='Polski'
+                value='pl'
               />
               <Form.Check
                 defaultChecked={book.language === "Español"}
@@ -282,7 +282,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Español'
                 name='language'
-                value='Español'
+                value='es'
               />
               <Form.Check
                 defaultChecked={book.language === "Italiano"}
@@ -291,7 +291,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='Italiano'
                 name='language'
-                value='Italiano'
+                value='it'
               />
               <Form.Check
                 defaultChecked={book.language === "русский язык"}
@@ -300,7 +300,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='русский язык'
                 name='language'
-                value='русский язык'
+                value='ru'
               />
               <Form.Check
                 defaultChecked={book.language === "普通話"}
@@ -309,7 +309,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='普通話'
                 name='language'
-                value='普通話'
+                value='zh'
               />
               <Form.Check
                 defaultChecked={book.language === "日本語"}
@@ -318,7 +318,7 @@ class BookEditView extends Component {
                 type='radio'
                 label='日本語'
                 name='language'
-                value='日本語'
+                value='ja'
               />
               <Form.Check
                 defaultChecked={book.language === "Other language"}

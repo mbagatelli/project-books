@@ -55,7 +55,7 @@ const bookGenres = [
   "Thriller",
   "Young adult"
 ];
-const langList = ['en', 'pt', 'fr', 'de', 'eo', 'pl', 'ru', 'zh', 'ja'];
+const langList = ['en', 'pt', 'fr', 'de', 'eo', 'pl', 'ru', 'zh', 'ja', 'Other language'];
 
 export default class SellView extends Component {
   constructor(props) {
@@ -103,7 +103,7 @@ export default class SellView extends Component {
       const genres = bookGenres.filter(genre => genre in bookGenres);
       const lang = langList.filter(lang => lang === book.language);
       const bookImage = book.imageLinks ? book.imageLinks.thumbnail : 'https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg';
-
+      
       this.setState({
         book: {
           title: "" || book.title,
@@ -179,11 +179,6 @@ export default class SellView extends Component {
     });
   }
 
-  // genre,
-  // language,
-  // pushlished_year,
-  // price,
-  // image
   render() {
     console.log('This state book: ', this.state.book);
     return (
