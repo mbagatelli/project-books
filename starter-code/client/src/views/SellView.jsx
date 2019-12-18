@@ -55,18 +55,18 @@ const bookGenres = [
   "Thriller",
   "Young adult"
 ];
-const langList = [
-  "en",
-  "pt",
-  "fr",
-  "de",
-  "eo",
-  "pl",
-  "ru",
-  "zh",
-  "ja",
-  "Other language"
-];
+// const langList = [
+//   "en",
+//   "pt",
+//   "fr",
+//   "de",
+//   "eo",
+//   "pl",
+//   "ru",
+//   "zh",
+//   "ja",
+//   "Other language"
+// ];
 
 export default class SellView extends Component {
   constructor(props) {
@@ -117,7 +117,7 @@ export default class SellView extends Component {
         fictionNonfiction = "non-fiction";
       }
       // const genres = bookGenres.filter(genre => genre in bookGenres);
-      const lang = langList.filter(lang => lang === book.language);
+      // const lang = langList.filter(lang => lang === book.language);
       const bookImage = book.imageLinks
         ? book.imageLinks.thumbnail
         : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
@@ -134,6 +134,7 @@ export default class SellView extends Component {
       console.log('BOOK PROP: ', book);
       this.setState({
         book: {
+          ...this.state.book,
           title: "" || book.title,
           author: "" || authors,
           isbn: "" || isbnObj,
@@ -141,7 +142,7 @@ export default class SellView extends Component {
           type: "" || fictionNonfiction,
           seller: this.props.user._id,
           // genre: [] || genres,
-          language: lang || "Other language",
+          // language: lang || "Other language",
           publishedYear: null || year,
           image: bookImage
         }
@@ -180,12 +181,10 @@ export default class SellView extends Component {
     const value = event.target.value;
     const name = event.target.name;
     let genres;
-    if (this.state.book.genre !== []) {
+    if (this.state.book.genre) {
       genres = [...this.state.book.genre]
-    } else {
-      genres = [];
     }
-    if (genres.indexOf(value) !== -1) {
+    if (genres && genres.indexOf(value) !== -1) {
       const index = genres.indexOf(value);
       genres.splice(index, 1);
       this.setState({
@@ -194,7 +193,7 @@ export default class SellView extends Component {
           genre: genres
         }
       });
-    } else if (name === "genre") {
+    } else if (genres && name === "genre") {
       this.setState({
         book: {
           ...this.state.book,
@@ -233,7 +232,7 @@ export default class SellView extends Component {
   }
 
   render() {
-    // console.log("This state book: ", this.state.book);
+    console.log("This state book: ", this.state.book);
     return (
       <Fragment>
         <Form onSubmit={this.handleFormSubmit}>

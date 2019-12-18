@@ -23,33 +23,35 @@ class NavBar extends Component {
   }
 
   handleToggleMenu = event => {
-    console.log(event.target);
-    if (this.state.navbarState === "navbar-toggler collapsed") {
-      this.setState = {
+    let navbarState = { ...this.state};
+    console.log('NAVBAR STATE: ', navbarState);
+    if (navbarState === "navbar-toggler collapsed") {
+      this.setState({
         navbarState: "navbar-toggler"
-      }
+      });
     } else {
-      this.setState = {
+      this.setState({
         navbarState: "navbar-toggler collapsed"
-      }
+      });
     }
   }
 
   render() {
     const user = this.props.user;
     // console.log('NAVBAR PROPS: ', this.props);
+    console.log('NAVBAR STATE: ', this.state.navbarState);
     return (
-      <Navbar bg='light' expand='lg'>
+      <Navbar collapseOnSelect bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
-        <Navbar.Toggle className={this.state.navbarState} aria-controls='basic-navbar-nav' onClick={this.handleToggleMenu} />
+        <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={this.handleToggleMenu}/>
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='mr-auto'>
+          <Nav className='ml-auto'>
             {(user && (
               <div className='nav navbar-nav navbar-right'>
                 <Fragment>
-                  <Nav.Link as={NavLink} to='/user/profile'>
+                  <Nav.Link ag={NavLink} to='/user/profile'>
                     Profile
                   </Nav.Link>
                   <Nav.Link as={NavLink} to='/book/buy'>
@@ -58,7 +60,7 @@ class NavBar extends Component {
                   {/* <Nav.Link as={Link} to='/book/sell/'>
                     Sell
                   </Nav.Link> */}
-                  <Nav.Link as={NavLink} to='/book/sell/search'>
+                  <Nav.Link as={NavLink} to='/book/sell/search' onClick={this.handleToggleMenu}>
                     Sell
                   </Nav.Link>
                   <Nav.Link as={NavLink} to='/user/checkout'>
