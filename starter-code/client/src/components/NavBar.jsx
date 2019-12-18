@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { signOut as signOutService } from "./../services/auth";
 import { Link, NavLink } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 class NavBar extends Component {
   constructor(props) {
@@ -36,11 +36,17 @@ class NavBar extends Component {
   // }
 
   render() {
-    const user = this.props.user;
+    let user;
+    if (this.props.user) {
+      user = this.props.user;
+    }
+    
     // console.log('NAVBAR PROPS: ', this.props);
     // console.log('NAVBAR STATE: ', this.state.navbarState);
+    // console.log('USER: ', user);
+
     return (
-      <Navbar collapseOnSelect bg='light' expand='lg'>
+      <Navbar bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
@@ -49,26 +55,27 @@ class NavBar extends Component {
           <Nav className='ml-auto'>
             {(user && (
               <div className='nav navbar-nav navbar-right'>
-                <Fragment>
-                  <Nav.Link as={NavLink} to='/book/buy'>
-                    Buy
-                  </Nav.Link>
-                  {/* <Nav.Link as={Link} to='/book/sell/'>
-                    Sell
-                  </Nav.Link> */}
-                  <Nav.Link as={NavLink} to='/book/sell/search'>
-                    Sell
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to='/user/checkout'>
-                    Checkout
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to='/user/profile' style={{marginRight: '0.5em'}}>
-                    Profile
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to='/' onClick={this.onSignOutTrigger}>
-                    Sign Out
-                  </Nav.Link>
-                </Fragment>
+                <Nav.Link as={NavLink} to='/book/buy'>
+                  Buy
+                </Nav.Link>
+                <Nav.Link as={NavLink} to='/book/sell/search'>
+                  Sell
+                </Nav.Link>
+                <Nav.Link as={NavLink} to='/user/checkout'>
+                  Checkout
+                </Nav.Link>
+                {/* <NavDropdown title={user.username} id="basic-nav-dropdown">
+                  <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', position: 'relative', right: '3em'}}>
+                    <Link as={NavLink} to='/user/profile'>Profile</Link>
+                    <Link as={NavLink} to='/' onClick={this.onSignOutTrigger}>Sign Out</Link>
+                  </div>
+                </NavDropdown> */}
+                <Nav.Link as={NavLink} to='/user/profile'>
+                  Profile
+                </Nav.Link>
+                <Nav.Link as={NavLink} to='/' onClick={this.onSignOutTrigger}>
+                  Sign Out
+                </Nav.Link>
               </div>
             )) || (
               <Fragment>
@@ -80,23 +87,7 @@ class NavBar extends Component {
                 </Nav.Link>
               </Fragment>
             )}
-
-            {/*             <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
-              <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-              <NavDropdown.Item href='#action/3.2'>
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href='#action/3.4'>
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
-          {/*           <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2' />
-            <Button variant='outline-success'>Search</Button>
-          </Form> */}
         </Navbar.Collapse>
       </Navbar>
     );
