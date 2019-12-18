@@ -89,6 +89,7 @@ class BuyView extends Component {
                 <Card.Title>{book.title}</Card.Title>
                 <Card.Text>{book.author}</Card.Text>
                 <Card.Text>{book.publishedYear}</Card.Text>
+                <Card.Text>Listed on: {book.createdAt.slice(0,10)}</Card.Text>
                 <Button
                   variant='primary'
                   as={Link} to={`/book/${book._id}`}
