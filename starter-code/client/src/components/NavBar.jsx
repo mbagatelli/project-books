@@ -1,21 +1,15 @@
 import React, { Component, Fragment } from "react";
 import { signOut as signOutService } from "./../services/auth";
-import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav
-  //NavDropdown,
-  //Form,
-  //Button,
-  //FormControl
-} from "react-bootstrap";
-/* import Nav from "react-bootstrap/Nav";
-import NavDropDown from "react-bootstrap/NavDropdown" */
+import { Link, NavLink } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
 import "./NavBar.scss";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      navbarState: "navbar-toggler collapsed"
+    }
     this.onSignOutTrigger = this.onSignOutTrigger.bind(this);
   }
 
@@ -28,33 +22,46 @@ class NavBar extends Component {
     }
   }
 
+  handleToggleMenu = event => {
+    console.log(event.target);
+    if (this.state.navbarState === "navbar-toggler collapsed") {
+      this.setState = {
+        navbarState: "navbar-toggler"
+      }
+    } else {
+      this.setState = {
+        navbarState: "navbar-toggler collapsed"
+      }
+    }
+  }
+
   render() {
     const user = this.props.user;
-    console.log('NAVBAR PROPS: ', this.props);
+    // console.log('NAVBAR PROPS: ', this.props);
     return (
       <Navbar bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
-          Books Title
+          Valdiviana
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Toggle className={this.state.navbarState} aria-controls='basic-navbar-nav' onClick={this.handleToggleMenu} />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='mr-auto'>
             {(user && (
               <div className='nav navbar-nav navbar-right'>
                 <Fragment>
-                  <Nav.Link as={Link} to='/user/profile'>
+                  <Nav.Link as={NavLink} to='/user/profile'>
                     Profile
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/book/buy'>
+                  <Nav.Link as={NavLink} to='/book/buy'>
                     Buy
                   </Nav.Link>
                   {/* <Nav.Link as={Link} to='/book/sell/'>
                     Sell
                   </Nav.Link> */}
-                  <Nav.Link as={Link} to='/book/sell/search'>
+                  <Nav.Link as={NavLink} to='/book/sell/search'>
                     Sell
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/user/checkout'>
+                  <Nav.Link as={NavLink} to='/user/checkout'>
                     Checkout
                   </Nav.Link>
                   <button className='sign-out' onClick={this.onSignOutTrigger}>
@@ -64,10 +71,10 @@ class NavBar extends Component {
               </div>
             )) || (
               <Fragment>
-                <Nav.Link as={Link} to='/user/sign-in'>
+                <Nav.Link as={NavLink} to='/user/sign-in'>
                   Sign-In
                 </Nav.Link>
-                <Nav.Link as={Link} to='/user/sign-up'>
+                <Nav.Link as={NavLink} to='/user/sign-up'>
                   Sign-Up
                 </Nav.Link>
               </Fragment>
