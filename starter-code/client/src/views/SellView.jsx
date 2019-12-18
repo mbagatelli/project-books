@@ -71,6 +71,10 @@ const langList = [
 export default class SellView extends Component {
   constructor(props) {
     super(props);
+    let user = null;
+    if (this.props.user) {
+      user = this.props.user._id
+    }
     this.state = {
       book: {
         title: "",
@@ -78,7 +82,7 @@ export default class SellView extends Component {
         isbn: "",
         synopsis: "",
         type: "",
-        seller: this.props.user._id,
+        seller: user,
         genre: [],
         language: "",
         publishedYear: 0,
@@ -121,16 +125,18 @@ export default class SellView extends Component {
       if (book.publishedDate) {
         year = Number(book.publishedDate.slice(0, 4));
       }
-      let isbnObj;
-      if (book.industryIdentifiers) {
+      let isbnObj = "";
+      if (book.industryIdentifiers && book.industryIdentifiers.find(identifier => identifier.type === 'ISBN_13')) {
         isbnObj = book.industryIdentifiers.find(identifier => identifier.type === 'ISBN_13');
+        isbnObj = isbnObj.identifier;
+        console.log('ISBN OBJ: ', isbnObj);
       }
       console.log('BOOK PROP: ', book);
       this.setState({
         book: {
           title: "" || book.title,
           author: "" || authors,
-          isbn: "" || isbnObj.identifier,
+          isbn: "" || isbnObj,
           synopsis: "" || book.description,
           type: "" || fictionNonfiction,
           seller: this.props.user._id,
@@ -460,9 +466,10 @@ export default class SellView extends Component {
 
           <Form.Group controlId='image'>
             <img src={this.state.book.image} alt='' />
-            <Form.Label>Change cover picture</Form.Label>
-            <input type='file' name='image' onChange={this.handleFileChange} />
-            <Button variant='danger' onClick={this.removeImage}>Remove image</Button>
+            <Form.Label>Change picture</Form.Label>
+            {/* <input type='file' name='image' onChange={this.handleFileChange} /> */}
+            <input style={fileInputButton} type='file' name='image' onChange={this.handleFileChange} />
+            <Button variant='outline-danger' onClick={this.removeImage}>Remove image</Button>
           </Form.Group>
 
           <Button variant='primary' type='submit'>
@@ -472,4 +479,21 @@ export default class SellView extends Component {
       </Fragment>
     );
   }
+}
+
+const fileInputButton = {
+  // color: 'transparent',
+  content: 'Select a files',
+  color: 'black',
+  display: 'inline-block',
+  background: '-webkit-linear-gradient(top, #f9f9f9, #e3e3e3)',
+  border: '1px solid #999',
+  borderRadius: '0.3em',
+  padding: '0.2em 0.2em 0.2em 0.2em',
+  outline: 'none',
+  whiteSpace: 'nowrap',
+  cursor: 'pointer',
+  textShadow: '1px 1px #fff',
+  // fontWeight: '600'
+  margin: '1em'
 }

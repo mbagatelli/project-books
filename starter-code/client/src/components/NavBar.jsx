@@ -30,6 +30,7 @@ class NavBar extends Component {
 
   render() {
     const user = this.props.user;
+    console.log('NAVBAR PROPS: ', this.props);
     return (
       <Navbar bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
