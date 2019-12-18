@@ -53,6 +53,9 @@ class NavBar extends Component {
                   <Nav.Link as={Link} to='/book/sell/search'>
                     Search
                   </Nav.Link>
+                  <Nav.Link as={Link} to='/user/checkout'>
+                    Checkout
+                  </Nav.Link>
                   <button className='sign-out' onClick={this.onSignOutTrigger}>
                     Sign Out
                   </button>

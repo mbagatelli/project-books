@@ -60,6 +60,7 @@ passport.use(
             username,
             location,
             email,
+            coins: 0,
             //image: req.file.url,
             passwordHash: hash
           });

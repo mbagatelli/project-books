@@ -10,6 +10,7 @@ import SellView from "./views/SellView";
 import UserEditView from "./views/UserEditView";
 import BookEditView from "./views/BookEditView";
 import SellSearchView from "./views/SellSearchView";
+import StripeCheckoutView from "./views/StripeCheckoutView";
 
 import BuyView from "./views/BuyView";
 
@@ -45,7 +46,7 @@ class App extends Component {
   }
 
   // componentDidUpdate() {
-  //   console.log('App.jsx componentDidUpdate: ', this.state); 
+  //   console.log('App.jsx componentDidUpdate: ', this.state);
   // }
 
   changeAuthenticationStatus(user) {
@@ -57,7 +58,7 @@ class App extends Component {
   updateCurrentBook(book) {
     this.setState({
       book
-    })
+    });
   }
 
   //protection
@@ -99,11 +100,23 @@ class App extends Component {
             />
             <Route
               path='/book/sell/search'
-              render={props => <SellSearchView {...props} user={user} updateCurrentBook={this.updateCurrentBook} />}
+              render={props => (
+                <SellSearchView
+                  {...props}
+                  user={user}
+                  updateCurrentBook={this.updateCurrentBook}
+                />
+              )}
             />
             <Route
               path='/book/sell'
-              render={props => <SellView {...props} user={user} book={this.state.book} />}
+              render={props => (
+                <SellView {...props} user={user} book={this.state.book} />
+              )}
+            />
+            <Route
+              path='/user/checkout'
+              render={props => <StripeCheckoutView {...props} user={user} />}
             />
             <Route path='/book/buy' component={BuyView} />
             <Route path='/book/:id/edit' component={BookEditView} />
