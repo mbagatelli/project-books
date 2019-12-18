@@ -60,7 +60,7 @@ export class StripeCheckoutView extends Component {
         />
         <br />
         <StripeCheckout
-          stripeKey={process.env.REACT_APP_STRIPE}
+          stripeKey={process.env.REACT_APP_STRIPE_KEY}
           token={this.handleToken}
           amount={this.state.product.price * 100}
           name='Tesla Roadster'
