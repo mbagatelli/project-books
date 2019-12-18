@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 
@@ -42,7 +42,7 @@ class BuyView extends Component {
       <main style={{ display: "flex", flexWrap: "wrap" }}>
         {books.map(book => (
           <Card
-            style={{ width: "18em", margin: "3em auto", padding: "1em" }}
+            style={{ width: "24em", margin: "3em auto", padding: "1em" }}
             key={book._id}
           >
             <Card.Img

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { signOut as signOutService } from "./../services/auth";
 import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
-import "./NavBar.scss";
 
 class NavBar extends Component {
   constructor(props) {
@@ -22,19 +21,19 @@ class NavBar extends Component {
     }
   }
 
-  handleToggleMenu = event => {
-    let navbarState = { ...this.state};
-    console.log('NAVBAR STATE: ', navbarState);
-    if (navbarState === "navbar-toggler collapsed") {
-      this.setState({
-        navbarState: "navbar-toggler"
-      });
-    } else {
-      this.setState({
-        navbarState: "navbar-toggler collapsed"
-      });
-    }
-  }
+  // handleToggleMenu = event => {
+  //   let navbarState = { ...this.state};
+  //   console.log('NAVBAR STATE: ', navbarState);
+  //   if (navbarState === "navbar-toggler collapsed") {
+  //     this.setState({
+  //       navbarState: "navbar-toggler"
+  //     });
+  //   } else {
+  //     this.setState({
+  //       navbarState: "navbar-toggler collapsed"
+  //     });
+  //   }
+  // }
 
   render() {
     const user = this.props.user;
@@ -45,7 +44,7 @@ class NavBar extends Component {
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={this.handleToggleMenu}/>
+        <Navbar.Toggle aria-controls='basic-navbar-nav'/>
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
             {(user && (
@@ -57,7 +56,7 @@ class NavBar extends Component {
                   {/* <Nav.Link as={Link} to='/book/sell/'>
                     Sell
                   </Nav.Link> */}
-                  <Nav.Link as={NavLink} to='/book/sell/search' onClick={this.handleToggleMenu}>
+                  <Nav.Link as={NavLink} to='/book/sell/search'>
                     Sell
                   </Nav.Link>
                   <Nav.Link as={NavLink} to='/user/checkout'>
@@ -66,9 +65,9 @@ class NavBar extends Component {
                   <Nav.Link as={NavLink} to='/user/profile' style={{marginRight: '0.5em'}}>
                     Profile
                   </Nav.Link>
-                  <button className='sign-out' onClick={this.onSignOutTrigger}>
+                  <Nav.Link as={NavLink} to='/' onClick={this.onSignOutTrigger}>
                     Sign Out
-                  </button>
+                  </Nav.Link>
                 </Fragment>
               </div>
             )) || (
