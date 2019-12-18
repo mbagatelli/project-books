@@ -36,6 +36,8 @@ class ProfileView extends Component {
             <h3>{user.email}</h3>
             <h2>Location:</h2>
             <h3>{user.location}</h3>
+            <h2>Coins:</h2>
+            <h3>{user.coins}</h3>
             <h3>User Since:</h3>
             <Link to={`/user/edit/${user._id}`}>Edit Profile</Link>
           </div>

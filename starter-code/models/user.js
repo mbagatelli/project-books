@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema(
     rating: {
       type: Array
     },
+    coins: Number,
     booksOnSale: Number,
     booksSold: Number,
     passwordHash: {
