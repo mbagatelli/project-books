@@ -102,7 +102,7 @@ export default class SellView extends Component {
       if (book.authors) {
         authors = book.authors.map(author => {
           if (book.authors.length > 1) {
-            return author + " ";
+            return " " + author;
           } else {
             return author;
           }
@@ -173,7 +173,12 @@ export default class SellView extends Component {
     // console.log('EVENT TARGET: ', event.target);
     const value = event.target.value;
     const name = event.target.name;
-    let genres = [...this.state.book.genre]
+    let genres;
+    if (this.state.book.genre !== []) {
+      genres = [...this.state.book.genre]
+    } else {
+      genres = [];
+    }
     if (genres.indexOf(value) !== -1) {
       const index = genres.indexOf(value);
       genres.splice(index, 1);
