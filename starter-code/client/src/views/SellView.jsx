@@ -91,10 +91,11 @@ export default class SellView extends Component {
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.removeImage = this.removeImage.bind(this);
   }
 
   componentDidMount() {
-    console.log("SellView -- this.props: ", this.props);
+    // console.log("SellView -- this.props: ", this.props);
     if (this.props.book) {
       const book = this.props.book;
       let authors;
@@ -111,11 +112,15 @@ export default class SellView extends Component {
       if (book.categories && "non" in book.categories[0].toLowerCase) {
         fictionNonfiction = "non-fiction";
       }
-      const genres = bookGenres.filter(genre => genre in bookGenres);
+      // const genres = bookGenres.filter(genre => genre in bookGenres);
       const lang = langList.filter(lang => lang === book.language);
       const bookImage = book.imageLinks
         ? book.imageLinks.thumbnail
         : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
+      let year;
+      if (book.publishedDate) {
+        year = Number(book.publishedDate.slice(0, 4));
+      }
 
       this.setState({
         book: {
@@ -125,9 +130,9 @@ export default class SellView extends Component {
           synopsis: "" || book.description,
           type: "" || fictionNonfiction,
           seller: this.props.user._id,
-          genre: [] || genres,
+          // genre: [] || genres,
           language: lang || "Other language",
-          publishedYear: null || Number(book.publishedDate.slice(0, 4)),
+          publishedYear: null || year,
           image: bookImage
         }
       });
@@ -158,15 +163,26 @@ export default class SellView extends Component {
     }
   } */
 
-  handleInputChange = event => {
+  handleInputChange(event) {
     //console.log(this.props);
+    // console.log('This state: ', this.state);
+    // console.log('EVENT TARGET: ', event.target);
     const value = event.target.value;
     const name = event.target.name;
-    if (name === "genre") {
+    let genres = [...this.state.book.genre]
+    if (genres.indexOf(value) !== -1) {
+      const index = genres.indexOf(value);
+      genres.splice(index, 1);
+      this.setState({
+        book: {
+          ...this.state.book.genres,
+          genre: genres
+        }
+      });
+    } else if (name === "genre") {
       this.setState({
         book: {
           ...this.state.book,
-          [name]: value,
           genre: [...this.state.book.genre, value]
         }
       });
@@ -181,13 +197,22 @@ export default class SellView extends Component {
   };
 
   handleFileChange(event) {
-    const defaultPhoto =
-      "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
-    const file = event.target.files ? event.target.files[0] : defaultPhoto;
+    // const defaultPhoto =
+    //   "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
+    const file = event.target.files[0]
     this.setState({
       book: {
         ...this.state.book,
         image: file
+      }
+    });
+  }
+  
+  removeImage() {
+    this.setState({
+      book: {
+        ...this.book,
+        image: null
       }
     });
   }
@@ -414,6 +439,8 @@ export default class SellView extends Component {
           <Form.Group controlId='description'>
             {/* <Form.Label>Enter short description (optional)</Form.Label> */}
             <Form.Control
+              as='textarea'
+              rows='3'
               type='text'
               placeholder='Enter short description...'
               required
@@ -426,6 +453,7 @@ export default class SellView extends Component {
             <img src={this.state.book.image} alt='' />
             <Form.Label>Change cover picture</Form.Label>
             <input type='file' name='image' onChange={this.handleFileChange} />
+            <Button variant='danger' onClick={this.removeImage}>Remove image</Button>
           </Form.Group>
 
           <Button variant='primary' type='submit'>
