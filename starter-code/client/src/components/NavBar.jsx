@@ -63,7 +63,7 @@ class NavBar extends Component {
                   <Nav.Link as={NavLink} to='/user/checkout'>
                     Checkout
                   </Nav.Link>
-                  <Nav.Link as={NavLink} to='/user/profile'>
+                  <Nav.Link as={NavLink} to='/user/profile' style={{marginRight: '0.5em'}}>
                     Profile
                   </Nav.Link>
                   <button className='sign-out' onClick={this.onSignOutTrigger}>
