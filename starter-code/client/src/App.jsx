@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
 import HomeView from "./views/HomeView";
@@ -11,6 +11,7 @@ import UserEditView from "./views/UserEditView";
 import BookEditView from "./views/BookEditView";
 import SellSearchView from "./views/SellSearchView";
 import StripeCheckoutView from "./views/StripeCheckoutView";
+import NotFoundComponent from "./components/NotFound";
 
 import BuyView from "./views/BuyView";
 
@@ -118,14 +119,16 @@ class App extends Component {
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
             />
-            <Route 
-              path='/book/buy' 
+            <Route
+              path='/book/buy'
               render={props => <BuyView {...props} user={user} />}
             />
+            <Route path='/error/:code' component={NotFoundComponent} />
             <Route path='/book/:id/edit' component={BookEditView} />
             <Route path='/book/:id' component={BookEditView} />
             <Route path='/user/edit' component={UserEditView} />
             <Route path='/' exact component={HomeView} />
+            <Redirect to='/error/404' />
           </Switch>
         )}
       </BrowserRouter>

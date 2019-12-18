@@ -23,8 +23,8 @@ class NavBar extends Component {
   }
 
   handleToggleMenu = event => {
-    let navbarState = { ...this.state};
-    console.log('NAVBAR STATE: ', navbarState);
+    let navbarState = { ...this.state };
+    console.log("NAVBAR STATE: ", navbarState, this.props);
     if (navbarState === "navbar-toggler collapsed") {
       this.setState({
         navbarState: "navbar-toggler"
@@ -34,7 +34,7 @@ class NavBar extends Component {
         navbarState: "navbar-toggler collapsed"
       });
     }
-  }
+  };
 
   render() {
     const user = this.props.user;
@@ -45,7 +45,10 @@ class NavBar extends Component {
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={this.handleToggleMenu}/>
+        <Navbar.Toggle
+          aria-controls='basic-navbar-nav'
+          onClick={this.handleToggleMenu}
+        />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
             {(user && (
@@ -57,7 +60,11 @@ class NavBar extends Component {
                   {/* <Nav.Link as={Link} to='/book/sell/'>
                     Sell
                   </Nav.Link> */}
-                  <Nav.Link as={NavLink} to='/book/sell/search' onClick={this.handleToggleMenu}>
+                  <Nav.Link
+                    as={NavLink}
+                    to='/book/sell/search'
+                    onClick={this.handleToggleMenu}
+                  >
                     Sell
                   </Nav.Link>
                   <Nav.Link as={NavLink} to='/user/checkout'>
