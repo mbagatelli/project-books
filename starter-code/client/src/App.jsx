@@ -118,7 +118,10 @@ class App extends Component {
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
             />
-            <Route path='/book/buy' component={BuyView} user={this.state.user}/>
+            <Route 
+              path='/book/buy' 
+              render={props => <BuyView {...props} user={user} />}
+            />
             <Route path='/book/:id/edit' component={BookEditView} />
             <Route path='/book/:id' component={BookEditView} />
             <Route path='/user/edit' component={UserEditView} />

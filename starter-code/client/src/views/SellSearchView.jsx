@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { Form, Button, Card } from "react-bootstrap";
 import { listBooks } from "./../services/googleBooks";
 
@@ -35,10 +36,10 @@ export default class SellSearchView extends Component {
 
   render() {
     return (
-      <div style={{ padding: "2em" }}>
+      <div style={{ padding: "2em"}}>
         <Form onSubmit={this.handleOnSubmit}>
           <Form.Group controlId='search-sell'>
-            <Form.Label>I want to sell...</Form.Label>
+            {/* <Form.Label>I want to sell...</Form.Label> */}
             <Form.Control
               type='text'
               placeholder='Enter Title / Author / ISBN'
@@ -47,8 +48,10 @@ export default class SellSearchView extends Component {
           </Form.Group>
 
           <Button variant='primary' type='submit'>
-            Submit
+            Search
           </Button>
+          <p>or</p>
+          <Link to="/book/sell/">Enter manually</Link>
         </Form>
 
         <div style={{ display: "flex", flexWrap: "wrap" }}>

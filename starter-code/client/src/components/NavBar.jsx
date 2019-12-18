@@ -47,11 +47,11 @@ class NavBar extends Component {
                   <Nav.Link as={Link} to='/book/buy'>
                     Buy
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/book/sell/'>
+                  {/* <Nav.Link as={Link} to='/book/sell/'>
                     Sell
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link as={Link} to='/book/sell/search'>
-                    Search
+                    Sell
                   </Nav.Link>
                   <Nav.Link as={Link} to='/user/checkout'>
                     Checkout

@@ -121,12 +121,16 @@ export default class SellView extends Component {
       if (book.publishedDate) {
         year = Number(book.publishedDate.slice(0, 4));
       }
-
+      let isbnObj;
+      if (book.industryIdentifiers) {
+        isbnObj = book.industryIdentifiers.find(identifier => identifier.type === 'ISBN_13');
+      }
+      console.log('BOOK PROP: ', book);
       this.setState({
         book: {
           title: "" || book.title,
           author: "" || authors,
-          isbn: "" || book.industryIdentifiers[1].identifier,
+          isbn: "" || isbnObj.identifier,
           synopsis: "" || book.description,
           type: "" || fictionNonfiction,
           seller: this.props.user._id,
@@ -218,7 +222,7 @@ export default class SellView extends Component {
   }
 
   render() {
-    console.log("This state book: ", this.state.book);
+    // console.log("This state book: ", this.state.book);
     return (
       <Fragment>
         <Form onSubmit={this.handleFormSubmit}>

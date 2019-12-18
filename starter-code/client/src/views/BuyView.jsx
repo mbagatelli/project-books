@@ -14,12 +14,14 @@ class BuyView extends Component {
   async componentDidMount() {
     try {
       const books = await listBooks();
-      // books.filter(book => book.seller !== this.props.user);
+      if (this.props.user) {
+        books.filter(book => book.seller !== this.props.user._id);
+      }
       this.setState({
         books
       });
-      console.log(this.props);
-      console.log(this.state.books)
+      console.log('PROPS: ', this.props);
+      console.log('BOOKS: ', this.state.books)
     } catch (error) {
       console.log(error);
     }
