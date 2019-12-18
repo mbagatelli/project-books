@@ -7,9 +7,9 @@ import "./NavBar.scss";
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      navbarState: "navbar-toggler collapsed"
-    }
+    // this.state = {
+    //   navbarState: "navbar-toggler collapsed"
+    // }
     this.onSignOutTrigger = this.onSignOutTrigger.bind(this);
   }
 
@@ -39,7 +39,7 @@ class NavBar extends Component {
   render() {
     const user = this.props.user;
     // console.log('NAVBAR PROPS: ', this.props);
-    console.log('NAVBAR STATE: ', this.state.navbarState);
+    // console.log('NAVBAR STATE: ', this.state.navbarState);
     return (
       <Navbar collapseOnSelect bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
@@ -51,9 +51,6 @@ class NavBar extends Component {
             {(user && (
               <div className='nav navbar-nav navbar-right'>
                 <Fragment>
-                  <Nav.Link ag={NavLink} to='/user/profile'>
-                    Profile
-                  </Nav.Link>
                   <Nav.Link as={NavLink} to='/book/buy'>
                     Buy
                   </Nav.Link>
@@ -65,6 +62,9 @@ class NavBar extends Component {
                   </Nav.Link>
                   <Nav.Link as={NavLink} to='/user/checkout'>
                     Checkout
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to='/user/profile'>
+                    Profile
                   </Nav.Link>
                   <button className='sign-out' onClick={this.onSignOutTrigger}>
                     Sign Out

@@ -9,7 +9,7 @@ export const listBooks = async query => {
     const response = await googleBooksApi.get("/", {
       params: {
         q: query,
-        key: "AIzaSyAm6WpyfWxslmfTdGQeFmNUAxqTNYcLEBA"
+        key: process.env.REACT_APP_GOOGLE_KEY
       }
     });
     // console.log(response.data);

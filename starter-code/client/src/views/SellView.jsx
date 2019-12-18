@@ -135,19 +135,20 @@ export default class SellView extends Component {
       this.setState({
         book: {
           ...this.state.book,
-          title: "" || book.title,
-          author: "" || authors,
-          isbn: "" || isbnObj,
-          synopsis: "" || book.description,
-          type: "" || fictionNonfiction,
+          image: bookImage,
+          publishedYear: null || year,
           seller: this.props.user._id,
+          type: "" || fictionNonfiction,
+          synopsis: "" || book.description,
+          isbn: "" || isbnObj,
+          author: "" || authors,
+          title: "" || book.title
           // genre: [] || genres,
           // language: lang || "Other language",
-          publishedYear: null || year,
-          image: bookImage
         }
       });
     }
+    window.scrollTo(0, 0);
   }
 
   async handleFormSubmit(event) {
