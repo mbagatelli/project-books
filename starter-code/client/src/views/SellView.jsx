@@ -172,14 +172,13 @@ export default class SellView extends Component {
     let genres = [...this.state.book.genre]
     if (genres.indexOf(value) !== -1) {
       const index = genres.indexOf(value);
-      delete genres[index];
+      genres.splice(index, 1);
       this.setState({
         book: {
           ...this.state.book.genres,
           genre: genres
         }
       });
-      console.log('DELETED!!!');
     } else if (name === "genre") {
       this.setState({
         book: {
