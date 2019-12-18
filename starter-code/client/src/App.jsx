@@ -105,7 +105,7 @@ class App extends Component {
               path='/book/sell'
               render={props => <SellView {...props} user={user} book={this.state.book} />}
             />
-            <Route path='/book/buy' component={BuyView} />
+            <Route path='/book/buy' component={BuyView} user={this.state.user}/>
             <Route path='/book/:id/edit' component={BookEditView} />
             <Route path='/book/:id' component={BookEditView} />
             <Route path='/user/edit' component={UserEditView} />

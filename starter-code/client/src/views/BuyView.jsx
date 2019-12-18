@@ -14,9 +14,12 @@ class BuyView extends Component {
   async componentDidMount() {
     try {
       const books = await listBooks();
+      // books.filter(book => book.seller !== this.props.user);
       this.setState({
         books
       });
+      console.log(this.props);
+      console.log(this.state.books)
     } catch (error) {
       console.log(error);
     }
