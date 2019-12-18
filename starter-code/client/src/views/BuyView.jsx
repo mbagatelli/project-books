@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Form } from "react-bootstrap";
 
@@ -50,7 +50,9 @@ class BuyView extends Component {
   render() {
     let books = [];
     if (this.props.user) {
-      books = this.state.books.filter(book => book.seller !== this.props.user._id)
+      books = this.state.books.filter(
+        book => book.seller !== this.props.user._id
+      );
     } else {
       books = [...this.state.books];
     }
