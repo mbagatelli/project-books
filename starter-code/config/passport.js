@@ -52,7 +52,7 @@ passport.use(
     },
     //uploadCloud.single("image"),
     (req, email, password, callback) => {
-      const { username, location, adress } = req.body;
+      const { username, location, address } = req.body;
       bcryptjs
         .hash(password, 10)
         .then(hash => {
@@ -60,7 +60,7 @@ passport.use(
             username,
             location,
             email,
-            adress,
+            address,
             coins: 0,
             //image: req.file.url,
             passwordHash: hash
