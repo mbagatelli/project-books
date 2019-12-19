@@ -72,7 +72,7 @@ class ProfileView extends Component {
                   </div>
                   <div className='panel-body'>
                     <div className='form-group mb-0'>
-                      <label className='col-sm-2 col-md'>{user.adress}</label>
+                      <label className='col-sm-2 col-md'>{user.address}</label>
                     </div>
                     <div className='form-group'>
                       <label className='col-sm-2'>{user.location}</label>
@@ -82,7 +82,7 @@ class ProfileView extends Component {
 
                 <div className='panel panel-default'>
                   <div className='panel-heading'>
-                    <h4 className='panel-title'>Email Adress</h4>
+                    <h4 className='panel-title'>Email Address</h4>
                   </div>
                   <div className='panel-body'>
                     <div className='form-group'>

@@ -74,7 +74,10 @@ export default class SellSearchView extends Component {
                     {book.volumeInfo.title}
                   </Card.Title>
                   <Card.Text className='text-center'>
-                    Year Published: {book.volumeInfo.publishedDate.slice(0, 4)}
+                    Year Published:{" "}
+                    {book.volumeInfo.publishedDate
+                      ? book.volumeInfo.publishedDate.slice(0, 4)
+                      : ""}
                   </Card.Text>
                   <Card.Text className='text-center'>
                     {" "}

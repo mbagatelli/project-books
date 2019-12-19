@@ -12,7 +12,7 @@ class SignUpView extends Component {
       username: "",
       password: "",
       location: "",
-      adress: ""
+      address: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -29,14 +29,14 @@ class SignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { email, username, password, location, adress } = this.state;
+    const { email, username, password, location, address } = this.state;
     try {
       const user = await signUpService({
         email,
         username,
         password,
         location,
-        adress
+        address
       });
       this.props.changeAuthenticationStatus(user);
       this.props.history.push(`/`);
@@ -96,13 +96,13 @@ class SignUpView extends Component {
                     />
                   </div>
                   <div className='form-group'>
-                    <label htmlFor='adress'></label>
+                    <label htmlFor='address'></label>
                     <input
                       type='text'
-                      value={this.state.adress}
-                      name='adress'
+                      value={this.state.address}
+                      name='address'
                       onChange={this.handleInputChange}
-                      placeholder='Adress'
+                      placeholder='Address'
                     />
                   </div>
                   <div className='form-group'>
