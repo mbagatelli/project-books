@@ -26,7 +26,9 @@ const userSchema = new mongoose.Schema(
       trim: true
     },
     image: {
-      type: String
+      type: String,
+      default:
+        "https://res.cloudinary.com/dldcaigqm/image/upload/v1576773787/project-books/book-book-pages-bookcase-browse-415071_n04pbv.jpg"
     },
     location: {
       type: String

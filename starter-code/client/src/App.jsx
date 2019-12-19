@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
 import HomeView from "./views/HomeView";
@@ -20,6 +20,8 @@ import BuyListView from "./views/BuyListView";
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
 import "./App.css";
+
+const NavBarWithRouter = withRouter(NavBar);
 
 class App extends Component {
   constructor(props) {
@@ -68,9 +70,7 @@ class App extends Component {
     });
   }
 
-  searchBuyBooks(query) {
-    
-  }
+  searchBuyBooks(query) {}
 
   //protection
   /*   verifyAuthentication() {
@@ -81,7 +81,7 @@ class App extends Component {
     const user = this.state.user;
     return (
       <BrowserRouter>
-        <NavBar
+        <NavBarWithRouter
           user={user}
           changeAuthenticationStatus={this.changeAuthenticationStatus}
           props={this.props}

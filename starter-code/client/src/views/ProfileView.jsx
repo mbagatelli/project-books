@@ -40,7 +40,6 @@ class ProfileView extends Component {
     } else {
       books = [...this.state.books];
     }
-    console.log(books);
     //console.log(user.username);
     return (
       <div>
@@ -51,15 +50,15 @@ class ProfileView extends Component {
                 <div className='panel panel-default'>
                   <div className='panel-body text-center'>
                     <img
-                      src=''
-                      className='img-circle profile-avatar'
+                      src={user.image}
+                      className='img-circle profile-avatar mt-3 img-profile'
                       alt='User avatar'
                     />
                   </div>
                 </div>
                 <div className='panel panel-default'>
                   <div className='panel-heading'>
-                    <h4 className='panel-title'>User Name</h4>
+                    <h4 className='panel-title mt-5'>User Name</h4>
                   </div>
                   <div className='panel-body'>
                     <div className='form-group'>

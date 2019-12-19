@@ -6,8 +6,11 @@ import { Navbar, Nav } from "react-bootstrap";
 class NavBar extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      expanded: false
+    };
     this.onSignOutTrigger = this.onSignOutTrigger.bind(this);
+    this.handleToggleMenu = this.handleToggleMenu.bind(this);
   }
 
   async onSignOutTrigger() {
@@ -19,19 +22,19 @@ class NavBar extends Component {
     }
   }
 
-  // handleToggleMenu = event => {
-  //   let navbarState = { ...this.state};
-  //   console.log('NAVBAR STATE: ', navbarState);
-  //   if (navbarState === "navbar-toggler collapsed") {
-  //     this.setState({
-  //       navbarState: "navbar-toggler"
-  //     });
-  //   } else {
-  //     this.setState({
-  //       navbarState: "navbar-toggler collapsed"
-  //     });
-  //   }
-  // }
+  handleToggleMenu() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
+  }
+
+  componentDidUpdate(previousProps) {
+    if (previousProps.location.pathname !== this.props.location.pathname) {
+      this.setState({
+        expanded: false
+      });
+    }
+  }
 
   render() {
     let user;
@@ -44,14 +47,17 @@ class NavBar extends Component {
     // console.log('USER: ', user);
 
     return (
-      <Navbar bg='light' expand='lg'>
+      <Navbar bg='light' expand='lg' expanded={this.state.expanded}>
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
         {user && (
           <Nav.Link className='navbar-brand'>Coins: {user.coins}</Nav.Link>
         )}
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Toggle
+          aria-controls='basic-navbar-nav'
+          onClick={this.handleToggleMenu}
+        />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
             {(user && (

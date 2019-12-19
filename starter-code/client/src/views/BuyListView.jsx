@@ -8,7 +8,7 @@ export default class BuyListView extends Component {
     super(props);
     this.state = {
       books: [],
-      results: [],
+      results: []
     };
   }
 
@@ -42,39 +42,43 @@ export default class BuyListView extends Component {
   handleOnChange = async e => {
     const name = e.target.name;
     let value = e.target.value;
-    if (typeof name !== "isbn") {
+    if (name !== "isbn") {
       value = value.toLowerCase();
     }
-    if (value === '') {
+    if (value === "") {
       this.setState({
         ...this.state,
         results: this.state.books
       });
     } else {
-      const results = [...this.state.books].filter(book => String(book[name]).toLowerCase().includes(value));
+      const results = [...this.state.books].filter(book =>
+        String(book[name])
+          .toLowerCase()
+          .includes(value)
+      );
       this.setState({
         ...this.state,
         results
       });
     }
-    console.log('Button pressed. Name: ', name, 'Value: ', value);
+    console.log("Button pressed. Name: ", name, "Value: ", value);
   };
 
   handleOnChangeIsFiction = async e => {
     const value = e.target.value.toLowerCase();
-    if (value === '') {
+    if (value === "") {
       this.setState({
         ...this.state,
         results: this.state.books
       });
     } else {
       const results = [...this.state.books].filter(book => book.type === value);
-        this.setState({
-          ...this.state,
-          results
-        });
+      this.setState({
+        ...this.state,
+        results
+      });
     }
-  }
+  };
 
   render() {
     let results = [];
@@ -90,10 +94,10 @@ export default class BuyListView extends Component {
     // console.log(this.state);
     return (
       <Fragment>
-        <Form>
+        <Form className='container mt-3'>
           <Form.Group controlId='search-title'>
             <Form.Control
-              name="title"
+              name='title'
               type='text'
               placeholder='Enter Title'
               onChange={this.handleOnChange}
@@ -101,7 +105,7 @@ export default class BuyListView extends Component {
           </Form.Group>
           <Form.Group controlId='search-author'>
             <Form.Control
-              name="author"
+              name='author'
               type='text'
               placeholder='Enter Author'
               onChange={this.handleOnChange}
@@ -109,20 +113,35 @@ export default class BuyListView extends Component {
           </Form.Group>
           <Form.Group controlId='search-isbn'>
             <Form.Control
-              name="isbn"
+              name='isbn'
               type='text'
               placeholder='Enter ISBN'
               onChange={this.handleOnChange}
             />
           </Form.Group>
 
-          <Button variant='primary' name="type" value="fiction" onClick={this.handleOnChangeIsFiction}>
+          <Button
+            variant='primary'
+            name='type'
+            value='fiction'
+            onClick={this.handleOnChangeIsFiction}
+          >
             Fiction
           </Button>
-          <Button variant='primary' name="type" value="non-fiction" onClick={this.handleOnChangeIsFiction}>
+          <Button
+            variant='primary'
+            name='type'
+            value='non-fiction'
+            onClick={this.handleOnChangeIsFiction}
+          >
             Non-fiction
           </Button>
-          <Button variant='primary' name="type" value="" onClick={this.handleOnChangeIsFiction}>
+          <Button
+            variant='primary'
+            name='type'
+            value=''
+            onClick={this.handleOnChangeIsFiction}
+          >
             All books
           </Button>
         </Form>
