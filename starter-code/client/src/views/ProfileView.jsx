@@ -63,9 +63,7 @@ class ProfileView extends Component {
                   </div>
                   <div className='panel-body'>
                     <div className='form-group'>
-                      <label className='col-sm-2 control-label'>
-                        {user.username}
-                      </label>
+                      <label className='col-sm-2'>{user.username}</label>
                     </div>
                   </div>
                 </div>
@@ -74,10 +72,11 @@ class ProfileView extends Component {
                     <h4 className='panel-title'>Location</h4>
                   </div>
                   <div className='panel-body'>
+                    <div className='form-group mb-0'>
+                      <label className='col-sm-2 col-md'>{user.adress}</label>
+                    </div>
                     <div className='form-group'>
-                      <label className='col-sm-2 control-label'>
-                        {user.location}
-                      </label>
+                      <label className='col-sm-2'>{user.location}</label>
                     </div>
                   </div>
                 </div>
@@ -94,6 +93,8 @@ class ProfileView extends Component {
                     </div>
                   </div>
                 </div>
+                <Link to={`/user/edit/${user._id}`}>Edit Profile</Link>
+                <br />
                 <div className='panel panel-default'>
                   <div className='panel-heading'>
                     <h4 className='panel-title'>Books on Sale</h4>
@@ -106,41 +107,35 @@ class ProfileView extends Component {
                       >
                         {books.map(book => (
                           <Card
+                            className='d-flex justify-content-between'
                             style={{
-                              width: "14em",
-
+                              width: "18em",
+                              margin: "3em auto",
                               padding: "1em"
                             }}
                             key={book._id}
                           >
                             <Card.Img variant='top' src={book.image} />
-                            <Card.Body>
-                              <Card.Title>{book.title}</Card.Title>
-                              <Card.Text>{book.author}</Card.Text>
-                              <Card.Text>{book.publishedYear}</Card.Text>
-                              <Card.Text>
-                                Listed on: {book.createdAt.slice(0, 10)}
-                              </Card.Text>
-                              <Button
-                                variant='primary'
-                                as={Link}
-                                to={`/book/${book._id}`}
-                              >
-                                Buy
-                              </Button>
-                            </Card.Body>
+                            <div className='mt-auto flex-wrap d-flex justify-content-center'>
+                              <Card.Body className='card-body d-flex flex-column'>
+                                <Card.Title className='text-center'>
+                                  {book.title}
+                                </Card.Title>
+                                <Card.Text className='text-center'>
+                                  Listed on: {book.createdAt.slice(0, 10)}
+                                </Card.Text>
+                                <Button
+                                  className='mt-auto flex-wrap d-flex justify-content-center'
+                                  variant='primary'
+                                  as={Link}
+                                  to={`/book/${book._id}`}
+                                >
+                                  Edit
+                                </Button>
+                              </Card.Body>
+                            </div>
                           </Card>
                         ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='panel panel-default'>
-                  <div className='panel-body'>
-                    <div className='form-group'>
-                      <div className='col-sm-10 col-sm-offset-2'>
-                        <Link to={`/user/edit/${user._id}`}>Edit Profile</Link>
                       </div>
                     </div>
                   </div>

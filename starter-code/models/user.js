@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema(
     location: {
       type: String
     },
+    adress: {
+      type: String,
+      required: true
+    },
     rating: {
       type: Array
     },

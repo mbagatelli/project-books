@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Form } from "react-bootstrap";
 
-import { list as listBooks } from "./../services/books";
+import { list as listBooks } from "../services/books";
 
 class BuyView extends Component {
   constructor(props) {
@@ -78,7 +78,7 @@ class BuyView extends Component {
         <main style={{ display: "flex", flexWrap: "wrap" }}>
           {books.map(book => (
             <Card
-              style={{ width: "24em", margin: "3em auto", padding: "1em" }}
+              style={{ width: "18em", margin: "3em auto", padding: "1em" }}
               key={book._id}
             >
               <Card.Img variant='top' src={book.image} />
@@ -87,7 +87,12 @@ class BuyView extends Component {
                 <Card.Text>{book.author}</Card.Text>
                 <Card.Text>{book.publishedYear}</Card.Text>
                 <Card.Text>Listed on: {book.createdAt.slice(0, 10)}</Card.Text>
-                <Button variant='primary' as={Link} to={`/book/${book._id}`}>
+                <Button
+                  className='mt-auto flex-wrap d-flex justify-content-center'
+                  variant='primary'
+                  as={Link}
+                  to={`/book/${book._id}`}
+                >
                   Buy
                 </Button>
               </Card.Body>
