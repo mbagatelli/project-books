@@ -41,6 +41,26 @@ export default class BuyListView extends Component {
 
   handleOnChange = async e => {
     const name = e.target.name;
+    let value = e.target.value;
+    if (typeof name !== "isbn") {
+      value = value.toLowerCase();
+    }
+    if (value === '') {
+      this.setState({
+        ...this.state,
+        results: this.state.books
+      });
+    } else {
+      const results = [...this.state.books].filter(book => String(book[name]).toLowerCase().includes(value));
+      this.setState({
+        ...this.state,
+        results
+      });
+    }
+    console.log('Button pressed. Name: ', name, 'Value: ', value);
+  };
+
+  handleOnChangeIsFiction = async e => {
     const value = e.target.value.toLowerCase();
     if (value === '') {
       this.setState({
@@ -48,13 +68,13 @@ export default class BuyListView extends Component {
         results: this.state.books
       });
     } else {
-      const results = [...this.state.books].filter(book => book[name].toLowerCase().includes(value));
-      this.setState({
-        ...this.state,
-        results
-      });
+      const results = [...this.state.books].filter(book => book.type === value);
+        this.setState({
+          ...this.state,
+          results
+        });
     }
-  };
+  }
 
   render() {
     let results = [];
@@ -67,10 +87,10 @@ export default class BuyListView extends Component {
     }
     // console.log('USER: ', this.props.user);
     // console.log('state books: ', this.state.books);
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <Fragment>
-        <Form onSubmit={this.handleOnSubmit}>
+        <Form>
           <Form.Group controlId='search-title'>
             <Form.Control
               name="title"
@@ -96,8 +116,14 @@ export default class BuyListView extends Component {
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
-            Search
+          <Button variant='primary' name="type" value="fiction" onClick={this.handleOnChangeIsFiction}>
+            Fiction
+          </Button>
+          <Button variant='primary' name="type" value="non-fiction" onClick={this.handleOnChangeIsFiction}>
+            Non-fiction
+          </Button>
+          <Button variant='primary' name="type" value="" onClick={this.handleOnChangeIsFiction}>
+            All books
           </Button>
         </Form>
 

@@ -18,7 +18,6 @@ const bookSchema = new mongoose.Schema(
     },
     isbn: {
       type: Number,
-      required: true,
       maxlength: 13
     },
     synopsis: {
