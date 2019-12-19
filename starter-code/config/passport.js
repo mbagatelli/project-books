@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+//const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const bcryptjs = require("bcryptjs");
 const uploadCloud = require("../middleware/cloudinary");
 
@@ -146,7 +146,7 @@ passport.use(
   )
 ); */
 
-passport.use(
+/* passport.use(
   "google",
   new GoogleStrategy(
     {
@@ -177,4 +177,4 @@ passport.use(
       }
     }
   )
-);
+); */
