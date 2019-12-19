@@ -62,7 +62,7 @@ export default class BuyView extends Component {
           <Card.Text><span className="font-weight-bold">Price</span> <br />{book.price}</Card.Text>
           <Card.Text><span className="font-weight-bold">Seller description</span><br/> {book.description}</Card.Text>
           <Button
-            className='mx-auto flex-wrap d-flex justify-content-center shadow'
+            className='mx-auto flex-wrap d-flex justify-content-center shadow w-25'
             variant='primary'
             as={Link}
             to={`/buy/${book._id}`}
