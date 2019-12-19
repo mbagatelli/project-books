@@ -50,9 +50,10 @@ export class StripeCheckoutView extends Component {
   render() {
     console.log(this.props.user.coins, this.state.product);
     return (
-      <div>
-        <h1>how many coins?</h1>
+      <div className="mx-auto text-center m-3">
+        <h1 className="m-3">How many coins?</h1>
         <input
+          className="m-3"
           type='number'
           name='price'
           value={this.state.product.price}
@@ -60,10 +61,11 @@ export class StripeCheckoutView extends Component {
         />
         <br />
         <StripeCheckout
+          className="m-3"
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
           token={this.handleToken}
           amount={this.state.product.price * 100}
-          name='Tesla Roadster'
+          name='The Book Cellar'
           billingAddress
           shippingAddress
         />
