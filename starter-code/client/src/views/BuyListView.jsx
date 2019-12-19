@@ -176,7 +176,7 @@ export default class BuyListView extends Component {
             >
               <Card.Img variant='top' src={book.image} />
               <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
+                <Card.Title className='text-center'>{book.title}</Card.Title>
                 <Card.Text>{book.author}</Card.Text>
                 <Card.Text>{book.publishedYear}</Card.Text>
                 <Card.Text>Listed on: {book.createdAt.slice(0, 10)}</Card.Text>

@@ -69,20 +69,21 @@ export default class SellSearchView extends Component {
                       : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg"
                   }
                 />
-                <Card.Body className='card-body d-flex flex-column'>
+                <Card.Body className='d-flex flex-column '>
                   <Card.Title className='text-center'>
                     {book.volumeInfo.title}
                   </Card.Title>
-                  <Card.Text>
-                    Year Published: {book.volumeInfo.publishedDate}
+                  <Card.Text className='text-center'>
+                    Year Published: {book.volumeInfo.publishedDate.slice(0, 4)}
                   </Card.Text>
-                  <Card.Text>
+                  <Card.Text className='text-center'>
                     {" "}
                     Author:{" "}
                     {book.volumeInfo.authors &&
                       book.volumeInfo.authors.map(author => author + " ")}
                   </Card.Text>
                   <Button
+                    className='mt-auto flex-wrap d-flex justify-content-center'
                     variant='primary'
                     onClick={() => this.handleSellBook(book.volumeInfo)}
                   >
