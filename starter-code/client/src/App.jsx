@@ -16,6 +16,7 @@ import NotFoundComponent from "./components/NotFound";
 import ErrorView from "./views/ErrorView";
 import BuyView from "./views/BuyView";
 import BuyListView from "./views/BuyListView";
+import BookBuyView from "./views/BookBuyView";
 
 
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
@@ -160,6 +161,12 @@ class App extends Component {
             <Route
               path='/book/buylist'
               render={props => <BuyListView {...props} user={user} />}
+            />
+            <ProtectedRoute
+              path='/buy/:id'
+              render={props => <BookBuyView {...props} user={user} />}
+              verify={this.verifyAuthentication}
+              redirect='/error/401'
             />
             <ProtectedRoute
               path='/book/:id'

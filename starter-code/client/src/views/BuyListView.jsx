@@ -175,7 +175,7 @@ export default class BuyListView extends Component {
               key={book._id}
             >
               <Card.Img variant='top' src={book.image} />
-              <Card.Body>
+              <Card.Body className="text-center">
                 <Card.Title>{book.title}</Card.Title>
                 <Card.Text>{book.author}</Card.Text>
                 <Card.Text>{book.publishedYear}</Card.Text>

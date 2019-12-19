@@ -42,7 +42,7 @@ export default class BuyView extends Component {
         return accumulator += currentValue;
       }
     }, '');
-    console.log(book);
+    // console.log(book);
 
     return (
       <Card
