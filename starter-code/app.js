@@ -18,7 +18,9 @@ const stripeRouter = require("./routes/api/checkout");
 
 const app = express();
 
-//app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
+//app.use(serveFavicon(join(__dirname, "client/build", "favicon.ico")));
+app.use(express.static(join(__dirname, "client/build")));
+
 app.use(logger("dev"));
 //app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -31,8 +33,8 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 24 * 15 * 100,
       sameSite: "lax",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production"
+      httpOnly: true
+      /* secure: process.env.NODE_ENV === "production" */
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
@@ -57,6 +59,11 @@ app.use("/api/book", bookRouter);
 app.use("/api/checkout", stripeRouter);
 
 // Catch missing routes and forward to error handler
+
+app.get("*", (req, res, next) => {
+  res.sendFile(join(__dirname, "client/build/index.html"));
+});
+
 app.use((req, res, next) => {
   next(createError(404));
 });
