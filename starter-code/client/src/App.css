@@ -1,3 +1,12 @@
+body {
+  font-style: 'PT Serif', Helvetica, sans-serif;
+}
+
+#logo {
+  font-family: 'PT Serif', serif;
+  font-size: 1.5em;
+}
+
 .panel {
   box-shadow: none;
 }

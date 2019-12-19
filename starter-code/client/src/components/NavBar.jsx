@@ -47,13 +47,14 @@ class NavBar extends Component {
     // console.log('USER: ', user);
 
     return (
-      <Navbar bg='light' expand='lg' expanded={this.state.expanded}>
-        <Navbar.Brand as={Link} to='/'>
-          Valdiviana
+      <Navbar bg="dark" variant="dark" expand='lg' expanded={this.state.expanded}>
+        <Navbar.Brand as={Link} to='/' id="logo">
+          {/* <img src="./../images/logo.png" alt="The Book Cellar" height="64rem" className="p-0" /> */}
+          The Book Cellar
         </Navbar.Brand>
-        {user && (
+        {/* {user && (
           <Nav.Link className='navbar-brand'>Coins: {user.coins}</Nav.Link>
-        )}
+        )} */}
         <Navbar.Toggle
           aria-controls='basic-navbar-nav'
           onClick={this.handleToggleMenu}
