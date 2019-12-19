@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-//const serveFavicon = require("serve-favicon");
+// const serveFavicon = require("serve-favicon");
 // const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 // const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
 // const indexRouter = require("./routes/api/index");
@@ -18,7 +18,7 @@ const stripeRouter = require("./routes/api/checkout");
 
 const app = express();
 
-//app.use(serveFavicon(join(__dirname, "client/build", "favicon.ico")));
+// app.use(serveFavicon(join(__dirname, "client/build", "favicon.ico")));
 app.use(express.static(join(__dirname, "client/build")));
 
 app.use(logger("dev"));

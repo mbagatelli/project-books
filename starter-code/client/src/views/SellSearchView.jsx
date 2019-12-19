@@ -93,6 +93,9 @@ export default class SellSearchView extends Component {
               </Card>
             ))}
         </div>
+        {this.state.books.length !== 0 && (
+          <Link to='/book/sell/'>Enter manually</Link>
+        )}
       </div>
     );
   }

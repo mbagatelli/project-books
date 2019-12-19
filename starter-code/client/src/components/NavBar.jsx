@@ -62,7 +62,7 @@ class NavBar extends Component {
           <Nav className='ml-auto'>
             {(user && (
               <div className='nav navbar-nav navbar-right'>
-                <Nav.Link as={NavLink} to='/book/buy'>
+                <Nav.Link as={NavLink} to='/book/buylist'>
                   Buy
                 </Nav.Link>
                 <Nav.Link as={NavLink} to='/book/sell/search'>
