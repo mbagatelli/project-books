@@ -74,6 +74,7 @@ class App extends Component {
         <NavBar
           user={user}
           changeAuthenticationStatus={this.changeAuthenticationStatus}
+          props={this.props}
         />
         {this.state.loaded && (
           <Switch>
