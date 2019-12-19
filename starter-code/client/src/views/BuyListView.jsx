@@ -175,13 +175,19 @@ export default class BuyListView extends Component {
               key={book._id}
             >
               <Card.Img variant='top' src={book.image} />
-              <Card.Body>
+              <Card.Body className='d-flex flex-column justify-content-end'>
                 <Card.Title className='text-center'>{book.title}</Card.Title>
-                <Card.Text>{book.author}</Card.Text>
-                <Card.Text>{book.publishedYear}</Card.Text>
-                <Card.Text>Listed on: {book.createdAt.slice(0, 10)}</Card.Text>
+                <Card.Text className='text-center'>
+                  Author: {book.author}
+                </Card.Text>
+                <Card.Text className='text-center'>
+                  Published Year: {book.publishedYear}
+                </Card.Text>
+                <Card.Text className='text-center mb-4'>
+                  Listed on: {book.createdAt.slice(0, 10)}
+                </Card.Text>
                 <Button
-                  className='mt-auto flex-wrap d-flex justify-content-center'
+                  className='flex-wrap d-flex justify-content-center'
                   variant='primary'
                   as={Link}
                   to={`/book/${book._id}`}
