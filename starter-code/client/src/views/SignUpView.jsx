@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { signUp as signUpService } from "./../services/auth";
 
+import "./SignUp.scss";
+
 class SignUpView extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,8 @@ class SignUpView extends Component {
       email: "",
       username: "",
       password: "",
-      location: ""
+      location: "",
+      adress: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -26,9 +29,15 @@ class SignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { email, username, password, location } = this.state;
+    const { email, username, password, location, adress } = this.state;
     try {
-      const user = await signUpService({ email, username, password, location });
+      const user = await signUpService({
+        email,
+        username,
+        password,
+        location,
+        adress
+      });
       this.props.changeAuthenticationStatus(user);
       this.props.history.push(`/`);
     } catch (error) {
@@ -49,7 +58,74 @@ class SignUpView extends Component {
 
   render() {
     return (
-      <main>
+      <div className='main' id='signup'>
+        <section className='signup'>
+          <div className='container'>
+            <div className='signup-content'>
+              <div className='signup-form'>
+                <h2 className='form-title'>Sign up</h2>
+                <form onSubmit={this.handleFormSubmission}>
+                  <div className='form-group'>
+                    <label htmlFor='username'></label>
+                    <input
+                      type='text'
+                      placeholder='Your User Name'
+                      value={this.state.username}
+                      name='username'
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='email'></label>
+                    <input
+                      type='email'
+                      name='email'
+                      value={this.state.email}
+                      placeholder='Your Email'
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='password'></label>
+                    <input
+                      type='password'
+                      name='password'
+                      value={this.state.password}
+                      placeholder='Password'
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='adress'></label>
+                    <input
+                      type='text'
+                      value={this.state.adress}
+                      name='adress'
+                      onChange={this.handleInputChange}
+                      placeholder='Adress'
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='location'></label>
+                    <input
+                      type='text'
+                      value={this.state.location}
+                      placeholder='Location'
+                      name='location'
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className='form-group form-button'>
+                    <button className='btn btn-primary'>Sign Up</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      /*       <main>
         <form onSubmit={this.handleFormSubmission}>
           <label>Username:</label> <br />
           <input
@@ -83,12 +159,20 @@ class SignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <br />
-          {/*           <label>Photo:</label> <br />
+          <label>Adress:</label> <br />
+          <input
+            type='text'
+            value={this.state.adress}
+            name='adress'
+            onChange={this.handleInputChange}
+          />
+          <br />
+                     <label>Photo:</label> <br />
           <input type='file' name='image' onChange={this.handleFileChange} />
-          <br /> */}
+          <br /> 
           <button>Sign Up</button>
         </form>
-      </main>
+      </main> */
     );
   }
 }

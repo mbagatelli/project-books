@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Form } from "react-bootstrap";
-import { list as listBooks } from "../services/books";
 
-export default class BuyListView extends Component {
+import { list as listBooks, search as searchBooksDb } from "../services/books";
+
+class BuyView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
-      results: [],
+      books: []
     };
   }
 
@@ -19,8 +19,7 @@ export default class BuyListView extends Component {
         books.filter(book => book.seller !== this.props.user._id);
       }
       this.setState({
-        books,
-        results: books
+        books
       });
       // console.log('PROPS: ', this.props);
       // console.log('BOOKS: ', this.state.books)
@@ -39,59 +38,51 @@ export default class BuyListView extends Component {
     // });
   };
 
-  handleOnChange = async e => {
+  handleOnChange = e => {
     const name = e.target.name;
     const value = e.target.value.toLowerCase();
-    if (value === '') {
-      this.setState({
-        ...this.state,
-        results: this.state.books
-      });
-    } else {
-      const results = [...this.state.books].filter(book => book[name].toLowerCase().includes(value));
-      this.setState({
-        ...this.state,
-        results
-      });
-    }
+    const results = [...this.state.books].filter(book => book[name].toLowerCase().includes(value));
+    this.setState({
+      books: results
+    });
   };
 
   render() {
-    let results = [];
+    let books = [];
     if (this.props.user) {
-      results = this.state.results.filter(
+      books = this.state.books.filter(
         book => book.seller !== this.props.user._id
       );
     } else {
-      results = [...this.state.results];
+      books = [...this.state.books];
     }
+
     // console.log('USER: ', this.props.user);
-    // console.log('state books: ', this.state.books);
-    console.log(this.state);
+    console.log('state books: ', this.state.books);
+
     return (
       <Fragment>
         <Form onSubmit={this.handleOnSubmit}>
-          <Form.Group controlId='search-title'>
+          <Form.Group>
             <Form.Control
-              name="title"
+              id="sell-title"
               type='text'
               placeholder='Enter Title'
+              name="title"
               onChange={this.handleOnChange}
             />
-          </Form.Group>
-          <Form.Group controlId='search-author'>
             <Form.Control
-              name="author"
+              id="sell-autor"
               type='text'
               placeholder='Enter Author'
+              name="author"
               onChange={this.handleOnChange}
             />
-          </Form.Group>
-          <Form.Group controlId='search-isbn'>
             <Form.Control
-              name="isbn"
+              id="sell-isbn"
               type='text'
               placeholder='Enter ISBN'
+              name="isbn"
               onChange={this.handleOnChange}
             />
           </Form.Group>
@@ -101,10 +92,12 @@ export default class BuyListView extends Component {
           </Button>
         </Form>
 
+        {/* Links fiction / non-fiction */}
+
         <main style={{ display: "flex", flexWrap: "wrap" }}>
-          {results.map(book => (
+          {books.map(book => (
             <Card
-              style={{ width: "18em", margin: "3em auto", padding: "1em" }}
+              style={{ width: "24em", margin: "3em auto", padding: "1em" }}
               key={book._id}
             >
               <Card.Img variant='top' src={book.image} />
@@ -113,12 +106,7 @@ export default class BuyListView extends Component {
                 <Card.Text>{book.author}</Card.Text>
                 <Card.Text>{book.publishedYear}</Card.Text>
                 <Card.Text>Listed on: {book.createdAt.slice(0, 10)}</Card.Text>
-                <Button
-                  className='mt-auto flex-wrap d-flex justify-content-center'
-                  variant='primary'
-                  as={Link}
-                  to={`/book/${book._id}`}
-                >
+                <Button variant='primary' as={Link} to={`/book/${book._id}`}>
                   Buy
                 </Button>
               </Card.Body>
@@ -129,3 +117,5 @@ export default class BuyListView extends Component {
     );
   }
 }
+
+export default BuyView;

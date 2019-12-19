@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Form, Button, Card } from "react-bootstrap";
 import { listBooks } from "./../services/googleBooks";
 
@@ -36,7 +36,7 @@ export default class SellSearchView extends Component {
 
   render() {
     return (
-      <div style={{ padding: "2em"}}>
+      <div style={{ padding: "2em" }}>
         <Form onSubmit={this.handleOnSubmit}>
           <Form.Group controlId='search-sell'>
             {/* <Form.Label>I want to sell...</Form.Label> */}
@@ -51,7 +51,7 @@ export default class SellSearchView extends Component {
             Search
           </Button>
           <p>or</p>
-          <Link to="/book/sell/">Enter manually</Link>
+          <Link to='/book/sell/'>Enter manually</Link>
         </Form>
 
         <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -69,12 +69,18 @@ export default class SellSearchView extends Component {
                       : "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg"
                   }
                 />
-                <Card.Body>
-                  <Card.Title>{book.volumeInfo.title}</Card.Title>
-                  <Card.Text>{book.volumeInfo.publishedDate}</Card.Text>
+                <Card.Body className='card-body d-flex flex-column'>
+                  <Card.Title className='text-center'>
+                    {book.volumeInfo.title}
+                  </Card.Title>
                   <Card.Text>
+                    Year Published: {book.volumeInfo.publishedDate}
+                  </Card.Text>
+                  <Card.Text>
+                    {" "}
+                    Author:{" "}
                     {book.volumeInfo.authors &&
-                      book.volumeInfo.authors.map(author => author)}
+                      book.volumeInfo.authors.map(author => author + " ")}
                   </Card.Text>
                   <Button
                     variant='primary'
