@@ -46,7 +46,7 @@ export default class BuyView extends Component {
 
     return (
       <Card
-        style={{maxWidth: '90vw'}} className="mt-3 mx-auto"
+        style={{maxWidth: '90vw'}} className="mt-3 mx-auto mb-3"
         key={book._id}
       >
         <Card.Img variant='top' src={book.image} style={{ maxWidth: "18em"}} className="mx-auto shadow mt-3"/>
@@ -65,7 +65,7 @@ export default class BuyView extends Component {
             className='mx-auto flex-wrap d-flex justify-content-center shadow'
             variant='primary'
             as={Link}
-            to={`/book/${book._id}`}
+            to={`/buy/${book._id}`}
           >
             Buy
           </Button>
