@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, Dropdown } from "react-bootstrap";
 import { list as listBooks } from "../services/books";
 
 export default class BuyListView extends Component {
@@ -144,6 +144,26 @@ export default class BuyListView extends Component {
           >
             All books
           </Button>
+
+          {/* <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Language
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item name="language" value="" onClick={this.handleOnChange}>Show all</Dropdown.Item>
+              <Dropdown.Item name="language" value="en" onClick={this.handleOnChange}>English</Dropdown.Item>
+              <Dropdown.Item name="language" value="pt" onClick={this.handleOnChange}>Portuguese</Dropdown.Item>
+              <Dropdown.Item name="language" value="fr" onClick={this.handleOnChange}>French</Dropdown.Item>
+              <Dropdown.Item name="language" value="de" onClick={this.handleOnChange}>German</Dropdown.Item>
+              <Dropdown.Item name="language" value="eo" onClick={this.handleOnChange}>Esperanto</Dropdown.Item>
+              <Dropdown.Item name="language" value="it" onClick={this.handleOnChange}>Italian</Dropdown.Item>
+              <Dropdown.Item name="language" value="zh" onClick={this.handleOnChange}>Chinese</Dropdown.Item>
+              <Dropdown.Item name="language" value="ja" onClick={this.handleOnChange}>Japanese</Dropdown.Item>
+              <Dropdown.Item name="language" value="ru" onClick={this.handleOnChange}>Russian</Dropdown.Item>
+              <Dropdown.Item name="language" value="Other language" onClick={this.handleOnChange}>Other</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown> */}
         </Form>
 
         <main style={{ display: "flex", flexWrap: "wrap" }}>
