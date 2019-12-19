@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 
@@ -37,9 +37,23 @@ class BuyView extends Component {
     } else {
       books = [...this.state.books];
     }
+
     // console.log('USER: ', this.props.user);
     // console.log('state books: ', this.state.books);
-
+    if (books.length > 0) {
+      for (let i = 0; i < books.length; i++) {
+        let timeString = JSON.stringify(books[i].createdAt);
+        let timeToShow =
+          timeString.substring(9, 11) +
+          "-" +
+          timeString.substring(6, 8) +
+          "-" +
+          timeString.substring(3, 5) +
+          " at " +
+          timeString.substring(12, 17);
+        console.log(timeToShow);
+      }
+    }
     return (
       <main style={{ display: "flex", flexWrap: "wrap" }}>
         {books.map(book => (
@@ -52,6 +66,8 @@ class BuyView extends Component {
               <Card.Title>{book.title}</Card.Title>
               <Card.Text>{book.author}</Card.Text>
               <Card.Text>{book.publishedYear}</Card.Text>
+              <Card.Text>{this.timeToShow}</Card.Text>
+
               <Button variant='primary' as={Link} to={`/book/${book._id}`}>
                 Buy
               </Button>
@@ -59,6 +75,7 @@ class BuyView extends Component {
           </Card>
         ))}
       </main>
+
       // <main>
       //   {this.state.books.map(book => (
       //     <Link key={book._id} to={`/book/${book._id}`}>

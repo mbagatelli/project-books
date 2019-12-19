@@ -30,7 +30,7 @@ export class StripeCheckoutView extends Component {
   }
 
   //need to add coins for the user
-  async handleToken(token, adresses) {
+  async handleToken(token) {
     const product = this.state.product;
     try {
       const status = await stripeService(token, product);
