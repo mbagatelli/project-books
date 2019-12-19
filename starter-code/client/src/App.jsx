@@ -15,7 +15,7 @@ import StripeCheckoutView from "./views/StripeCheckoutView";
 import NotFoundComponent from "./components/NotFound";
 import ErrorView from "./views/ErrorView";
 
-import BuyView from "./views/BuyView";
+import BuyListView from "./views/BuyListView";
 
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
@@ -66,6 +66,10 @@ class App extends Component {
     this.setState({
       book
     });
+  }
+
+  searchBuyBooks(query) {
+    
   }
 
   //protection
@@ -160,11 +164,11 @@ class App extends Component {
             />
             <Route
               path='/book/buy'
-              render={props => <BuyView {...props} user={user} />}
+              render={props => <BuyListView {...props} user={user} />}
             />
             {/* <ProtectedRoute
               path="/book/buy"
-              render={props => <BuyView {...props} user={user} />}
+              render={props => <BuyListView {...props} user={user} />}
               verify={this.verifyAuthentication}
               redirect="/error/401"
             /> */}
