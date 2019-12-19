@@ -4,7 +4,7 @@ import { Button, Card, Form } from "react-bootstrap";
 
 import { list as listBooks } from "../services/books";
 
-class BuyView extends Component {
+class BuyListView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -111,4 +111,4 @@ class BuyView extends Component {
   }
 }
 
-export default BuyView;
+export default BuyListView;
