@@ -73,7 +73,7 @@ export default class SellView extends Component {
     super(props);
     let user = null;
     if (this.props.user) {
-      user = this.props.user._id
+      user = this.props.user._id;
     }
     this.state = {
       book: {
@@ -126,12 +126,19 @@ export default class SellView extends Component {
         year = Number(book.publishedDate.slice(0, 4));
       }
       let isbnObj = "";
-      if (book.industryIdentifiers && book.industryIdentifiers.find(identifier => identifier.type === 'ISBN_13')) {
-        isbnObj = book.industryIdentifiers.find(identifier => identifier.type === 'ISBN_13');
+      if (
+        book.industryIdentifiers &&
+        book.industryIdentifiers.find(
+          identifier => identifier.type === "ISBN_13"
+        )
+      ) {
+        isbnObj = book.industryIdentifiers.find(
+          identifier => identifier.type === "ISBN_13"
+        );
         isbnObj = isbnObj.identifier;
-        console.log('ISBN OBJ: ', isbnObj);
+        console.log("ISBN OBJ: ", isbnObj);
       }
-      console.log('BOOK PROP: ', book);
+      console.log("BOOK PROP: ", book);
       this.setState({
         book: {
           ...this.state.book,
@@ -183,7 +190,7 @@ export default class SellView extends Component {
     const name = event.target.name;
     let genres;
     if (this.state.book.genre) {
-      genres = [...this.state.book.genre]
+      genres = [...this.state.book.genre];
     }
     if (genres && genres.indexOf(value) !== -1) {
       const index = genres.indexOf(value);
@@ -209,12 +216,12 @@ export default class SellView extends Component {
         }
       });
     }
-  };
+  }
 
   handleFileChange(event) {
     // const defaultPhoto =
     //   "https://res.cloudinary.com/dldcaigqm/image/upload/v1576515474/project-books/so8prbzxwsoxmqukzyd9.jpg";
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     this.setState({
       book: {
         ...this.state.book,
@@ -222,7 +229,7 @@ export default class SellView extends Component {
       }
     });
   }
-  
+
   removeImage() {
     this.setState({
       book: {
@@ -236,7 +243,7 @@ export default class SellView extends Component {
     console.log("This state book: ", this.state.book);
     return (
       <Fragment>
-        <Form onSubmit={this.handleFormSubmit}>
+        <Form className='container' onSubmit={this.handleFormSubmit}>
           <Form.Group controlId='title'>
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -468,8 +475,15 @@ export default class SellView extends Component {
             <img src={this.state.book.image} alt='' />
             <Form.Label>Change picture</Form.Label>
             {/* <input type='file' name='image' onChange={this.handleFileChange} /> */}
-            <input style={fileInputButton} type='file' name='image' onChange={this.handleFileChange} />
-            <Button variant='outline-danger' onClick={this.removeImage}>Remove image</Button>
+            <input
+              style={fileInputButton}
+              type='file'
+              name='image'
+              onChange={this.handleFileChange}
+            />
+            <Button variant='outline-danger' onClick={this.removeImage}>
+              Remove image
+            </Button>
           </Form.Group>
 
           <Button variant='primary' type='submit'>
@@ -483,17 +497,17 @@ export default class SellView extends Component {
 
 const fileInputButton = {
   // color: 'transparent',
-  content: 'Select a files',
-  color: 'black',
-  display: 'inline-block',
-  background: '-webkit-linear-gradient(top, #f9f9f9, #e3e3e3)',
-  border: '1px solid #999',
-  borderRadius: '0.3em',
-  padding: '0.2em 0.2em 0.2em 0.2em',
-  outline: 'none',
-  whiteSpace: 'nowrap',
-  cursor: 'pointer',
-  textShadow: '1px 1px #fff',
+  content: "Select a files",
+  color: "black",
+  display: "inline-block",
+  background: "-webkit-linear-gradient(top, #f9f9f9, #e3e3e3)",
+  border: "1px solid #999",
+  borderRadius: "0.3em",
+  padding: "0.2em 0.2em 0.2em 0.2em",
+  outline: "none",
+  whiteSpace: "nowrap",
+  cursor: "pointer",
+  textShadow: "1px 1px #fff",
   // fontWeight: '600'
-  margin: '1em'
-}
+  margin: "1em"
+};

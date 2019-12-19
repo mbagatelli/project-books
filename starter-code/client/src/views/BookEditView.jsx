@@ -92,7 +92,7 @@ class BookEditView extends Component {
     return (
       <Fragment>
         {book && (
-          <Form onSubmit={this.handleFormSubmission}>
+          <Form className='container' onSubmit={this.handleFormSubmission}>
             <Form.Group controlId='title'>
               <Form.Label>Title</Form.Label>
               <Form.Control

@@ -6,9 +6,7 @@ import { Navbar, Nav } from "react-bootstrap";
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   navbarState: "navbar-toggler collapsed"
-    // }
+
     this.onSignOutTrigger = this.onSignOutTrigger.bind(this);
   }
 
@@ -50,7 +48,9 @@ class NavBar extends Component {
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
-        {/*  <p>{user.coins}</p> */}
+        {user && (
+          <Nav.Link className='navbar-brand'>Coins: {user.coins}</Nav.Link>
+        )}
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
