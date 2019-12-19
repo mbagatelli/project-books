@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Form, Dropdown } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { list as listBooks } from "../services/books";
 
 export default class BuyListView extends Component {
@@ -119,32 +119,34 @@ export default class BuyListView extends Component {
               onChange={this.handleOnChange}
             />
           </Form.Group>
-
-          <Button
-            variant='primary'
-            name='type'
-            value='fiction'
-            onClick={this.handleOnChangeIsFiction}
-          >
-            Fiction
-          </Button>
-          <Button
-            variant='primary'
-            name='type'
-            value='non-fiction'
-            onClick={this.handleOnChangeIsFiction}
-          >
-            Non-fiction
-          </Button>
-          <Button
-            variant='primary'
-            name='type'
-            value=''
-            onClick={this.handleOnChangeIsFiction}
-          >
-            All books
-          </Button>
-
+          <div className='col-md-4 text-center'>
+            <Button
+              className='mr-1'
+              variant='primary'
+              name='type'
+              value='fiction'
+              onClick={this.handleOnChangeIsFiction}
+            >
+              Fiction
+            </Button>
+            <Button
+              className='mr-1'
+              variant='primary'
+              name='type'
+              value='non-fiction'
+              onClick={this.handleOnChangeIsFiction}
+            >
+              Non-fiction
+            </Button>
+            <Button
+              variant='primary'
+              name='type'
+              value=''
+              onClick={this.handleOnChangeIsFiction}
+            >
+              All books
+            </Button>
+          </div>
           {/* <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Language
