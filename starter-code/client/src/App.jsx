@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
 import HomeView from "./views/HomeView";
 import SignUpView from "./views/SignUpView";
 import SignInView from "./views/SignInView";
-import ProtectedRoute from "./components/ProtectedRoutes"
+import ProtectedRoute from "./components/ProtectedRoutes";
 import ProfileView from "./views/ProfileView";
 import SellView from "./views/SellView";
 import UserEditView from "./views/UserEditView";
@@ -103,20 +103,26 @@ class App extends Component {
               )}
             />
             <ProtectedRoute
-              path="/user/profile"
+              path='/user/profile'
               render={props => <ProfileView {...props} user={user} />}
               verify={this.verifyAuthentication}
-              redirect="/error/401"
+              redirect='/error/401'
             />
             {/* <Route
               path='/user/profile'
               render={props => <ProfileView {...props} user={user} />}
             /> */}
             <ProtectedRoute
-              path="/book/sell/search"
-              render={props => <SellSearchView {...props} user={user} updateCurrentBook={this.updateCurrentBook} />}
+              path='/book/sell/search'
+              render={props => (
+                <SellSearchView
+                  {...props}
+                  user={user}
+                  updateCurrentBook={this.updateCurrentBook}
+                />
+              )}
               verify={this.verifyAuthentication}
-              redirect="/error/401"
+              redirect='/error/401'
             />
             {/* <Route
               path='/book/sell/search'
@@ -135,20 +141,22 @@ class App extends Component {
               )}
             /> */}
             <ProtectedRoute
-              path="/book/sell"
-              render={props => <SellView {...props} user={user} book={this.state.book} />}
+              path='/book/sell'
+              render={props => (
+                <SellView {...props} user={user} book={this.state.book} />
+              )}
               verify={this.verifyAuthentication}
-              redirect="/error/401"
+              redirect='/error/401'
             />
             {/* <Route
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
             /> */}
             <ProtectedRoute
-              path="/user/checkout"
+              path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
               verify={this.verifyAuthentication}
-              redirect="/error/401"
+              redirect='/error/401'
             />
             <Route
               path='/book/buy'
@@ -166,7 +174,7 @@ class App extends Component {
             <Route path='/user/edit' component={UserEditView} />
             <Route path='/' exact component={HomeView} />
             {/* <Redirect to='/error/404' /> */}
-            <Route path="/error/:code" component={ErrorView} />
+            <Route path='/error/:code' component={ErrorView} />
           </Switch>
         )}
       </BrowserRouter>
