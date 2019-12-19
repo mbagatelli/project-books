@@ -44,7 +44,7 @@ class NavBar extends Component {
     // console.log('USER: ', user);
 
     return (
-      <Navbar bg='light' expand='lg'>
+      <Navbar collapseOnSelect bg='light' expand='lg'>
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
