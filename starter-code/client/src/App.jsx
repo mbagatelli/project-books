@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import SignUpView from "./views/SignUpView";
 import SignInView from "./views/SignInView";
+import ProtectedRoute from "./components/ProtectedRoutes"
 import ProfileView from "./views/ProfileView";
 import SellView from "./views/SellView";
 import UserEditView from "./views/UserEditView";
@@ -12,6 +13,7 @@ import BookEditView from "./views/BookEditView";
 import SellSearchView from "./views/SellSearchView";
 import StripeCheckoutView from "./views/StripeCheckoutView";
 import NotFoundComponent from "./components/NotFound";
+import ErrorView from "./views/ErrorView";
 
 import BuyView from "./views/BuyView";
 
@@ -31,7 +33,7 @@ class App extends Component {
       this
     );
     this.updateCurrentBook = this.updateCurrentBook.bind(this);
-    //this.verifyAuthentication = this.verifyAuthentication.bind(this);
+    this.verifyAuthentication = this.verifyAuthentication.bind(this);
   }
 
   async componentDidMount() {
@@ -54,6 +56,10 @@ class App extends Component {
     this.setState({
       user
     });
+  }
+
+  verifyAuthentication() {
+    return this.state.user;
   }
 
   updateCurrentBook(book) {
@@ -96,11 +102,23 @@ class App extends Component {
                 />
               )}
             />
-            <Route
+            <ProtectedRoute
+              path="/user/profile"
+              render={props => <ProfileView {...props} user={user} />}
+              verify={this.verifyAuthentication}
+              redirect="/error/401"
+            />
+            {/* <Route
               path='/user/profile'
               render={props => <ProfileView {...props} user={user} />}
+            /> */}
+            <ProtectedRoute
+              path="/book/sell/search"
+              render={props => <SellSearchView {...props} user={user} updateCurrentBook={this.updateCurrentBook} />}
+              verify={this.verifyAuthentication}
+              redirect="/error/401"
             />
-            <Route
+            {/* <Route
               path='/book/sell/search'
               render={props => (
                 <SellSearchView
@@ -109,27 +127,46 @@ class App extends Component {
                   updateCurrentBook={this.updateCurrentBook}
                 />
               )}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path='/book/sell'
               render={props => (
                 <SellView {...props} user={user} book={this.state.book} />
               )}
+            /> */}
+            <ProtectedRoute
+              path="/book/sell"
+              render={props => <SellView {...props} user={user} book={this.state.book} />}
+              verify={this.verifyAuthentication}
+              redirect="/error/401"
             />
-            <Route
+            {/* <Route
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
+            /> */}
+            <ProtectedRoute
+              path="/user/checkout"
+              render={props => <StripeCheckoutView {...props} user={user} />}
+              verify={this.verifyAuthentication}
+              redirect="/error/401"
             />
-            <Route
+            {/* <Route
               path='/book/buy'
               render={props => <BuyView {...props} user={user} />}
+            /> */}
+            <ProtectedRoute
+              path="/book/buy"
+              render={props => <BuyView {...props} user={user} />}
+              verify={this.verifyAuthentication}
+              redirect="/error/401"
             />
             <Route path='/error/:code' component={NotFoundComponent} />
             <Route path='/book/:id/edit' component={BookEditView} />
             <Route path='/book/:id' component={BookEditView} />
             <Route path='/user/edit' component={UserEditView} />
             <Route path='/' exact component={HomeView} />
-            <Redirect to='/error/404' />
+            {/* <Redirect to='/error/404' /> */}
+            <Route path="/error/:code" component={ErrorView} />
           </Switch>
         )}
       </BrowserRouter>
