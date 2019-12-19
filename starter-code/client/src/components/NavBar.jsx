@@ -50,6 +50,7 @@ class NavBar extends Component {
         <Navbar.Brand as={Link} to='/'>
           Valdiviana
         </Navbar.Brand>
+        {/*  <p>{user.coins}</p> */}
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
