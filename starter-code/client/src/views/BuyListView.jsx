@@ -119,9 +119,9 @@ export default class BuyListView extends Component {
               onChange={this.handleOnChange}
             />
           </Form.Group>
-          <div className='col-md-4 text-center'>
+          <div className='col-md-4 text-center mx-auto'>
             <Button
-              className='mr-1'
+              className='m-2 shadow'
               variant='primary'
               name='type'
               value='fiction'
@@ -130,7 +130,7 @@ export default class BuyListView extends Component {
               Fiction
             </Button>
             <Button
-              className='mr-1'
+              className='m-2 shadow'
               variant='primary'
               name='type'
               value='non-fiction'
@@ -139,6 +139,7 @@ export default class BuyListView extends Component {
               Non-fiction
             </Button>
             <Button
+              className="m-2 shadow"
               variant='primary'
               name='type'
               value=''
