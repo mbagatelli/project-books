@@ -14,8 +14,9 @@ import SellSearchView from "./views/SellSearchView";
 import StripeCheckoutView from "./views/StripeCheckoutView";
 import NotFoundComponent from "./components/NotFound";
 import ErrorView from "./views/ErrorView";
-
+import BuyView from "./views/BuyView";
 import BuyListView from "./views/BuyListView";
+
 
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
@@ -156,15 +157,21 @@ class App extends Component {
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
             /> */}
+            <Route
+              path='/book/buylist'
+              render={props => <BuyListView {...props} user={user} />}
+            />
+            <ProtectedRoute
+              path='/book/:id'
+              render={props => <BuyView {...props} user={user} />}
+              verify={this.verifyAuthentication}
+              redirect='/error/401'
+            />
             <ProtectedRoute
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} />}
               verify={this.verifyAuthentication}
               redirect='/error/401'
-            />
-            <Route
-              path='/book/buy'
-              render={props => <BuyListView {...props} user={user} />}
             />
             {/* <ProtectedRoute
               path="/book/buy"
@@ -174,7 +181,7 @@ class App extends Component {
             /> */}
             <Route path='/error/:code' component={NotFoundComponent} />
             <Route path='/book/:id/edit' component={BookEditView} />
-            <Route path='/book/:id' component={BookEditView} />
+            {/* <Route path='/book/:id' component={BookEditView} /> */}
             <Route path='/user/edit' component={UserEditView} />
             <Route path='/' exact component={HomeView} />
             {/* <Redirect to='/error/404' /> */}

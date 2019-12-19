@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Form, Dropdown } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { list as listBooks } from "../services/books";
 
 export default class BuyListView extends Component {
