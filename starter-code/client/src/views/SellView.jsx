@@ -91,7 +91,7 @@ export default class SellView extends Component {
         description: "",
         image: null
       },
-      isCollapsed: false
+      isCollapsed: true
     };
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -339,14 +339,14 @@ export default class SellView extends Component {
             variant='secondary'
             className='m-2'
             onClick={() => this.toggleCollapse()}
-            aria-controls='example-collapse-text'
+            aria-controls='genres'
             aria-expanded={this.state.isCollapsed}
           >
             Genres
           </Button>
           <Collapse in={this.state.isCollapsed}>
             <Form.Group
-              id='example-collapse-text'
+              id='genres'
               controlId='genre'
               onChange={this.handleInputChange}
             >

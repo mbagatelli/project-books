@@ -18,7 +18,7 @@ class HomeView extends Component {
             <h2 className='m-5'>Books are expensive.</h2>
             <p>
               For many people books are just too expensive and others have books
-              collecting dust on shelfs.
+              collecting dust on shelves.
             </p>
             <p className='mt-5'>What if we could change that?</p>
           </div>
