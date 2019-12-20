@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Collapse } from "react-bootstrap";
 import { load as loadBookService } from "./../services/books";
 
 export default class BookBuyView extends Component {
@@ -18,7 +18,8 @@ export default class BookBuyView extends Component {
       price: 0,
       description: "",
       image: null
-    }
+    },
+    isCollapsed: false
   };
 
   async componentDidMount() {
@@ -33,13 +34,19 @@ export default class BookBuyView extends Component {
     }
   }
 
+  toggleCollapse() {
+    this.setState({
+      isCollapsed: !this.state.isCollapsed
+    });
+  }
+
   render() {
     const book = this.state.book;
     console.log("PROPS: ", this.props);
     const user = this.props.user;
     return (
       <div>
-        <h1>Confirm Purchase</h1>
+        <h1 className="d-flex justify-content-center m-3">Confirm Exchange</h1>
 
         <Card
           style={{ maxWidth: "90vw" }}
@@ -49,7 +56,7 @@ export default class BookBuyView extends Component {
           <Card.Img
             variant='top'
             src={book.image}
-            style={{ maxWidth: "18em" }}
+            style={{ maxWidth: "5em" }}
             className='mx-auto shadow mt-3'
           />
           <Card.Body>
@@ -58,15 +65,32 @@ export default class BookBuyView extends Component {
               <Card.Text>{book.author}</Card.Text>
               <Card.Text>{book.publishedYear}</Card.Text>
             </div>
-            <Card.Text>
-              <span className='font-weight-bold'>Price:</span> {book.price}
+            <Card.Text className="m-3">
+              <span className='font-weight-bold'>Price in coins</span><br /> {book.price}
             </Card.Text>
-            <Card.Text>
-              <span className='font-weight-bold'>Your Delivery Address:</span>{" "}
-              {user.address}
-            </Card.Text>
+            <Collapse in={!this.state.isCollapsed}>
+              <Card.Text className="m-3" id="address">
+                <span className='font-weight-bold'>Confirm Your Delivery Address</span><br />
+                {user.fullName}<br />
+                {user.address}><br />
+              </Card.Text>
+            </Collapse>
+            <Collapse in={this.state.isCollapsed}>
+              <Card.Text className="m-3" id="address">
+                <span className='font-weight-bold'>THIS WILL EDIT</span><br />
+                {user.fullName}<br />
+                {user.address}><br />
+              </Card.Text>
+            </Collapse>
+
+            <Button variant="secondary" className="mt-4" onClick={() => this.toggleCollapse()}
+              aria-controls="address"
+              aria-expanded={this.state.isCollapsed}
+            >
+              Edit Address
+            </Button>
             <Button
-              className='mx-auto flex-wrap d-flex justify-content-center shadow w-25'
+              className='mt-5 m-3 mx-auto flex-wrap d-flex justify-content-center shadow w-25'
               variant='primary'
               as={Link}
               to={`/buy/${book._id}`}
