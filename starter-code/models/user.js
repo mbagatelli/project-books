@@ -40,6 +40,15 @@ const userSchema = new mongoose.Schema(
     rating: {
       type: Array
     },
+    status: {
+      type: String,
+      enum: ["Pending Confirmation", "Active"],
+      default: "Pending Confirmation"
+    },
+    confirmationCode: {
+      type: String,
+      unique: true
+    },
     coins: Number,
     booksOnSale: Number,
     booksSold: Number,

@@ -3,7 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 //const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const bcryptjs = require("bcryptjs");
 const uploadCloud = require("../middleware/cloudinary");
-
+const nodemailer = require("nodemailer");
 //const nodemailer = require("./mailer");
 const fs = require("fs");
 //const handlebars = require("handlebars");
@@ -21,6 +21,25 @@ const generateId = length => {
   }
   return token;
 };
+
+let transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: process.env.MAIL, // generated ethereal user
+    pass: process.env.MAIL_PW // generated ethereal password
+  }
+});
+
+function sendMail(user) {
+  transporter.sendMail({
+    from: `The Books Celler <MAIL>`,
+    to: `${user.email}`,
+    subject: "User Verification",
+
+    html: `
+    Please confirm your email by clicking <a href="http://localhost:3000/api/user/verification/${user.confirmationCode}">here</a>` // html body
+  });
+}
 
 passport.serializeUser((user, callback) => {
   callback(null, user._id);
@@ -53,6 +72,7 @@ passport.use(
     //uploadCloud.single("image"),
     (req, email, password, callback) => {
       const { username, location, address } = req.body;
+      const confirmToken = generateId(20);
       bcryptjs
         .hash(password, 10)
         .then(hash => {
@@ -63,10 +83,13 @@ passport.use(
             address,
             coins: 0,
             //image: req.file.url,
-            passwordHash: hash
+            passwordHash: hash,
+            confirmationCode: confirmToken
           });
         })
         .then(user => {
+          sendMail(user);
+          req.session.user = user._id;
           callback(null, user);
         })
         .catch(error => {

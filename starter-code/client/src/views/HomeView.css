@@ -4,9 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('./hero-portrait.jpg');
+  background-image: url("./hero-portrait.jpg");
   background-size: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 2em;
   text-align: center;
   font-weight: 600;
@@ -14,7 +14,7 @@
 
 @media (orientation: landscape) {
   .hero {
-    background-image: url('./hero.jpg');
+    background-image: url("./hero.jpg");
     background-size: 100%;
   }
 }

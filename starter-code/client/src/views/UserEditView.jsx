@@ -14,6 +14,7 @@ class UserEditView extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
+    //this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   async componentDidMount() {
@@ -26,6 +27,19 @@ class UserEditView extends Component {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  handleFileChange(event) {
+    const defaultPhoto =
+      "https://res.cloudinary.com/dldcaigqm/image/upload/v1576773787/project-books/book-book-pages-bookcase-browse-415071_n04pbv.jpg";
+    const file = event.target.files ? event.target.files[0] : defaultPhoto;
+    console.log(file);
+    this.setState({
+      user: {
+        ...this.state.user,
+        image: file
+      }
+    });
   }
 
   handleInputChange(event) {
@@ -58,64 +72,62 @@ class UserEditView extends Component {
     return (
       <Fragment>
         {user && (
-          <Form onSubmit={this.handleFormSubmission}>
-            <h3>{user.username}</h3>
-            {/* This needs to get removed */}
-            <Form.Group controlId='username'>
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Username'
-                name='username'
-                value={user.username}
-                onChange={this.handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId='location'>
-              <Form.Label>Location:</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Location'
-                name='location'
-                value={user.location}
-                onChange={this.handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId='email'>
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='Email'
-                name='email'
-                value={user.email}
-                onChange={this.handleInputChange}
-              />
-            </Form.Group>
-            {/*             <Form.Group controlId='email'>
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Location'
-                name='location'
-                value={user.location}
-                onChange={this.handleInputChange}
-              />
-            </Form.Group> */}
-            {/*             <Form.Group controlId='image'>
-              <Form.Label>User photo:</Form.Label>
-              <br />
-              <img src={user.image} alt='' />
-              <br />
+          <div className='container'>
+            <Form onSubmit={this.handleFormSubmission}>
+              <h3 className='text-center mt-3'>{user.username}</h3>
+              {/* This needs to get removed */}
+              <Form.Group controlId='username'>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Username'
+                  name='username'
+                  value={user.username}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group controlId='address'>
+                <Form.Label>Address:</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Address'
+                  name='address'
+                  value={user.address}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+
+              <Form.Group controlId='location'>
+                <Form.Label>Location:</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Location'
+                  name='location'
+                  value={user.location}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group controlId='email'>
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Email'
+                  name='email'
+                  value={user.email}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
               <input
                 type='file'
                 name='image'
                 onChange={this.handleFileChange}
               />
-            </Form.Group> */}
-            <Button variant='primary' type='submit'>
-              Edit User
-            </Button>
-          </Form>
+              <br />
+              <Button className='mt-5' variant='primary' type='submit'>
+                Edit User
+              </Button>
+            </Form>
+          </div>
         )}
       </Fragment>
     );

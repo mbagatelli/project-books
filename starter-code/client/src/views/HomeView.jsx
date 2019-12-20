@@ -6,7 +6,7 @@ class HomeView extends Component {
     return (
     <div>
       <div className="hero">
-        A world of new possibilities
+        Sharing a world of possibilities through books
       </div>
     </div>
     );

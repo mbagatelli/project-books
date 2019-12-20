@@ -47,8 +47,14 @@ class NavBar extends Component {
     // console.log('USER: ', user);
 
     return (
-      <Navbar bg="dark" variant="dark" expand='lg' expanded={this.state.expanded}>
-        <Navbar.Brand as={Link} to='/' id="logo">
+      <Navbar
+        fluid='true'
+        bg='dark'
+        variant='dark'
+        expand='lg'
+        expanded={this.state.expanded}
+      >
+        <Navbar.Brand as={Link} to='/' id='logo'>
           {/* <img src="./../images/logo.png" alt="The Book Cellar" height="64rem" className="p-0" /> */}
           The Book Cellar
         </Navbar.Brand>
