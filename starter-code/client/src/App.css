@@ -92,10 +92,6 @@ form label {
   font-size: 16px;
 }
 
-.active,
-.collapsible:hover {
-}
-
 .content {
   display: none;
   overflow: hidden;

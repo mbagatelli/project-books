@@ -37,7 +37,7 @@ export default class SellSearchView extends Component {
   render() {
     return (
       <div style={{ padding: "2em" }}>
-        <Form onSubmit={this.handleOnSubmit}>
+        <Form onSubmit={this.handleOnSubmit} className="d-flex flex-column align-items-center">
           <Form.Group controlId='search-sell'>
             {/* <Form.Label>I want to sell...</Form.Label> */}
             <Form.Control
@@ -47,7 +47,7 @@ export default class SellSearchView extends Component {
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
+          <Button variant='primary' type='submit' className="m-3">
             Search
           </Button>
           <p>or</p>

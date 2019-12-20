@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Collapse } from "react-bootstrap";
 
 import { create as createBook } from "../services/books";
 
@@ -96,6 +96,7 @@ export default class SellView extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.removeImage = this.removeImage.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
   componentDidMount() {
@@ -152,7 +153,8 @@ export default class SellView extends Component {
           title: "" || book.title
           // genre: [] || genres,
           // language: lang || "Other language",
-        }
+        },
+        isCollapsed: true
       });
     }
     window.scrollTo(0, 0);
@@ -253,11 +255,17 @@ export default class SellView extends Component {
     });
   }
 
+  toggleCollapse() {
+    this.setState({
+      isCollapsed: !this.state.isCollapsed
+    })
+  }
   render() {
     console.log("This state book: ", this.state.book);
+    // const [open, setOpen] = useState(false);
     return (
-      <Fragment>
-        <Form className='container' onSubmit={this.handleFormSubmit}>
+      <Fragment className="mx-auto text-center">
+        <Form className='container mt-3' onSubmit={this.handleFormSubmit}>
           <Form.Group controlId='title'>
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -322,9 +330,21 @@ export default class SellView extends Component {
           </Form.Group>
 
           {/* Genres */}
+<<<<<<< HEAD
           <p className='collapsible'>Open Genre</p>
           <div className='content'>
             <Form.Group controlId='genre' onChange={this.handleInputChange}>
+=======
+          <Button
+            onClick={() => this.toggleCollapse()}
+            aria-controls="example-collapse-text"
+            aria-expanded={this.state.isCollapsed}
+          >
+            Genres
+          </Button>
+          <Collapse in={this.state.isCollapsed}>
+            <Form.Group id="example-collapse-text" controlId='genre' onChange={this.handleInputChange}>
+>>>>>>> bfbbd2bd810da0fad50522b26b69c079e50fea5a
               {bookGenres.map(genre => (
                 <Form.Check
                   key={genre}
@@ -336,8 +356,14 @@ export default class SellView extends Component {
                 />
               ))}
             </Form.Group>
+<<<<<<< HEAD
           </div>
           <p>Language</p>
+=======
+          </Collapse>
+
+          <p className="mt-4">Language</p>
+>>>>>>> bfbbd2bd810da0fad50522b26b69c079e50fea5a
           <Form.Group controlId='language' onChange={this.handleInputChange}>
             <Form.Check
               id='english'
