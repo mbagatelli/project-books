@@ -17,6 +17,7 @@ import ErrorView from "./views/ErrorView";
 import BuyView from "./views/BuyView";
 import BuyListView from "./views/BuyListView";
 import BookBuyView from "./views/BookBuyView";
+import BuyConfirmationView from "./views/BuyConfirmationView";
 
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
@@ -30,7 +31,11 @@ class App extends Component {
     this.state = {
       user: null,
       loaded: false,
-      book: null
+      book: null,
+      receiver: {
+        fullName: null,
+        address: null
+      }
     };
     this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
       this
@@ -38,6 +43,7 @@ class App extends Component {
     this.updateCurrentBook = this.updateCurrentBook.bind(this);
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.updateReceiver = this.updateReceiver.bind(this);
   }
 
   async componentDidMount() {
@@ -73,6 +79,16 @@ class App extends Component {
     this.setState({
       book
     });
+  }
+
+  updateReceiver(name, address) {
+    this.setState({
+      ...this.state,
+      receiver: {
+        fullName: name,
+        address: address
+      }
+    })
   }
 
   searchBuyBooks(query) {}
@@ -166,8 +182,14 @@ class App extends Component {
               render={props => <BuyListView {...props} user={user} />}
             />
             <ProtectedRoute
+              path='/buy/confirmation'
+              render={props => <BuyConfirmationView {...props} user={user} receiver={this.state.receiver}/>}
+              verify={this.verifyAuthentication}
+              redirect='/error/401'
+            />
+            <ProtectedRoute
               path='/buy/:id'
-              render={props => <BookBuyView {...props} user={user} />}
+              render={props => <BookBuyView {...props} user={user} updateReceiver={this.updateReceiver}/>}
               verify={this.verifyAuthentication}
               redirect='/error/401'
             />

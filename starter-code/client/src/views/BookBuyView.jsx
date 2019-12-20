@@ -71,6 +71,7 @@ export default class BookBuyView extends Component {
       this.state.fullName,
       this.state.address
     );
+    // this.props.updateReceiver(this.state.fullName, this.state.address);
   }
 
   toggleCollapse() {
@@ -174,7 +175,7 @@ export default class BookBuyView extends Component {
           className='mt-5 m-3 mx-auto flex-wrap d-flex justify-content-center shadow w-25'
           variant='primary'
           as={Link}
-          to={`/buy/${book._id}`}
+          to={'/buy/confirmation'}
         >
           Exchange
         </Button>
