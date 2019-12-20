@@ -71,12 +71,13 @@ passport.use(
     },
     //uploadCloud.single("image"),
     (req, email, password, callback) => {
-      const { username, location, address } = req.body;
+      const { username, location, address, fullName } = req.body;
       const confirmToken = generateId(20);
       bcryptjs
         .hash(password, 10)
         .then(hash => {
           return User.create({
+            fullName,
             username,
             location,
             email,
