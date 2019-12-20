@@ -35,13 +35,14 @@ export class StripeCheckoutView extends Component {
     try {
       const status = await stripeService(token, product);
       if (status === "success") {
-        console.log("Success", this.props, this.state.product.price);
-        const userCoin = await editCoin();
+        console.log("Success", this.props.user._id, this.state.product.price);
+        const coins = Number(this.props.user.coins) + Number(this.state.product.price);
+        await editCoin(this.props.user._id, { coins: coins});
         this.setState({
-          user: {
-            coins: product.coins
-          }
+          user: this.state.user
         });
+        this.props.updateUser();
+        // console.log('USER STATE: ', this.state.user);
       }
     } catch (error) {
       console.log(error);

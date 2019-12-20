@@ -180,7 +180,7 @@ class App extends Component {
             />
             <ProtectedRoute
               path='/user/checkout'
-              render={props => <StripeCheckoutView {...props} user={user} />}
+              render={props => <StripeCheckoutView {...props} user={user} updateUser={this.updateUser}/>}
               verify={this.verifyAuthentication}
               redirect='/error/401'
             />

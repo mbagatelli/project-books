@@ -28,15 +28,15 @@ function sendSoldMail(addresseeName, address, bookTitle, sellerEmail) {
 
     Please send it to:<br />
     ${addresseeName}<br />
-    ${addresseeName}<br />
+    ${address}<br />
 
-    Once you've popped it in the mail. Clich <a href="#">here</a> to let them know it's on the way.
+    <p>Once you've popped it in the mail. Click <a href="#">here</a> to let them know it's on the way.</p>
 
-    Thanks for being part of our community and bringing a little bit of joy into the world.
+    <p>Thanks for being part of our community and bringing a little bit of joy into the world.</p>
 
-    Happy reading,
+    <p>Happy reading,</p>
 
-    The Book Cellar team
+    <p>The Book Cellar team</p>
     ` // html body
   });
   return { "message": "Email notification sent."};
