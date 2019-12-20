@@ -96,3 +96,11 @@ form label {
   display: none;
   overflow: hidden;
 }
+
+.coin-image {
+  width: 25px;
+}
+
+/* .coin-value {
+  margin-left: 0;
+} */

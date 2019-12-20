@@ -3,6 +3,8 @@ import { signOut as signOutService } from "./../services/auth";
 import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
+import NavImage from "./coin.png";
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -58,9 +60,16 @@ class NavBar extends Component {
           {/* <img src="./../images/logo.png" alt="The Book Cellar" height="64rem" className="p-0" /> */}
           The Book Cellar
         </Navbar.Brand>
-        {/* {user && (
-          <Nav.Link className='navbar-brand'>Coins: {user.coins}</Nav.Link>
-        )} */}
+        {user && (
+          <Fragment>
+            <div>
+              <Nav.Link className='navbar-brand coin-value'>
+                {user.coins}
+              </Nav.Link>
+              <img className='coin-image' src={NavImage} alt='Coin' />
+            </div>
+          </Fragment>
+        )}
         <Navbar.Toggle
           aria-controls='basic-navbar-nav'
           onClick={this.handleToggleMenu}

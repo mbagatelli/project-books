@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true
     },
+    fullName: {
+      type: String,
+      required: true
+    },
     coins: Number,
     booksOnSale: Number,
     booksSold: Number,

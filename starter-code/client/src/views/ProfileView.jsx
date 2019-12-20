@@ -68,6 +68,16 @@ class ProfileView extends Component {
                 </div>
                 <div className='panel panel-default'>
                   <div className='panel-heading'>
+                    <h4 className='panel-title mt-5'>Name</h4>
+                  </div>
+                  <div className='panel-body'>
+                    <div className='form-group'>
+                      <label className='col-sm-2'>{user.fullName}</label>
+                    </div>
+                  </div>
+                </div>
+                <div className='panel panel-default'>
+                  <div className='panel-heading'>
                     <h4 className='panel-title'>Location</h4>
                   </div>
                   <div className='panel-body'>
