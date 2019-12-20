@@ -34,7 +34,12 @@ export default class BookBuyView extends Component {
     }
   }
 
-  toggleCollapse() {
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(e);
+  }
+
+  toggleCollapse = () => {
     this.setState({
       isCollapsed: !this.state.isCollapsed
     });
@@ -78,6 +83,23 @@ export default class BookBuyView extends Component {
             <Collapse in={this.state.isCollapsed}>
               <Card.Text className="m-3" id="address">
                 <span className='font-weight-bold'>THIS WILL EDIT</span><br />
+                <Form onClick={this.handleFormSubmit}>
+                  <Form.Row>
+                    <Form.Group as={Col} controlId="formGridEmail">
+                      <Form.Label>Full Name</Form.Label>
+                      <Form.Control type="text" placeholder="Enter name" />
+                    </Form.Group>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <Form.Group controlId="formGridAddress1">
+                      <Form.Label>Address</Form.Label>
+                      <Form.Control value={user.address} />
+                    </Form.Group>
+                  </Form.Row>
+
+                  <Button variant="danger">Confirm</Button>
+                </Form>
                 {user.fullName}<br />
                 {user.address}><br />
               </Card.Text>
