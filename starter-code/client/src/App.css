@@ -1,9 +1,9 @@
 body {
-  font-style: 'PT Serif', Helvetica, sans-serif;
+  font-style: "PT Serif", Helvetica, sans-serif;
 }
 
 #logo {
-  font-family: 'PT Serif', serif;
+  font-family: "PT Serif", serif;
   font-size: 1.5em;
 }
 
@@ -79,4 +79,24 @@ form label {
   -moz-border-radius: 190px;
   -webkit-border-radius: 190px;
   border-radius: 190px;
+}
+
+/*collapse*/
+.collapsible {
+  color: black;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 16px;
+}
+
+.active,
+.collapsible:hover {
+}
+
+.content {
+  display: none;
+  overflow: hidden;
 }

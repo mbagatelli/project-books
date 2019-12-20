@@ -85,16 +85,7 @@ class SignUpView extends Component {
                       onChange={this.handleInputChange}
                     />
                   </div>
-                  <div className='form-group'>
-                    <label htmlFor='password'></label>
-                    <input
-                      type='password'
-                      name='password'
-                      value={this.state.password}
-                      placeholder='Password'
-                      onChange={this.handleInputChange}
-                    />
-                  </div>
+
                   <div className='form-group'>
                     <label htmlFor='address'></label>
                     <input
@@ -112,6 +103,16 @@ class SignUpView extends Component {
                       value={this.state.location}
                       placeholder='Location'
                       name='location'
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='password'></label>
+                    <input
+                      type='password'
+                      name='password'
+                      value={this.state.password}
+                      placeholder='Password'
                       onChange={this.handleInputChange}
                     />
                   </div>

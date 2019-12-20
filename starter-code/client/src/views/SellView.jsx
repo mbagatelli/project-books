@@ -156,6 +156,20 @@ export default class SellView extends Component {
       });
     }
     window.scrollTo(0, 0);
+    let coll = document.getElementsByClassName("collapsible");
+    let i = 0;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
   }
 
   async handleFormSubmit(event) {
@@ -308,20 +322,21 @@ export default class SellView extends Component {
           </Form.Group>
 
           {/* Genres */}
-          <p>Genre</p>
-          <Form.Group controlId='genre' onChange={this.handleInputChange}>
-            {bookGenres.map(genre => (
-              <Form.Check
-                key={genre}
-                id={`genre-${genre}`}
-                type='checkbox'
-                label={genre}
-                name='genre'
-                value={genre}
-              />
-            ))}
-          </Form.Group>
-
+          <p className='collapsible'>Open Genre</p>
+          <div className='content'>
+            <Form.Group controlId='genre' onChange={this.handleInputChange}>
+              {bookGenres.map(genre => (
+                <Form.Check
+                  key={genre}
+                  id={`genre-${genre}`}
+                  type='checkbox'
+                  label={genre}
+                  name='genre'
+                  value={genre}
+                />
+              ))}
+            </Form.Group>
+          </div>
           <p>Language</p>
           <Form.Group controlId='language' onChange={this.handleInputChange}>
             <Form.Check
@@ -473,9 +488,8 @@ export default class SellView extends Component {
 
           <Form.Group controlId='image'>
             <img src={this.state.book.image} alt='' />
-            <Form.Label>Change picture</Form.Label>
-            {/* <input type='file' name='image' onChange={this.handleFileChange} /> */}
-            <input
+            {/*  <Form.Label>Change picture</Form.Label>
+              <input
               style={fileInputButton}
               type='file'
               name='image'
@@ -483,7 +497,7 @@ export default class SellView extends Component {
             />
             <Button variant='outline-danger' onClick={this.removeImage}>
               Remove image
-            </Button>
+            </Button> */}
           </Form.Group>
 
           <Button variant='primary' type='submit'>
@@ -495,7 +509,7 @@ export default class SellView extends Component {
   }
 }
 
-const fileInputButton = {
+/* const fileInputButton = {
   // color: 'transparent',
   content: "Select a files",
   color: "black",
@@ -510,4 +524,4 @@ const fileInputButton = {
   textShadow: "1px 1px #fff",
   // fontWeight: '600'
   margin: "1em"
-};
+}; */

@@ -42,13 +42,12 @@ router.post(
 
 // Verify Email
 
-router.get("/confirm/:token", (req, res, next) => {
-  User.findOneAndUpdate(
-    { "auth.verificationToken": req.params.token },
-    { "auth.verified": true }
-  )
+router.patch("/confirm/:mailToken", async (req, res, next) => {
+  const mailToken = await req.params.mailToken;
+  User.findOneAndUpdate({ confirmationCode: mailToken }, { status: "Active" })
     .then(user => {
-      res.redirect(`/user/${user._id}/complete-profile`);
+      req.session.user = user._id;
+      //res.redirect("/");
     })
     .catch(err => console.log(err));
 });
