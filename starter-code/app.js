@@ -15,6 +15,7 @@ const mongoose = require("mongoose");
 const authRouter = require("./routes/api/authentication");
 const bookRouter = require("./routes/api/book");
 const stripeRouter = require("./routes/api/checkout");
+const sellRouter = require("./routes/api/sell");
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use(passport.session());
 app.use("/api/auth", authRouter);
 app.use("/api/book", bookRouter);
 app.use("/api/checkout", stripeRouter);
+// app.use("/api/sell", sellRouter);
 
 // Catch missing routes and forward to error handler
 

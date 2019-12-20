@@ -481,6 +481,7 @@ export default class SellView extends Component {
           </Form.Group>
 
           <Form.Group controlId='price'>
+            <Form.Label>Price in coins</Form.Label>
             <Form.Control
               type='number'
               placeholder='Cost in coins'
@@ -491,7 +492,7 @@ export default class SellView extends Component {
           </Form.Group>
 
           <Form.Group controlId='description'>
-            {/* <Form.Label>Enter short description (optional)</Form.Label> */}
+            {/* <Form.Label>Seller description</Form.Label> */}
             <Form.Control
               as='textarea'
               rows='3'
