@@ -54,6 +54,10 @@
   text-align: center;
 }
 
+.howitworks {
+  background-color: rgb(247, 243, 237);
+}
+
 .home h2 {
   font-size: 3em;
 }

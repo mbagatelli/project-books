@@ -184,12 +184,6 @@ class App extends Component {
               verify={this.verifyAuthentication}
               redirect='/error/401'
             />
-            {/* <ProtectedRoute
-              path="/book/buy"
-              render={props => <BuyListView {...props} user={user} />}
-              verify={this.verifyAuthentication}
-              redirect="/error/401"
-            /> */}
             <Route path='/error/:code' component={NotFoundComponent} />
 
             {/* <Route path='/user/edit' component={UserEditView} /> */}

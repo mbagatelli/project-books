@@ -30,8 +30,8 @@ class HomeView extends Component {
               <Link to='/user/sign-up'>Sign up</Link> to the site and
               <Link to='/book/sell'> sell</Link> your first book!
             </p>
-            <p>You will receive 10 coins each time you make a sale, then,</p>
-            <p>you can spend your coins buying other users books.</p>
+            <p>You will receive coins each time you make a sale then<br />
+               you can spend your coins exchanging other users' books.</p>
           </div>
           <p>
             <u>Share</u> your knowledge!
