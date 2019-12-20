@@ -61,6 +61,7 @@ export class StripeCheckoutView extends Component {
         />
         <br />
         <StripeCheckout
+          // Styling this button may be impossible...
           className="m-3"
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
           token={this.handleToken}

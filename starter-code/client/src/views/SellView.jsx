@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Collapse } from "react-bootstrap";
 
 import { create as createBook } from "../services/books";
 
@@ -96,6 +96,7 @@ export default class SellView extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.removeImage = this.removeImage.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
   componentDidMount() {
@@ -152,7 +153,8 @@ export default class SellView extends Component {
           title: "" || book.title
           // genre: [] || genres,
           // language: lang || "Other language",
-        }
+        },
+        isCollapsed: true
       });
     }
     window.scrollTo(0, 0);
@@ -239,11 +241,17 @@ export default class SellView extends Component {
     });
   }
 
+  toggleCollapse() {
+    this.setState({
+      isCollapsed: !this.state.isCollapsed
+    })
+  }
   render() {
     console.log("This state book: ", this.state.book);
+    // const [open, setOpen] = useState(false);
     return (
-      <Fragment>
-        <Form className='container' onSubmit={this.handleFormSubmit}>
+      <Fragment className="mx-auto text-center">
+        <Form className='container mt-3' onSubmit={this.handleFormSubmit}>
           <Form.Group controlId='title'>
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -308,21 +316,29 @@ export default class SellView extends Component {
           </Form.Group>
 
           {/* Genres */}
-          <p>Genre</p>
-          <Form.Group controlId='genre' onChange={this.handleInputChange}>
-            {bookGenres.map(genre => (
-              <Form.Check
-                key={genre}
-                id={`genre-${genre}`}
-                type='checkbox'
-                label={genre}
-                name='genre'
-                value={genre}
-              />
-            ))}
-          </Form.Group>
+          <Button
+            onClick={() => this.toggleCollapse()}
+            aria-controls="example-collapse-text"
+            aria-expanded={this.state.isCollapsed}
+          >
+            Genres
+          </Button>
+          <Collapse in={this.state.isCollapsed}>
+            <Form.Group id="example-collapse-text" controlId='genre' onChange={this.handleInputChange}>
+              {bookGenres.map(genre => (
+                <Form.Check
+                  key={genre}
+                  id={`genre-${genre}`}
+                  type='checkbox'
+                  label={genre}
+                  name='genre'
+                  value={genre}
+                />
+              ))}
+            </Form.Group>
+          </Collapse>
 
-          <p>Language</p>
+          <p className="mt-4">Language</p>
           <Form.Group controlId='language' onChange={this.handleInputChange}>
             <Form.Check
               id='english'
