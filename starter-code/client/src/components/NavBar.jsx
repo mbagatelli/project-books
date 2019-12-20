@@ -62,12 +62,10 @@ class NavBar extends Component {
         </Navbar.Brand>
         {user && (
           <Fragment>
-            <div>
-              <Nav.Link className='navbar-brand coin-value'>
-                {user.coins}
-              </Nav.Link>
-              <img className='coin-image' src={NavImage} alt='Coin' />
-            </div>
+            <Nav.Link className='ml-auto mr-0 navbar-brand coin-value'>
+              {user.coins}
+            </Nav.Link>
+            <img className='coin-image ' src={NavImage} alt='Coin' />
           </Fragment>
         )}
         <Navbar.Toggle

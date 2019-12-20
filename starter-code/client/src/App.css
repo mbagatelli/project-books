@@ -99,8 +99,10 @@ form label {
 
 .coin-image {
   width: 25px;
+  margin-right: 0.2em;
 }
 
-/* .coin-value {
-  margin-left: 0;
-} */
+.coin-value {
+  display: flex;
+  justify-content: right;
+}
