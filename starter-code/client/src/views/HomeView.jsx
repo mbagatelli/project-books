@@ -33,10 +33,17 @@ class HomeView extends Component {
             <p>You will receive coins each time you make a sale then<br />
                you can spend your coins exchanging other users' books.</p>
           </div>
-          <p>
+          <p className="mt-5">
             <u>Share</u> your knowledge!
           </p>
+          <p className="m-3 mt-5">
+            Now sure what to read?
+          </p>
+          <p>
+            Check out <a href="https://mind-scape.herokuapp.com/">MindScape</a>
+          </p>
         </div>
+
       </div>
     );
   }
