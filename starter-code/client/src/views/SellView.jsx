@@ -90,7 +90,8 @@ export default class SellView extends Component {
         price: 0,
         description: "",
         image: null
-      }
+      },
+      isCollapsed: false
     };
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -260,6 +261,7 @@ export default class SellView extends Component {
       isCollapsed: !this.state.isCollapsed
     });
   }
+
   render() {
     console.log("This state book: ", this.state.book);
     // const [open, setOpen] = useState(false);
@@ -481,6 +483,7 @@ export default class SellView extends Component {
           </Form.Group>
 
           <Form.Group controlId='price'>
+            <Form.Label>Price in coins</Form.Label>
             <Form.Control
               type='number'
               placeholder='Cost in coins'
@@ -491,7 +494,7 @@ export default class SellView extends Component {
           </Form.Group>
 
           <Form.Group controlId='description'>
-            {/* <Form.Label>Enter short description (optional)</Form.Label> */}
+            {/* <Form.Label>Seller description</Form.Label> */}
             <Form.Control
               as='textarea'
               rows='3'
