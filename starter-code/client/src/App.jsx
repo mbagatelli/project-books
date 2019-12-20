@@ -182,12 +182,6 @@ class App extends Component {
               render={props => <BuyListView {...props} user={user} />}
             />
             <ProtectedRoute
-              path='/buy/confirmation'
-              render={props => <BuyConfirmationView {...props} user={user} receiver={this.state.receiver}/>}
-              verify={this.verifyAuthentication}
-              redirect='/error/401'
-            />
-            <ProtectedRoute
               path='/buy/:id'
               render={props => <BookBuyView {...props} user={user} updateReceiver={this.updateReceiver}/>}
               verify={this.verifyAuthentication}
@@ -203,6 +197,13 @@ class App extends Component {
             <ProtectedRoute
               path='/user/checkout'
               render={props => <StripeCheckoutView {...props} user={user} updateUser={this.updateUser}/>}
+              verify={this.verifyAuthentication}
+              redirect='/error/401'
+            />
+            <ProtectedRoute
+              exact
+              path='/confirmation'
+              render={props => <BuyConfirmationView {...props} user={user} receiver={this.state.receiver}/>}
               verify={this.verifyAuthentication}
               redirect='/error/401'
             />

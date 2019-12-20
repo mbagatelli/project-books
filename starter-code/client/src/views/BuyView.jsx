@@ -65,7 +65,7 @@ export default class BuyView extends Component {
             className='mx-auto flex-wrap d-flex justify-content-center shadow w-25'
             variant='primary'
             as={Link}
-            to={`/buy/confirmation/${book._id}`}
+            to={`/buy/${book._id}`}
           >
             Buy
           </Button>
