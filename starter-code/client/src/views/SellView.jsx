@@ -250,8 +250,8 @@ export default class SellView extends Component {
     console.log("This state book: ", this.state.book);
     // const [open, setOpen] = useState(false);
     return (
-      <Fragment className="mx-auto text-center">
-        <Form className='container mt-3' onSubmit={this.handleFormSubmit}>
+      <Fragment>
+        <Form className='container mt-3 mx-auto text-center d-flex flex-column align-items-center' onSubmit={this.handleFormSubmit}>
           <Form.Group controlId='title'>
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -317,6 +317,8 @@ export default class SellView extends Component {
 
           {/* Genres */}
           <Button
+            variant="secondary"
+            className="m-2"
             onClick={() => this.toggleCollapse()}
             aria-controls="example-collapse-text"
             aria-expanded={this.state.isCollapsed}
@@ -338,8 +340,8 @@ export default class SellView extends Component {
             </Form.Group>
           </Collapse>
 
-          <p className="mt-4">Language</p>
-          <Form.Group controlId='language' onChange={this.handleInputChange}>
+          {/* <p className="mt-4">Language</p> */}
+          <Form.Group className="m-2" controlId='language' onChange={this.handleInputChange}>
             <Form.Check
               id='english'
               inline
@@ -502,7 +504,7 @@ export default class SellView extends Component {
             </Button>
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
+          <Button className="mb-3" variant='primary' type='submit'>
             Submit
           </Button>
         </Form>
