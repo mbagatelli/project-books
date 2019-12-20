@@ -139,7 +139,7 @@ export default class BuyListView extends Component {
               Non-fiction
             </Button>
             <Button
-              className="m-2 shadow"
+              className='m-2 shadow'
               variant='primary'
               name='type'
               value=''
@@ -188,7 +188,7 @@ export default class BuyListView extends Component {
                   Listed on: {book.createdAt.slice(0, 10)}
                 </Card.Text>
                 <Button
-                  className='flex-wrap d-flex justify-content-center'
+                  className='flex-wrap d-flex justify-content-center shadow'
                   variant='primary'
                   as={Link}
                   to={`/book/${book._id}`}

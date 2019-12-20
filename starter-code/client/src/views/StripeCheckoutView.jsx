@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { stripe as stripeService } from "../services/stripe";
+import { edit as editCoin } from "../services/auth";
 
 export class StripeCheckoutView extends Component {
   constructor(props) {
@@ -20,7 +21,6 @@ export class StripeCheckoutView extends Component {
 
   handleInputChange(event) {
     const value = event.target.value;
-    console.log(value);
     this.setState({
       product: {
         name: "coins",
@@ -34,8 +34,9 @@ export class StripeCheckoutView extends Component {
     const product = this.state.product;
     try {
       const status = await stripeService(token, product);
-      console.log(status, token, product);
       if (status === "success") {
+        console.log("Success", this.props, this.state.product.price);
+        const userCoin = await editCoin();
         this.setState({
           user: {
             coins: product.coins
@@ -50,19 +51,22 @@ export class StripeCheckoutView extends Component {
   render() {
     console.log(this.props.user.coins, this.state.product);
     return (
-      <div className="mx-auto text-center m-3">
-        <h1 className="m-3">How many coins?</h1>
-        <input
-          className="m-3"
-          type='number'
-          name='price'
-          value={this.state.product.price}
-          onChange={this.handleInputChange}
-        />
-        <br />
+      <div className='howitworks-stripe'>
+        <div className='home-content'>
+          <h2 className='m-5'>Add Coins to your wallet!</h2>
+          <div className='form-group'>
+            <label htmlFor='coins'></label>
+            <input
+              type='number'
+              placeholder='Amount of coins'
+              name='coins'
+              onChange={this.handleInputChange}
+            />
+          </div>
+        </div>
+
         <StripeCheckout
-          // Styling this button may be impossible...
-          className="m-3"
+          className='m-3'
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
           token={this.handleToken}
           amount={this.state.product.price * 100}

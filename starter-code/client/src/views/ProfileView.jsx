@@ -40,7 +40,7 @@ class ProfileView extends Component {
     } else {
       books = [...this.state.books];
     }
-    //console.log(user.username);
+    //console.log(books);
     return (
       <div>
         <div className='container bootstrap snippets'>
@@ -102,12 +102,20 @@ class ProfileView extends Component {
                     </div>
                   </div>
                 </div>
-                <Link to={`/user/edit/${user._id}`}>Edit Profile</Link>
+                <Link
+                  className='btn btn-primary shadow'
+                  to={`/user/edit/${user._id}`}
+                >
+                  Edit Profile
+                </Link>
                 <br />
+
                 <div className='panel panel-default'>
-                  <div className='panel-heading'>
-                    <h4 className='panel-title'>Books on Sale</h4>
-                  </div>
+                  {books.length > 0 && (
+                    <div className='panel-heading'>
+                      <h4 className='panel-title text-center'>Books on Sale</h4>
+                    </div>
+                  )}
                   <div className='panel-body'>
                     <div className='form-group'>
                       <div
@@ -137,7 +145,7 @@ class ProfileView extends Component {
                                   className='mt-auto flex-wrap d-flex justify-content-center'
                                   variant='primary'
                                   as={Link}
-                                  to={`/book/${book._id}`}
+                                  to={`/book/${book._id}/edit`}
                                 >
                                   Edit
                                 </Button>

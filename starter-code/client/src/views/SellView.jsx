@@ -267,7 +267,10 @@ export default class SellView extends Component {
     // const [open, setOpen] = useState(false);
     return (
       <Fragment>
-        <Form className='container mt-3 mx-auto text-center d-flex flex-column align-items-center' onSubmit={this.handleFormSubmit}>
+        <Form
+          className='container mt-3 mx-auto text-center d-flex flex-column align-items-center'
+          onSubmit={this.handleFormSubmit}
+        >
           <Form.Group controlId='title'>
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -333,18 +336,23 @@ export default class SellView extends Component {
 
           {/* Genres */}
           <Button
-            variant="secondary"
-            className="m-2"
+            variant='secondary'
+            className='m-2'
             onClick={() => this.toggleCollapse()}
-            aria-controls="example-collapse-text"
+            aria-controls='example-collapse-text'
             aria-expanded={this.state.isCollapsed}
           >
             Genres
           </Button>
           <Collapse in={this.state.isCollapsed}>
-            <Form.Group id="example-collapse-text" controlId='genre' onChange={this.handleInputChange}>
+            <Form.Group
+              id='example-collapse-text'
+              controlId='genre'
+              onChange={this.handleInputChange}
+            >
               {bookGenres.map(genre => (
                 <Form.Check
+                  className='text-left'
                   key={genre}
                   id={`genre-${genre}`}
                   type='checkbox'
@@ -357,7 +365,11 @@ export default class SellView extends Component {
           </Collapse>
 
           {/* <p className="mt-4">Language</p> */}
-          <Form.Group className="m-2" controlId='language' onChange={this.handleInputChange}>
+          <Form.Group
+            className='m-2'
+            controlId='language'
+            onChange={this.handleInputChange}
+          >
             <Form.Check
               id='english'
               inline
@@ -520,7 +532,7 @@ export default class SellView extends Component {
             </Button> */}
           </Form.Group>
 
-          <Button className="mb-3" variant='primary' type='submit'>
+          <Button className='mb-3 shadow' variant='primary' type='submit'>
             Submit
           </Button>
         </Form>

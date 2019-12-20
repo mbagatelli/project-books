@@ -18,7 +18,6 @@ import BuyView from "./views/BuyView";
 import BuyListView from "./views/BuyListView";
 import BookBuyView from "./views/BookBuyView";
 
-
 import { loadUserInformation as loadUserInformationService } from "./services/auth";
 
 import "./App.css";
@@ -38,9 +37,13 @@ class App extends Component {
     );
     this.updateCurrentBook = this.updateCurrentBook.bind(this);
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   async componentDidMount() {
+    this.updateUser();
+  }
+  async updateUser() {
     try {
       const user = await loadUserInformationService();
       this.setState({
@@ -52,9 +55,9 @@ class App extends Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   console.log('App.jsx componentDidUpdate: ', this.state);
-  // }
+  componentDidUpdate() {
+    //console.log("App.jsx componentDidUpdate: ", this.state.user);
+  }
 
   changeAuthenticationStatus(user) {
     this.setState({
@@ -168,6 +171,7 @@ class App extends Component {
               verify={this.verifyAuthentication}
               redirect='/error/401'
             />
+            <Route path='/book/:id/edit' exact component={BookEditView} />
             <ProtectedRoute
               path='/book/:id'
               render={props => <BuyView {...props} user={user} />}
@@ -187,11 +191,21 @@ class App extends Component {
               redirect="/error/401"
             /> */}
             <Route path='/error/:code' component={NotFoundComponent} />
-            <Route path='/book/:id/edit' component={BookEditView} />
-            {/* <Route path='/book/:id' component={BookEditView} /> */}
-            <Route path='/user/edit' component={UserEditView} />
+
+            {/* <Route path='/user/edit' component={UserEditView} /> */}
+            <Route
+              path='/user/edit'
+              render={props => (
+                <UserEditView
+                  {...props}
+                  user={user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+
             <Route path='/' exact component={HomeView} />
-            {/* <Redirect to='/error/404' /> */}
+
             <Route path='/error/:code' component={ErrorView} />
           </Switch>
         )}

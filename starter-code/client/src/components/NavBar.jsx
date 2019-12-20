@@ -9,6 +9,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: this.props.user,
       expanded: false
     };
     this.onSignOutTrigger = this.onSignOutTrigger.bind(this);
@@ -30,9 +31,15 @@ class NavBar extends Component {
     });
   }
 
-  componentDidUpdate(previousProps) {
+  componentDidUpdate(previousProps, prevState) {
+    /*     if (previousProps.user.coins !== this.props.user.coins) {
+      this.setState({
+        user: this.props.user
+      }); 
+    }*/
     if (previousProps.location.pathname !== this.props.location.pathname) {
       this.setState({
+        user: this.props.user,
         expanded: false
       });
     }
@@ -43,10 +50,6 @@ class NavBar extends Component {
     if (this.props.user) {
       user = this.props.user;
     }
-
-    // console.log('NAVBAR PROPS: ', this.props);
-    // console.log('NAVBAR STATE: ', this.state.navbarState);
-    // console.log('USER: ', user);
 
     return (
       <Navbar
@@ -82,9 +85,7 @@ class NavBar extends Component {
                 <Nav.Link as={NavLink} to='/book/sell/search'>
                   Sell
                 </Nav.Link>
-                <Nav.Link as={NavLink} to='/user/checkout'>
-                  Checkout
-                </Nav.Link>
+
                 {/* <NavDropdown title={user.username} id="basic-nav-dropdown">
                   <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', position: 'relative', right: '3em'}}>
                     <Link as={NavLink} to='/user/profile'>Profile</Link>
@@ -93,6 +94,9 @@ class NavBar extends Component {
                 </NavDropdown> */}
                 <Nav.Link as={NavLink} to='/user/profile'>
                   Profile
+                </Nav.Link>
+                <Nav.Link as={NavLink} to='/user/checkout'>
+                  Buy Coins
                 </Nav.Link>
                 <Nav.Link as={NavLink} to='/' onClick={this.onSignOutTrigger}>
                   Sign Out

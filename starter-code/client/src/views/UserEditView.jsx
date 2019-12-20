@@ -55,12 +55,16 @@ class UserEditView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    //console.log("funciona?", this.props.match.params.id);
     const user = this.state.user;
     const id = user._id;
     try {
-      //console.log("before the await", id, user);
       await editUserService(id, user);
+      this.setState({
+        user: this.state.user
+      });
+      this.props.updateUser();
+
+      console.log("state user", this.state.user);
       this.props.history.push(`/user/profile`);
     } catch (error) {
       console.log(error);
