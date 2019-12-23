@@ -30,20 +30,20 @@ class HomeView extends Component {
               <Link to='/user/sign-up'>Sign up</Link> to the site and
               <Link to='/book/sell'> sell</Link> your first book!
             </p>
-            <p>You will receive coins each time you make a sale then<br />
-               you can spend your coins exchanging other users' books.</p>
+            <p>
+              You will receive coins each time you make a sale then
+              <br />
+              you can spend your coins exchanging other users' books.
+            </p>
           </div>
-          <p className="mt-5">
+          <p className='mt-5'>
             <u>Share</u> your knowledge!
           </p>
-          <p className="m-3 mt-5">
-            Now sure what to read?
-          </p>
+          <p className='m-3 mt-5'>Now sure what to read?</p>
           <p>
-            Check out <a href="https://mind-scape.herokuapp.com/">MindScape</a>
+            Check out <a href='https://mind-scape.herokuapp.com/'>MindScape</a>
           </p>
         </div>
-
       </div>
     );
   }
