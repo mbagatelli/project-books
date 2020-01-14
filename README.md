@@ -11,7 +11,7 @@ The Book Cellar was bourne from noticing one problem with books in Portugal: cos
 
 This is Project 3 for IronHack Web Development Bootcamp in Lisbon. This project is being developed and mantained by [Marco Bagatelli](https://github.com/mbagatelli) & [Sam Vargas](https://github.com/svargas-dev).
 
-[Learn more about IronHack](https://www.ironhack.com/en).
+[Learn more about IronHack](https://www.ironhack.com/).
 
 
 ## Resources
