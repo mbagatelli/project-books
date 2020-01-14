@@ -23,26 +23,37 @@ class HomeView extends Component {
             <p className='mt-5'>What if we could change that?</p>
           </div>
         </div>
-        <div className='howitworks'>
-          <div className='home-content'>
-            <h2 className='m-5'>How it works</h2>
+        <div className='howitworks mt-0'>
+          <div className='home-content mt-0 pt-0'>
+            <h2 className='mr-3 ml-3 mb-5 mt-0'>How it works</h2>
+            <p className='m-0'>
+              List a book
+              <br />
+              Send a book
+              <br />
+              Receive coins
+              <br />
+              Spend coins
+            </p>
+            <p>Magic</p>
             <p>
               <Link to='/user/sign-up'>Sign up</Link> to the site and
               <Link to='/book/sell'> sell</Link> your first book!
             </p>
             <p>
-              You will receive coins each time you make a sale then
-              <br />
-              you can spend your coins exchanging other users' books.
+              Haven't got a book to trade? We've got you covered: You can buy
+              coins. Sorted.
             </p>
+            <p>
+              Not sure what to read?
+              <br />
+              Check out{" "}
+              <a href='https://mind-scape.herokuapp.com/'>MindScape</a>
+            </p>
+            <Link to='/book/buylist' type='button' class='btn btn-primary mt-3'>
+              See Books
+            </Link>
           </div>
-          <p className='mt-5'>
-            <u>Share</u> your knowledge!
-          </p>
-          <p className='m-3 mt-5'>Now sure what to read?</p>
-          <p>
-            Check out <a href='https://mind-scape.herokuapp.com/'>MindScape</a>
-          </p>
         </div>
       </div>
     );

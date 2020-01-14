@@ -85,7 +85,7 @@ form label {
 .collapsible {
   color: black;
   cursor: pointer;
-  width: 100%;
+  width: 100vw;
   border: none;
   text-align: left;
   outline: none;
