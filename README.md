@@ -15,14 +15,14 @@ This is Project 3 for IronHack Web Development Bootcamp in Lisbon. This project 
 
 
 ## Resources
-[React.js](https://reactjs.org/) - JavaScript Front-end Framework
-[React router-dom](https://www.npmjs.com/package/react-router-dom) - Router module for the React.js framework
-[React Bootstrap](https://www.npmjs.com/package/react-bootstrap) - Bootstrap the React.js way
-[Bootstrap](https://getbootstrap.com/) - CSS Framework  
-[Node.js](https://nodejs.org/) - JavaScript Runtime Environment
-[Express](https://expressjs.com/) - Node.js Framework
-[MongoDB](https://docs.mongodb.com/) - NoSQL Database  
-[MongoDB Driver](https://mongodb.github.io/node-mongodb-native/) - MondoDB Nodejs Driver  
-[Mongoose](https://mongoosejs.com/) - MongoDb Object Modeling for Node  
-[Passport](https://date-fns.org/) - OAuth Nodejs Middleware  
+[React.js](https://reactjs.org/) - JavaScript Front-end Framework<br />
+[React router-dom](https://www.npmjs.com/package/react-router-dom) - Router module for the React.js framework<br />
+[React Bootstrap](https://www.npmjs.com/package/react-bootstrap) - Bootstrap the React.js way<br />
+[Bootstrap](https://getbootstrap.com/) - CSS Framework<br />
+[Node.js](https://nodejs.org/) - JavaScript Runtime Environment<br />
+[Express](https://expressjs.com/) - Node.js Framework<br />
+[MongoDB](https://docs.mongodb.com/) - NoSQL Database<br />
+[MongoDB Driver](https://mongodb.github.io/node-mongodb-native/) - MondoDB Nodejs Driver<br />
+[Mongoose](https://mongoosejs.com/) - MongoDb Object Modeling for Node<br />
+[Passport](https://date-fns.org/) - OAuth Nodejs Middleware<br />
 [Axios](https://github.com/axios/axios) - Nodejs HTTP Client
