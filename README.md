@@ -7,7 +7,7 @@
 
 ## What is the Book Cellar?
 
-The Book Cellar was borne from noticing one problem with books in Portugal: cost. Books are prohibitively expensive for most people so we created a platform where people can share what books they have.
+The Book Cellar was born from noticing one problem with books in Portugal: cost. Books are prohibitively expensive for most people so we created a platform where people can share what books they have.
 
 This is Project 3 for IronHack Web Development Bootcamp in Lisbon. This project is being developed and mantained by [Marco Bagatelli](https://github.com/mbagatelli) & [Sam Vargas](https://github.com/svargas-dev).
 
