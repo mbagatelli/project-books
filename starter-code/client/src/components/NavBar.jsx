@@ -105,10 +105,10 @@ class NavBar extends Component {
             )) || (
               <Fragment>
                 <Nav.Link as={NavLink} to='/user/sign-in'>
-                  Sign-In
+                  Sign In
                 </Nav.Link>
                 <Nav.Link as={NavLink} to='/user/sign-up'>
-                  Sign-Up
+                  Sign Up
                 </Nav.Link>
               </Fragment>
             )}
