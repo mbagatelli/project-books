@@ -1,6 +1,6 @@
 <p>
   <a href="https://book-cellar.herokuapp.com/">
-	  <img src="https://raw.githubusercontent.com/mbagatelli/project-books/tree/master/starter-code/master/readme-logo.png" alt="Thee Book Cellar"><br />
+	  <img src="https://raw.githubusercontent.com/mbagatelli/project-books/tree/master/starter-code/master/readme-logo.png" alt="The Book Cellar"><br />
     <img src="https://raw.githubusercontent.com/mbagatelli/project-books/tree/master/starter-code/master/readme-project3.png" alt="IronHack Project 3: By Marco Bagatelli & Sam Vargas">
   </a>
 </p>
