@@ -91,6 +91,7 @@ export default class SellView extends Component {
         description: "",
         image: null
       },
+      // Toogled on componentDidMount()
       isCollapsed: false
     };
     this.handleFileChange = this.handleFileChange.bind(this);
