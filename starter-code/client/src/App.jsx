@@ -49,6 +49,7 @@ class App extends Component {
   async componentDidMount() {
     this.updateUser();
   }
+  
   async updateUser() {
     try {
       const user = await loadUserInformationService();

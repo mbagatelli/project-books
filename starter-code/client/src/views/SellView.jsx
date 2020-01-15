@@ -91,7 +91,7 @@ export default class SellView extends Component {
         description: "",
         image: null
       },
-      isCollapsed: true
+      isCollapsed: false
     };
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
