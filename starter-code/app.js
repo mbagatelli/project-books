@@ -20,7 +20,7 @@ const notificationsRouter = require("./routes/api/notifications");
 const app = express();
 
 // app.use(serveFavicon(join(__dirname, "client/build", "favicon.ico")));
-app.use(express.static(join(__dirname, "client/build")));
+app.use(express.static(join(__dirname, "./client/build")));
 
 app.use(logger("dev"));
 //app.use(express.urlencoded({ extended: true }));
