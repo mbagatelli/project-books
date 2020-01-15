@@ -38,8 +38,3 @@ client/build
 
 # next.js build output
 .next
-
-#ignore Readme!
-readme-logo.png
-readme-project3.png
-readme.md
