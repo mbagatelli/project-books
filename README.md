@@ -4,6 +4,7 @@
     <img src="https://github.com/mbagatelli/project-books/blob/master/starter-code/readme-project3.png?raw=true" alt="IronHack Project 3: By Marco Bagatelli & Sam Vargas">
   </a>
 </p>
+<p>By Marco Bagatelli & Sam Vargas</p>
 
 ## What is the Book Cellar?
 
