@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./server",
     "dev": "nodemon ./server",
-    "prepare": "cd ./starter-code/client && npm install && npm run build",
+    "prepare": "cd ./client && npm install && npm run build",
     "dev:debug": "DEBUG=starter-code* npm run dev",
     "lint": "eslint ."
   },
